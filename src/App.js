@@ -5,10 +5,12 @@ import Selector from "./Components/Selector";
 import { Navbar } from "./Components/Navbar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Product from "./pages/Product";
+
 function App() {
   return (
     <div>
-      <Products></Products>
+      <Home></Home>
     </div>
   );
 }
