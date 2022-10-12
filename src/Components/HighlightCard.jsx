@@ -54,7 +54,7 @@ const FavoriteIconContainer = styled.div`
   left:20%;
   display: flex;
   opacity: 0.2;
-  z-index: 2;
+  z-index: 0;
   color: #1a1a1a;
   cursor: pointer;
   flex: 1;

@@ -12,7 +12,7 @@ const Container = styled.div`
   background-color: #c7c7c71d;
 `;
 const Wrapper = styled.div`
-  height: 90%;
+  height: 100%;
   gap:25px;
   display: flex;
   justify-content: space-evenly;
