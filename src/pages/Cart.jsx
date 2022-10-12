@@ -45,7 +45,6 @@ const PurchaseForm = styled.div`
   justify-items: center;
 `;
 
-const Sum = style.
 
 const Cart = () => {
   return (
