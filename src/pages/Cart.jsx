@@ -24,6 +24,7 @@ const PurchasedItems = styled.div`
   justify-content: flex-start;
   align-items: start;
   gap: 10px;
+  background-color:green;
 `;
 const PurchasedItem = styled.div`
   flex: 1;
@@ -45,6 +46,9 @@ const PurchaseForm = styled.div`
   justify-items: center;
 `;
 
+const OrderPrice = styled.div``;
+const DeliveryPrice = styled.div``;
+const SumPrice = styled.div``;
 
 const Cart = () => {
   return (
