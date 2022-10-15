@@ -10,13 +10,15 @@ const Container = styled.div`
   align-items: center;
 `;
 const Wrapper = styled.div`
-  height: 90%;
+  height: 70%;
   width: 100%;
   margin-left: 150px;
   margin-right: 150px;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
+
 const PurchasedItems = styled.div`
   flex: 2;
   height: 100%;
@@ -26,7 +28,6 @@ const PurchasedItems = styled.div`
   justify-content: flex-start;
   align-items: start;
   gap: 10px;
-  background-color: #d4d4d4;
 `;
 const PurchasedItem = styled.div`
   display: flex;
@@ -34,7 +35,7 @@ const PurchasedItem = styled.div`
   justify-content: space-around;
   flex: 1;
   width: 90%;
-  gap:20px;
+  gap: 20px;
   height: 20vh;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -44,17 +45,32 @@ const PurchasedItemPhoto = styled.img`
   width: 100px;
   height: 150px;
   object-fit: scale-down;
-  background-color: green;
-  
 `;
 const PurchasedTextContainer = styled.div`
-flex:1;
-height:150px;
-width :100%;
-background-color: blue;
+  flex: 1;
+  height: 150px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
-const PurchasedItemText = styled.div``;
-const text = styled.h1``;
+const PurchasedItemName = styled.h4`
+  margin-top: 0;
+  margin-bottom: 1px;
+`;
+const DetailsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  height: 30px;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+`;
+const Text = styled.p`
+  font-weight: 500;
+  margin-top: 1px;
+`;
 
 const PurchaseButton = styled.button`
   width: 100%;
@@ -69,11 +85,12 @@ const PurchaseButton = styled.button`
 const PurchaseForm = styled.div`
   width: 30%;
   height: 100%;
-  background-color: yellow;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   justify-items: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 const OrderDetails = styled.div`
   display: flex;
@@ -97,35 +114,70 @@ const Cart = () => {
       <Wrapper>
         <PurchasedItems>
           <PurchasedItem>
-            <PurchasedItemPhoto></PurchasedItemPhoto>
-            <PurchasedTextContainer></PurchasedTextContainer>
+            <PurchasedItemPhoto src="https://lp.cosstores.com/app001prod?set=source[/f0/e0/f0e025140cf9d00d92548fc87f64ff7c11565c06.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"></PurchasedItemPhoto>
+            <PurchasedTextContainer>
+              <PurchasedItemName>
+                SANDALEN MIT BLOCKABSATZ UND KARREEFÖRMIGER ZEHENP
+              </PurchasedItemName>
+              <Text>EUR 115</Text>
+              <DetailsContainer>
+                <Text>SIZE</Text>
+                <Text>L</Text>
+              </DetailsContainer>
+              <DetailsContainer>
+                <Text>COLOR</Text>
+                <Text>BLACK</Text>
+              </DetailsContainer>
+            </PurchasedTextContainer>
           </PurchasedItem>
           <PurchasedItem>
-            <PurchasedItemPhoto></PurchasedItemPhoto>
-            <PurchasedTextContainer></PurchasedTextContainer>
+            <PurchasedItemPhoto src="https://lp.cosstores.com/app001prod?set=source[/f0/e0/f0e025140cf9d00d92548fc87f64ff7c11565c06.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"></PurchasedItemPhoto>
+            <PurchasedTextContainer>
+              <PurchasedItemName>
+                SANDALEN MIT BLOCKABSATZ UND KARREEFÖRMIGER ZEHENP
+              </PurchasedItemName>
+              <Text>EUR 115</Text>
+              <DetailsContainer>
+                <Text>SIZE</Text>
+                <Text>L</Text>
+              </DetailsContainer>
+              <DetailsContainer>
+                <Text>COLOR</Text>
+                <Text>BLACK</Text>
+              </DetailsContainer>
+            </PurchasedTextContainer>
           </PurchasedItem>
           <PurchasedItem>
-            <PurchasedItemPhoto></PurchasedItemPhoto>
-            <PurchasedTextContainer></PurchasedTextContainer>
-          </PurchasedItem>
-          <PurchasedItem>
-            <PurchasedItemPhoto></PurchasedItemPhoto>
-            <PurchasedTextContainer></PurchasedTextContainer>
+            <PurchasedItemPhoto src="https://lp.cosstores.com/app001prod?set=source[/f0/e0/f0e025140cf9d00d92548fc87f64ff7c11565c06.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"></PurchasedItemPhoto>
+            <PurchasedTextContainer>
+              <PurchasedItemName>
+                SANDALEN MIT BLOCKABSATZ UND KARREEFÖRMIGER ZEHENP
+              </PurchasedItemName>
+              <Text>EUR 115</Text>
+              <DetailsContainer>
+                <Text>SIZE</Text>
+                <Text>L</Text>
+              </DetailsContainer>
+              <DetailsContainer>
+                <Text>COLOR</Text>
+                <Text>BLACK</Text>
+              </DetailsContainer>
+            </PurchasedTextContainer>
           </PurchasedItem>
         </PurchasedItems>
         <PurchaseForm>
           <OrderTitle>Total Order</OrderTitle>
           <OrderDetails>
-            <OrderIndication>Order Sum</OrderIndication>
-            <OrderAnswer>$ 65</OrderAnswer>
+            <Text>Order Sum</Text>
+            <Text>$ 65</Text>
           </OrderDetails>
           <OrderDetails>
-            <OrderIndication>Delivery sum</OrderIndication>
-            <OrderAnswer>$ 65</OrderAnswer>
+            <Text>Delivery sum</Text>
+            <Text>EUR 65</Text>
           </OrderDetails>
           <OrderDetails>
-            <OrderIndication>Total Sum</OrderIndication>
-            <OrderAnswer>$ 130</OrderAnswer>
+            <Text>Total Sum</Text>
+            <Text>$ 130</Text>
           </OrderDetails>
           <DeliveryPriceContainer></DeliveryPriceContainer>
           <TotalSumContainer></TotalSumContainer>
