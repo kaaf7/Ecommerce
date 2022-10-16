@@ -3,6 +3,8 @@ const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const dotenv = require("dotenv");
 dotenv.config();
+const jsonwebtoken = require("jsonwebtoken");
+const JWT_KEY = process.env.JWT_KEY;
 const SECRET_KEY = process.env.SECRET_KEY;
 
 router.post("/register", async (req, res) => {
@@ -29,14 +31,27 @@ router.post("/login", async (req, res) => {
     });
     !user && res.status(401).json("wrong username");
 
+    const accessToken = jsonwebtoken.sign(
+      {
+        id: user._id,
+        isAdmin: user.isAdmin,
+      },
+      JWT_KEY,
+      {
+        expiresIn: "3d",
+      }
+    );
+
     const decryptedPassword = CryptoJS.AES.decrypt(
       user.password,
       process.env.SECRET_KEY
     );
 
-    const password = decryptedPassword.toString(CryptoJS.enc.Utf8);
-    password !== req.body.password && res.status(401).json("password is wrong");
-    res.status(200).json(user);
+    const Originalpassword = decryptedPassword.toString(CryptoJS.enc.Utf8);
+    Originalpassword !== req.body.password &&
+      res.status(401).json("password is wrong");
+    const { password, ...others } = user._doc;
+    res.status(200).json({...others, accessToken});
   } catch (err) {
     res.status(500).json(err);
   }

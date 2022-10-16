@@ -1,11 +1,5 @@
 const router = require("express").Router();
 
-router.get("/usertest", (req, res) => {
-  res.send("user test");
-});
+router.get("/:id", (req, res) => {});
 
-router.post("/userposttest", (req, res) => {
-  const username = req.body.username;
-  console.log(username)
-});
-module.exports = router;
+router.post("/:id", (req, res) => {});
