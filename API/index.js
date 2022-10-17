@@ -25,9 +25,6 @@ mongoose
 app.get("/api", (req, res) => {
   res.send("API");
 }); 
-app.get("/api", (req, res) => {
-  res.send("test");
-});
 
-app.use("/api/test", userRoute);
-app.use("/api", authRout);
+app.use("/api", userRoute);
+app.use("/api/auth", authRout);

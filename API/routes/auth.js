@@ -8,7 +8,7 @@ const JWT_KEY = process.env.JWT_KEY;
 const SECRET_KEY = process.env.SECRET_KEY;
 
 router.post("/register", async (req, res) => {
-  const newUser = new User({
+  const user = new User({
     username: req.body.username,
     email: req.body.email,
     password: CryptoJS.AES.encrypt(req.body.password, SECRET_KEY).toString(),
@@ -16,7 +16,7 @@ router.post("/register", async (req, res) => {
   console.log("register");
 
   try {
-    const savedUser = await newUser.save();
+    const savedUser = await user.save();
     res.status(201).json(savedUser);
   } catch (err) {
     res.status(500).json(err);
@@ -51,7 +51,7 @@ router.post("/login", async (req, res) => {
     Originalpassword !== req.body.password &&
       res.status(401).json("password is wrong");
     const { password, ...others } = user._doc;
-    res.status(200).json({...others, accessToken});
+    res.status(200).json({ ...others, accessToken });
   } catch (err) {
     res.status(500).json(err);
   }
