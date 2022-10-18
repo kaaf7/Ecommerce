@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const userRoute = require("./routes/user");
 const authRout = require("./routes/auth");
+const productRout = require("./routes/product");
 const dotenv = require("dotenv");
 dotenv.config();
 const PORT = process.env.PORT;
@@ -24,7 +25,8 @@ mongoose
 
 app.get("/api", (req, res) => {
   res.send("API");
-}); 
+});
 
 app.use("/api", userRoute);
 app.use("/api/auth", authRout);
+app.use("/api/products", productRout);
