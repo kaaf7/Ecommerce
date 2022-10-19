@@ -6,15 +6,17 @@ const router = require("express").Router();
 
 //get all products
 router.get("/allproducts", async (req, res) => {
-  const qNew = req.query.new;
+  const qFavorite = req.query.favorite;
   const qCategory = req.query.category;
   let products;
-  if (qNew) {
+  if (qFavorite) {
     products = await Product.find().sort({ createdAt: -1 }).limit(5);
   } else if (qCategory) {
     products = await Product.find({
-      productCategory: { $in: [qCategory] },
+        productCategory: { $in: [qCategory] },
     });
+  } else {
+    products = await Product.find();
   }
   try {
     res.status(200).json(products);
@@ -23,8 +25,8 @@ router.get("/allproducts", async (req, res) => {
   }
 });
 router.post("/allproducts", verifyTokenAndAdmin, async (req, res) => {
-  const newProduct = new Product(req.body);
   try {
+    const newProduct = new Product(req.body);
     const savedProduct = await newProduct.save();
     res.status(200).json(savedProduct);
   } catch (err) {
