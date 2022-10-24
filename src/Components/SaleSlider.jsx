@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,10 +9,12 @@ const Container = styled.div`
   overflow: hidden;
   height: 30vh;
   width: 100%;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
   border-bottom: 1px solid lightgray;
   position: sticky;
-
+  ${mobile({
+    height: "25vh",
+  })}
 `;
 const Wrapper = styled.div`
   overflow: hidden;
@@ -36,7 +37,7 @@ const LeftItems = styled.div`
   margin-left: 150px;
 `;
 const RightItems = styled.div`
- display: flex;
+  display: flex;
   flex-direction: column;
   height: 100%;
   width: 40vh;
@@ -62,8 +63,8 @@ const MenuText = styled.div`
   ${mobile({
     marginLeft: "5px",
     display: "flex",
-    JustifyContent:"center",
-    fontSize:"15px"
+    JustifyContent: "center",
+    fontSize: "15px",
   })}
 `;
 
@@ -80,9 +81,9 @@ const Signature = styled.div`
     marginLeft: "50px",
     marginRight: "50px",
     display: "flex",
-    JustifyContent:"center",
+    JustifyContent: "center",
     width: "380px",
-    fontSize:"60px"
+    fontSize: "60px",
   })}
 `;
 
