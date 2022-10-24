@@ -48,7 +48,7 @@ const Logo = styled.h2`
   font-size: 40px;
   flex: 2;
   color: #272727f5;
-  ${mobile({ fontSize: "20 px", marginLeft: "10px" })}
+  ${mobile({ fontSize: "20 px", marginLeft: "1vw" })}
 `;
 const LeftItems = styled.div`
   display: flex;
