@@ -23,9 +23,9 @@ const Announcement = styled.div`
   align-items: center;
   border-bottom: 0.5px solid grey;
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   ${mobile({
-    height: "1vh",
+    height: "2vh",
     fontSize: "10px",
   })}
 `;
@@ -58,10 +58,7 @@ const LeftItems = styled.div`
   flex: 1;
   height: 100%;
   ${mobile({
-    marginLeft: "5px",
-    display: "flex",
-    JustifyContent: "center",
-    width: "100%",
+    display: "none",
   })}
 `;
 const CenterItems = styled.div`
@@ -70,7 +67,7 @@ const CenterItems = styled.div`
   justify-content: center;
   text-align: center;
   align-items: center;
-  ${mobile({ display: "none" })}
+  ${mobile({ display: "hidden" })}
 `;
 const RightItems = styled.div`
   display: flex;
@@ -78,7 +75,12 @@ const RightItems = styled.div`
   margin-right: 150px;
   flex: 1;
   height: 100%;
-  ${mobile({ display: "none" })}
+  ${mobile({
+    display: "flex",
+    width:"100%",
+    justifyContent: "center",
+    textAlign: "center",
+  })}
 `;
 
 const MenuItem = styled.div`
