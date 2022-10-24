@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import ArrowLeft from "@mui/icons-material/ArrowLeftOutlined";
-import ArrowRight from "@mui/icons-material/ArrowRightOutlined"; 
+import ArrowRight from "@mui/icons-material/ArrowRightOutlined";
+import { mobile } from "../responsive";
+
 const Container = styled.div`
   height: 100vh;
   display: flex;
@@ -9,7 +11,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid lightgray;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
 `;
 const SlideWrapper = styled.div`
   overflow: hidden;
@@ -35,6 +37,10 @@ const ImageContainer = styled.div`
   align-items: center;
   margin-left: 150px;
   margin-right: 150px;
+  ${mobile({
+    height: "90%",
+    width: "90%",
+  })}
 `;
 const Image = styled.img`
   height: 90%;
@@ -42,6 +48,10 @@ const Image = styled.img`
   object-fit: scale-down;
   object-position: 0% 120%;
   cursor: pointer;
+  ${mobile({
+    height: "90%",
+    width: "90%",
+  })}
 `;
 const InfoContainer = styled.div`
   flex: 1;
