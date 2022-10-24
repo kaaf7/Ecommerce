@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import CartIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Favorite from "@mui/icons-material/FavoriteBorderOutlined";
 import Badge from "@mui/material/Badge";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   overflow: hidden;
@@ -23,6 +24,10 @@ const Announcement = styled.div`
   border-bottom: 0.5px solid grey;
   color: white;
   font-size: 14px;
+  ${mobile({
+    height: "1vh",
+    fontSize: "10px",
+  })}
 `;
 const Wrapper = styled.div`
   background-color: #f9f9f9;
@@ -32,20 +37,18 @@ const Wrapper = styled.div`
   justify-content: space-between;
   height: 7vh;
   width: 100%;
-
-  //transition: 700ms ease;
-  /* &:hover {
-    height: 25rem;
-    transition: 700ms ease;
-    align-items: end;
-    display: flex;
-    padding: 20px;
-  } */
+  ${mobile({
+    display: "flex",
+    JustifyContent: "center",
+    width: "100%",
+    backgroundColor: "yelow",
+  })}
 `;
 const Logo = styled.h2`
   font-size: 40px;
   flex: 2;
   color: #272727f5;
+  ${mobile({ fontSize: "20 px", marginLeft: "10px" })}
 `;
 const LeftItems = styled.div`
   display: flex;
@@ -54,6 +57,12 @@ const LeftItems = styled.div`
   margin-left: 150px;
   flex: 1;
   height: 100%;
+  ${mobile({
+    marginLeft: "5px",
+    display: "flex",
+    JustifyContent: "center",
+    width: "100%",
+  })}
 `;
 const CenterItems = styled.div`
   flex: 2;
@@ -61,6 +70,7 @@ const CenterItems = styled.div`
   justify-content: center;
   text-align: center;
   align-items: center;
+  ${mobile({ display: "none" })}
 `;
 const RightItems = styled.div`
   display: flex;
@@ -68,7 +78,9 @@ const RightItems = styled.div`
   margin-right: 150px;
   flex: 1;
   height: 100%;
+  ${mobile({ display: "none" })}
 `;
+
 const MenuItem = styled.div`
   display: flex;
   position: relative;
@@ -81,6 +93,7 @@ const MenuItem = styled.div`
   cursor: pointer;
   flex: 1;
   font-weight: bold;
+  ${mobile({ fontSize: "10px" })}
 `;
 const IconsContainer = styled.div`
   font-size: 14px;
@@ -98,6 +111,7 @@ const SearchInput = styled.input`
   border: none;
   font-size: 14px;
   color: grey;
+  ${mobile({ display: "none" })}
 `;
 
 export const Navbar = () => {
