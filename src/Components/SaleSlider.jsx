@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { mobile } from "../responsive";
+
 
 const Container = styled.div`
   display: flex;
@@ -57,6 +59,12 @@ const MenuText = styled.div`
     opacity: 0.8;
     font-weight: 600;
   }
+  ${mobile({
+    marginLeft: "5px",
+    display: "flex",
+    JustifyContent:"center",
+    fontSize:"15px"
+  })}
 `;
 
 const Signature = styled.div`
@@ -68,6 +76,14 @@ const Signature = styled.div`
   color: #272727f5;
   font-weight: bolder;
   cursor: pointer;
+  ${mobile({
+    marginLeft: "50px",
+    marginRight: "50px",
+    display: "flex",
+    JustifyContent:"center",
+    width: "380px",
+    fontSize:"60px"
+  })}
 `;
 
 const SaleSlider = () => {
