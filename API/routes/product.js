@@ -12,7 +12,7 @@ router.get("/allproducts", async (req, res) => {
     products = await Product.find().sort({ createdAt: -1 }).limit(5);
   } else if (qCategory) {
     products = await Product.find({
-        productCategory: { $in: [qCategory] },
+        category: { $in: [qCategory] },
     });
   } else {
     products = await Product.find();
