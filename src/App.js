@@ -1,14 +1,18 @@
 import React from "react";
-import Cart from "./pages/Cart";
-import { Navbar } from "./Components/Navbar";
-import Footer from "./Components/Footer";
 import Home from "./pages/Home";
+import ProductPage from "./pages/ProductPage";
+import Products from"./pages/Products"
 
+import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 function App() {
   return (
-    <div>
-      <Home></Home>
-    </div>
+    <Router>
+      <Routes>
+      <Route exact path="/" element={<Home/>}/>
+      <Route path="product/:id" element={<ProductPage/>}/>
+      <Route path="/products/:category" element={<Products/>}/>
+      </Routes>
+    </Router>
   );
 }
 
