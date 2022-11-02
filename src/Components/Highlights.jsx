@@ -1,18 +1,19 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import HighlightCard from "./HighlightCard";
+import ProductCard from "./ProductCard";
 import { mobile } from "../responsive";
+import axios from "axios";
 
 const Container = styled.div`
-  height: 100vh;
+  height: 95vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #c7c7c71d;
   ${mobile({
-    height: "100vh",
+    height: "50vh",
     marginBottom: "10vh",
   })}
 `;
@@ -34,17 +35,26 @@ const Wrapper = styled.div`
   })}
 `;
 const Highlights = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:3005/api/products/allproducts"
+        );
+        setProducts(res.data);
+        console.log(res.data);
+      } catch (err) {}
+    };
+    getProducts();
+  }, []);
+
   return (
     <Container>
       <Wrapper>
-        <HighlightCard
-          color="red"
-          link="https://lp.cosstores.com/app001prod?set=source[/52/06/52066288e5d14f8ef1182c77de0e88a0ddd50f5a.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"
-        ></HighlightCard>{" "}
-        <HighlightCard
-          color="red"
-          link="https://lp.cosstores.com/app001prod?set=source[/52/06/52066288e5d14f8ef1182c77de0e88a0ddd50f5a.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"
-        ></HighlightCard>{" "}
+        {products.slice(0, 4).map((product) => (
+          <ProductCard product={product} />
+        ))}
       </Wrapper>
     </Container>
   );
