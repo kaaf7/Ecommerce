@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Navbar } from "../Components/Navbar";
 
 const Container = styled.div`
   height: 100vh;
@@ -8,8 +12,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: #f9f9f9;
-
 `;
+
 const Wrapper = styled.div`
   height: 90%;
   margin-left: 150px;
@@ -17,6 +21,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
   gap: 10px;
   // background-color: lightgrey;
 `;
@@ -30,8 +35,6 @@ const LookBook = styled.img`
   height: 80vh;
   width: 30vw;
   object-fit: scale-down;
-
-
 `;
 const LookBookContainer = styled.div`
   display: flex;
@@ -46,12 +49,15 @@ const LookBookImages = styled.img`
   width: 75px;
   height: 100px;
   object-fit: scale-down;
+  transition: 0.1s ease-out;
 
+  &:hover {
+    transform: scale(1.1)  }
 `;
 
 const ProductInfo = styled.div`
   margin-left: 75px;
-  height: 90vh;
+  height: 80vh;
   width: 30vw;
   display: flex;
   flex-direction: column;
@@ -64,7 +70,7 @@ const Title = styled.h2`
 const PriceTag = styled.p`
   font-weight: 500;
   font-size: 20px;
-  margin: 0%;
+  margin-top: 10px;
   font-family: Verdana;
   margin-bottom: 20px;
 `;
@@ -72,7 +78,7 @@ const PriceTag = styled.p`
 const Color = styled.select`
   height: 40px;
   width: 100%;
-  border: 0.1px solid rgba(0, 0, 0, 0.1);
+  border: 0.1px solid rgba(231, 77, 77, 0.1);
   font-family: Tahoma;
   font-weight: bold;
   font-size: 15px;
@@ -119,51 +125,64 @@ const AddToCartBtn = styled.button`
 const ProductDescription = styled.p``;
 
 const ProductPage = () => {
+  const location = useLocation();
+  const productId = location.pathname.split("/")[2];
+  const [product, setProduct] = useState();
+  const [mainImage, setMainImage] = useState("");
+  const handleMainImage = (imageSrc) => {
+    setMainImage(imageSrc);
+  };
+  console.log(mainImage);
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:3005/api/products/allproducts/product?id=${productId}`
+        );
+        setProduct(res.data);
+        console.log(res.data);
+      } catch (err) {}
+    };
+    getProduct();
+  }, [productId]);
+  console.log(productId);
   return (
     <Container>
+      <Navbar></Navbar>
       <Wrapper>
         <LookBookWrapper>
           <LookBookContainer>
-            <LookBookImages src ="https://lp.cosstores.com/app001prod?set=source[/f0/e0/f0e025140cf9d00d92548fc87f64ff7c11565c06.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"></LookBookImages>
-            <LookBookImages src ="https://lp.cosstores.com/app001prod?set=source[/f0/e0/f0e025140cf9d00d92548fc87f64ff7c11565c06.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"></LookBookImages>
-            <LookBookImages src="https://lp.cosstores.com/app001prod?set=source[/47/7f/477fea231328a285e246741d1dac4b51f3650edd.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"></LookBookImages>
-            <LookBookImages src="https://lp.cosstores.com/app001prod?set=source[/93/af/93af209bbcbac0c437f3580a37f0084ed0182c89.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"></LookBookImages>
+            {product?.images.map((image) => (
+              <LookBookImages
+                onClick={() => {
+                  handleMainImage(image);
+                }}
+                key={image}
+                src={image}
+              />
+            ))}
           </LookBookContainer>
-          <LookBook src="https://lp.cosstores.com/app001prod?set=source[/f0/e0/f0e025140cf9d00d92548fc87f64ff7c11565c06.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main]"></LookBook>
+          <LookBook src={!mainImage ? product?.images[0] : mainImage} />
         </LookBookWrapper>
         <ProductInfo>
-          <Title>SANDALEN MIT BLOCKABSATZ UND KARREEFÖRMIGER ZEHENP</Title>
-          <PriceTag>$ 65</PriceTag>
+          <Title>{product?.productTitle}</Title>
+          <PriceTag>€ {product?.price}</PriceTag>
           <Color>
-            <option>BLACK</option>
-            <option>YELLOW</option>
-            <option>BLUE</option>
+            {product?.colors.map((color) => (
+              <option>{color}</option>
+            ))}
           </Color>
           <SizeText>SIZES</SizeText>
           <SizesContainer>
             <SizeBlocks>1</SizeBlocks>
             <SizeBlocks>2</SizeBlocks>
             <SizeBlocks>3</SizeBlocks>
-            <SizeBlocks>1</SizeBlocks>
-            <SizeBlocks>2</SizeBlocks>
-            <SizeBlocks>3</SizeBlocks>
           </SizesContainer>
           <AddToCartBtn>Add</AddToCartBtn>
-          <ProductDescription>
-            Diese schwarzen Sandalen aus weichem Leder mit glänzendem
-            Lack-Finish haben einen geschwungenen quadratischen Absatz und
-            werden in einem umweltfreundlichen, chromfreien Gerbeverfahren
-            hergestellt. Sie haben eine moderne Silhouette mit einer
-            abgerundeten offenen Zehenpartie und einen verstellbaren,
-            komfortablen Knöchelriemen.Diese schwarzen Sandalen aus weichem
-            Leder mit glänzendem Lack-Finish haben einen geschwungenen
-            quadratischen Absatz und werden in einem umweltfreundlichen,
-            chromfreien Gerbeverfahren hergestellt. Sie haben eine moderne
-            Silhouette mit einer abgerundeten offenen Zehenpartie und einen
-            verstellbaren, komfortablen Knöchelriemen.
-          </ProductDescription>
+          <ProductDescription>{product?.description}</ProductDescription>
         </ProductInfo>
-      </Wrapper>
+      </Wrapper>{" "}
     </Container>
   );
 };
