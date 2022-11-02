@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 const Container = styled.div``;
 
 const ProductCardTemplate = styled.div`
@@ -10,6 +11,7 @@ const ProductCardTemplate = styled.div`
 const ProductImage = styled.img`
   width: 100%;
   height: 60vh;
+  cursor: pointer;
 `;
 const ProductInfoContainer = styled.div`
   max-width: 20vw;
@@ -43,20 +45,33 @@ const ColorContainer = styled.div`
 const ColorSelections = styled.div`
   width: 10px;
   height: 10px;
-  background-color: #8f8f8f;
+  border: 0.1px solid lightgrey;
+  background-color: ${({ color }) => color};
 `;
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
+  const openProduct = (productId) => {
+    navigate(`/products/${productId}`);
+  };
+
   return (
     <Container>
       <ProductCardTemplate>
-        <ProductImage src="https://i.pinimg.com/564x/e7/a0/db/e7a0dbfbb6842612e9388ba89a47d299.jpg"></ProductImage>
+        <ProductImage
+          src={product.images[0]}
+          onMouseEnter={(e) => (e.target.src = product.images[1])}
+          onMouseLeave={(e) => (e.target.src = product.images[0])}
+          onClick={() => openProduct(product._id)}
+        ></ProductImage>
         <ProductInfoContainer>
-          <ProductInfo>JACQUARD-HEMD MIT NORMALER PASSFORM</ProductInfo>
-          <ProductPrice>$65</ProductPrice>
+          <ProductInfo>{product.productTitle}</ProductInfo>
+          <ProductPrice>€ {product.price}</ProductPrice>
           <ColorContainer>
-            <ColorSelections></ColorSelections>
-            <ColorSelections></ColorSelections>
+            {product.colors.map((availableColor) => (
+              <ColorSelections key={availableColor} color={availableColor} />
+            ))}
           </ColorContainer>
         </ProductInfoContainer>
       </ProductCardTemplate>
