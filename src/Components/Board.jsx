@@ -1,119 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-// dummy products data
-const productArray = [
-  {
-    title: "prouct",
-    price: "15",
-    id: "890312312sassdas21838031",
-    images: [
-      "https://lp.cosstores.com/app001prod?set=source[/f0/e0/f0e025140cf9d00d92548fc87f64ff7c11565c06.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main",
-      "https://iili.io/DXRIHl.jpg",
-      "https://iili.io/DXRolf.jpg",
-    ],
-    colors: ["yellow", "green", "black"],
-    category: ["men", "women"],
-  },{
-    title: "prouct",
-    price: "15",
-    id: "890312312sassdas21838031",
-    images: [
-      "https://lp.cosstores.com/app001prod?set=source[/f0/e0/f0e025140cf9d00d92548fc87f64ff7c11565c06.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main",
-      "https://iili.io/DXRIHl.jpg",
-      "https://iili.io/DXRolf.jpg",
-    ],
-    colors: ["yellow", "green", "black"],
-    category: ["men", "women"],
-  },
-  {
-    title: "prouct",
-    price: "95",
-    id: "890312321qw838031",
-    images: [
-      "https://iili.io/DXRnKG.jpg",
-      "https://iili.io/DXRIHl.jpg",
-      "https://iili.io/DXRolf.jpg",
-    ],
-    colors: ["yellow", "green", "black"],
-    category: ["men", "women"],
-  },
-  {
-    title: "prouct",
-    price: "15",
-    id: "890312312sassdas21838031",
-    images: [
-      "https://lp.cosstores.com/app001prod?set=source[/f0/e0/f0e025140cf9d00d92548fc87f64ff7c11565c06.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main",
-      "https://iili.io/DXRIHl.jpg",
-      "https://iili.io/DXRolf.jpg",
-    ],
-    colors: ["yellow", "green", "black"],
-    category: ["men", "women"],
-  },
-  {
-    title: "prouct",
-    price: "95",
-    id: "890312321qw838031",
-    images: [
-      "https://iili.io/DXRnKG.jpg",
-      "https://iili.io/DXRIHl.jpg",
-      "https://iili.io/DXRolf.jpg",
-    ],
-    colors: ["yellow", "green", "black"],
-    category: ["men", "women"],
-  },
-  {
-    title: "prouct",
-    price: "15",
-    id: "890312312sassdas21838031",
-    images: [
-      "https://lp.cosstores.com/app001prod?set=source[/f0/e0/f0e025140cf9d00d92548fc87f64ff7c11565c06.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main",
-      "https://iili.io/DXRIHl.jpg",
-      "https://iili.io/DXRolf.jpg",
-    ],
-    colors: ["yellow", "green", "black"],
-    category: ["men", "women"],
-  },
-  {
-    title: "prouct",
-    price: "95",
-    id: "890312321qw838031",
-    images: [
-      "https://iili.io/DXRnKG.jpg",
-      "https://iili.io/DXRIHl.jpg",
-      "https://iili.io/DXRolf.jpg",
-    ],
-    colors: ["yellow", "green", "black"],
-    category: ["men", "women"],
-  },
-  {
-    title: "prouct",
-    price: "15",
-    id: "890312312sassdas21838031",
-    images: [
-      "https://lp.cosstores.com/app001prod?set=source[/f0/e0/f0e025140cf9d00d92548fc87f64ff7c11565c06.jpg],origin[dam],type[LOOKBOOK],device[hdpi],quality[80],ImageVersion[1]&call=url[file:/product/main",
-      "https://iili.io/DXRIHl.jpg",
-      "https://iili.io/DXRolf.jpg",
-    ],
-    colors: ["yellow", "green", "black"],
-    category: ["men", "women"],
-  },
-  {
-    title: "prouct",
-    price: "95",
-    id: "890312321qw838031",
-    images: [
-      "https://iili.io/DXRnKG.jpg",
-      "https://iili.io/DXRIHl.jpg",
-      "https://iili.io/DXRolf.jpg",
-    ],
-    colors: ["yellow", "green", "black"],
-    category: ["men", "women"],
-  },
-];
+import axios from "axios";
 
-// dummy quotes data
 
 const dummyQuotes = [
   "YOU CAN HAVE ANYTHING YOU WANT IN LIFE IF YOU DRESS FOR IT",
@@ -167,7 +59,7 @@ const Quote = styled.p`
   position: absolute;
   margin-top: 0%;
   margin-left: 0%;
-  font-size: 50px;
+  font-size: 30px;
   color: #e13913;
   font-weight: 600;
   z-index: 1;
@@ -177,9 +69,28 @@ const Quote = styled.p`
   })}
 `;
 
-
-
 const Board = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:3005/api/products/allproducts"
+        );
+        setProducts(res.data);
+        console.log(res.data);
+      } catch (err) {}
+    };
+    getProducts();
+  }, []);
+
+
+
+    const navigate = useNavigate();
+    const openProduct = (productId) => {
+      navigate(`/products/${productId}`);
+    };
+  
   return (
     <Container>
       <Wrapper>
@@ -189,11 +100,11 @@ const Board = () => {
             .slice(0, 1)
             .map((quote) => quote.toUpperCase())}
         </Quote>
-        {productArray
+        {products
           .sort(() => 0.5 - Math.random())
           .slice(0, 3)
           .map((product) => (
-            <Image src={product.images[1]}></Image>
+            <Image onClick={() => openProduct(product._id)} src={product.images[1]}></Image>
           ))}
       </Wrapper>
     </Container>
