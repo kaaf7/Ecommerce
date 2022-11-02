@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
 import CartIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -12,12 +13,12 @@ const Container = styled.div`
   position: fixed;
   z-index: 9999;
   overflow: hidden;
-  background-color: #c7c7c71d;
+  background-color: white;
+  top:0;
 `;
 const Announcement = styled.div`
   height: 2vh;
   background-color: #810c0cf5;
-  //background-color: #272727f5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +31,6 @@ const Announcement = styled.div`
   })}
 `;
 const Wrapper = styled.div`
-  background-color: #f9f9f9;
   height: 100%;
   display: flex;
   align-items: center;
@@ -41,13 +41,13 @@ const Wrapper = styled.div`
     display: "flex",
     JustifyContent: "center",
     width: "100%",
-    backgroundColor: "yelow",
   })}
 `;
 const Logo = styled.h2`
   font-size: 40px;
   flex: 2;
   color: #272727f5;
+  cursor: pointer;
   ${mobile({ fontSize: "20 px", marginLeft: "1vw" })}
 `;
 const LeftItems = styled.div`
@@ -77,7 +77,7 @@ const RightItems = styled.div`
   height: 100%;
   ${mobile({
     display: "flex",
-    width:"100%",
+    width: "100%",
     justifyContent: "center",
     textAlign: "center",
   })}
@@ -109,36 +109,94 @@ const IconsContainer = styled.div`
   flex: 1;
 `;
 const SearchInput = styled.input`
-  width: 100px;
+  width: 100%;
   border: none;
   font-size: 14px;
-  color: grey;
+  color: #b2b2b2;
   ${mobile({ display: "none" })}
+  &:focus {
+    outline: 0.1px solid lightgrey;
+    border-radius: 5px;
+  }
 `;
 
 export const Navbar = () => {
+  const navigate = useNavigate();
+  const NavigateDir = (directory) => {
+    navigate(directory);
+  };
+
   return (
     <Container>
       <Wrapper>
         <LeftItems>
-          <Logo>AKT</Logo>
-          <MenuItem style={{ color: "red" }}>NEW IN SHOP</MenuItem>
-          <MenuItem>MEN</MenuItem>
-          <MenuItem>WOMEN</MenuItem>
+          <Logo
+            onClick={() => {
+              NavigateDir("/");
+            }}
+          >
+            AKT
+          </Logo>
+          <MenuItem
+            style={{ color: "red" }}
+            onClick={() => {
+              NavigateDir("/products/new");
+            }}
+          >
+            NEW IN SHOP
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              NavigateDir("/products/men");
+            }}
+          >
+            MEN
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              NavigateDir("/products/women");
+            }}
+          >
+            WOMEN
+          </MenuItem>
         </LeftItems>
-        <CenterItems></CenterItems>
-        <RightItems>
+        <CenterItems>
+          {" "}
           <IconsContainer>
             <SearchIcon />
             <SearchInput type="text" placeholder="Search.."></SearchInput>
           </IconsContainer>
-          <MenuItem>SIGN IN</MenuItem>
-          <MenuItem>REGISTER</MenuItem>
+        </CenterItems>
+        <RightItems>
+          <MenuItem
+            onClick={() => {
+              NavigateDir("/login");
+            }}
+          >
+            SIGN IN
+          </MenuItem>
+          <MenuItem
+            onClick={() => {
+              NavigateDir("/register");
+            }}
+          >
+            REGISTER
+          </MenuItem>
           <IconsContainer>
-            <Favorite />
+            <Favorite
+              onClick={() => {
+                NavigateDir("/products/favorites");
+              }}
+            />
           </IconsContainer>
           <IconsContainer>
-            <Badge badgeContent={10} color="error">
+            <Badge
+              onClick={() => {
+                NavigateDir("/cart");
+              }}
+              badgeContent={10}
+              color="error"
+            >
               <CartIcon color="red" />
             </Badge>
           </IconsContainer>
