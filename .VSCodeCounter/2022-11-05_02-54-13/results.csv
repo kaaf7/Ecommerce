@@ -1,0 +1,63 @@
+"filename", "language", "JavaScript", "JavaScript React", "CSS", "XML", "JSON", "Markdown", "HTML", "comment", "blank", "total"
+"c:\Users\A\Desktop\ecomm\ecommerce\API\index.js", "JavaScript", 34, 0, 0, 0, 0, 0, 0, 0, 6, 40
+"c:\Users\A\Desktop\ecomm\ecommerce\API\models\Cart.js", "JavaScript", 20, 0, 0, 0, 0, 0, 0, 1, 2, 23
+"c:\Users\A\Desktop\ecomm\ecommerce\API\models\Favorite.js", "JavaScript", 20, 0, 0, 0, 0, 0, 0, 1, 2, 23
+"c:\Users\A\Desktop\ecomm\ecommerce\API\models\Order.js", "JavaScript", 17, 0, 0, 0, 0, 0, 0, 0, 4, 21
+"c:\Users\A\Desktop\ecomm\ecommerce\API\models\Product.js", "JavaScript", 17, 0, 0, 0, 0, 0, 0, 1, 4, 22
+"c:\Users\A\Desktop\ecomm\ecommerce\API\models\User.js", "JavaScript", 11, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"c:\Users\A\Desktop\ecomm\ecommerce\API\package-lock.json", "JSON", 0, 0, 0, 0, 2331, 0, 0, 0, 1, 2332
+"c:\Users\A\Desktop\ecomm\ecommerce\API\package.json", "JSON", 0, 0, 0, 0, 21, 0, 0, 0, 1, 22
+"c:\Users\A\Desktop\ecomm\ecommerce\API\routes\auth.js", "JavaScript", 52, 0, 0, 0, 0, 0, 0, 1, 8, 61
+"c:\Users\A\Desktop\ecomm\ecommerce\API\routes\cart.js", "JavaScript", 32, 0, 0, 0, 0, 0, 0, 3, 7, 42
+"c:\Users\A\Desktop\ecomm\ecommerce\API\routes\favorites.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\A\Desktop\ecomm\ecommerce\API\routes\order.js", "JavaScript", 84, 0, 0, 0, 0, 0, 0, 6, 14, 104
+"c:\Users\A\Desktop\ecomm\ecommerce\API\routes\product.js", "JavaScript", 63, 0, 0, 0, 0, 0, 0, 2, 10, 75
+"c:\Users\A\Desktop\ecomm\ecommerce\API\routes\user.js", "JavaScript", 83, 0, 0, 0, 0, 0, 0, 5, 10, 98
+"c:\Users\A\Desktop\ecomm\ecommerce\API\routes\verifytoken.js", "JavaScript", 36, 0, 0, 0, 0, 0, 0, 0, 3, 39
+"c:\Users\A\Desktop\ecomm\ecommerce\README.md", "Markdown", 0, 0, 0, 0, 0, 38, 0, 0, 33, 71
+"c:\Users\A\Desktop\ecomm\ecommerce\package-lock.json", "JSON", 0, 0, 0, 0, 30136, 0, 0, 0, 1, 30137
+"c:\Users\A\Desktop\ecomm\ecommerce\package.json", "JSON", 0, 0, 0, 0, 51, 0, 0, 0, 1, 52
+"c:\Users\A\Desktop\ecomm\ecommerce\public\index.html", "HTML", 0, 0, 0, 0, 0, 0, 20, 23, 1, 44
+"c:\Users\A\Desktop\ecomm\ecommerce\public\manifest.json", "JSON", 0, 0, 0, 0, 25, 0, 0, 0, 1, 26
+"c:\Users\A\Desktop\ecomm\ecommerce\src\App.css", "CSS", 0, 0, 33, 0, 0, 0, 0, 0, 6, 39
+"c:\Users\A\Desktop\ecomm\ecommerce\src\App.js", "JavaScript", 24, 0, 0, 0, 0, 0, 0, 0, 3, 27
+"c:\Users\A\Desktop\ecomm\ecommerce\src\App.test.js", "JavaScript", 7, 0, 0, 0, 0, 0, 0, 0, 2, 9
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Announcement.jsx", "JavaScript React", 0, 23, 0, 0, 0, 0, 0, 0, 4, 27
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Board.jsx", "JavaScript React", 0, 108, 0, 0, 0, 0, 0, 0, 8, 116
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Button.jsx", "JavaScript React", 0, 18, 0, 0, 0, 0, 0, 0, 4, 22
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\CartItem.jsx", "JavaScript React", 0, 78, 0, 0, 0, 0, 0, 0, 5, 83
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Explore.jsx", "JavaScript React", 0, 101, 0, 0, 0, 0, 0, 0, 4, 105
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Footer.jsx", "JavaScript React", 0, 130, 0, 0, 0, 0, 0, 0, 3, 133
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\HighlightCard.jsx", "JavaScript React", 0, 118, 0, 0, 0, 0, 0, 0, 4, 122
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Highlights.jsx", "JavaScript React", 0, 59, 0, 0, 0, 0, 0, 0, 4, 63
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\MenuItems.jsx", "JavaScript React", 0, 4, 0, 0, 0, 0, 0, 0, 2, 6
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Navbar.jsx", "JavaScript React", 0, 207, 0, 0, 0, 0, 0, 0, 6, 213
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\ProductCard.jsx", "JavaScript React", 0, 77, 0, 0, 0, 0, 0, 0, 6, 83
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\ProductList.jsx", "JavaScript React", 0, 65, 0, 0, 0, 0, 0, 0, 7, 72
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\SaleSlider.jsx", "JavaScript React", 0, 130, 0, 0, 0, 0, 0, 0, 7, 137
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Selector.jsx", "JavaScript React", 0, 60, 0, 0, 0, 0, 0, 0, 6, 66
+"c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Slider.jsx", "JavaScript React", 0, 184, 0, 0, 0, 0, 0, 0, 7, 191
+"c:\Users\A\Desktop\ecomm\ecommerce\src\contract\contract.js", "JavaScript", 55, 0, 0, 0, 0, 0, 0, 0, 3, 58
+"c:\Users\A\Desktop\ecomm\ecommerce\src\fonts\fonts.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\A\Desktop\ecomm\ecommerce\src\index.css", "CSS", 0, 0, 12, 0, 0, 0, 0, 0, 2, 14
+"c:\Users\A\Desktop\ecomm\ecommerce\src\index.js", "JavaScript", 15, 0, 0, 0, 0, 0, 0, 3, 4, 22
+"c:\Users\A\Desktop\ecomm\ecommerce\src\logo.svg", "XML", 0, 0, 0, 1, 0, 0, 0, 0, 0, 1
+"c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Admin.jsx", "JavaScript React", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Cart.jsx", "JavaScript React", 0, 125, 0, 0, 0, 0, 0, 0, 7, 132
+"c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Checkout.jsx", "JavaScript React", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Favorites.jsx", "JavaScript React", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Home.jsx", "JavaScript React", 0, 29, 0, 0, 0, 0, 0, 0, 4, 33
+"c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Login.jsx", "JavaScript React", 0, 68, 0, 0, 0, 0, 0, 0, 9, 77
+"c:\Users\A\Desktop\ecomm\ecommerce\src\pages\ProductPage.jsx", "JavaScript React", 0, 209, 0, 0, 0, 0, 0, 0, 13, 222
+"c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Products.jsx", "JavaScript React", 0, 104, 0, 0, 0, 0, 0, 0, 9, 113
+"c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Register.jsx", "JavaScript React", 0, 71, 0, 0, 0, 0, 0, 0, 10, 81
+"c:\Users\A\Desktop\ecomm\ecommerce\src\pages\user.jsx", "JavaScript React", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\A\Desktop\ecomm\ecommerce\src\redux\cartRedux.js", "JavaScript", 20, 0, 0, 0, 0, 0, 0, 0, 3, 23
+"c:\Users\A\Desktop\ecomm\ecommerce\src\redux\favoritesSlice.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\A\Desktop\ecomm\ecommerce\src\redux\store.js", "JavaScript", 7, 0, 0, 0, 0, 0, 0, 0, 2, 9
+"c:\Users\A\Desktop\ecomm\ecommerce\src\redux\userSlice.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\A\Desktop\ecomm\ecommerce\src\reportWebVitals.js", "JavaScript", 12, 0, 0, 0, 0, 0, 0, 0, 2, 14
+"c:\Users\A\Desktop\ecomm\ecommerce\src\responsive.js", "JavaScript", 8, 0, 0, 0, 0, 0, 0, 0, 1, 9
+"c:\Users\A\Desktop\ecomm\ecommerce\src\services\services.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\A\Desktop\ecomm\ecommerce\src\setupTests.js", "JavaScript", 1, 0, 0, 0, 0, 0, 0, 4, 1, 6
+"Total", "-", 618, 1968, 45, 1, 32564, 38, 20, 50, 278, 35582
