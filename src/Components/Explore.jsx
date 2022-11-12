@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { mobile } from "../responsive";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -7,7 +9,9 @@ const Container = styled.div`
   justify-content: center;
   height: 25vh;
   width: 100%;
-  background-color: #f9f9f9;
+  ${mobile({
+    height: "15vh",
+  })}
 `;
 const Wrapper = styled.div`
   flex: 1;
@@ -34,27 +38,63 @@ const Buttons = styled.div`
   align-items: top;
   flex: 1;
   max-width: 50%;
+  ${mobile({
+    gap: "20px",
+  })}
 `;
 const Button = styled.button`
   margin-top: 20px;
-  width: 12vw;
+  width: 20vw;
   height: 4vh;
   background-color: transparent;
   border: 0.1px solid lightgrey;
   font-size: 14px;
   color: #272727f5;
+  cursor: pointer;
+  ${mobile({
+    fontSize: "10px",
+    width: "30vw",
+  })}
 `;
 
 const Explore = () => {
+  const navigate = useNavigate();
+  const NavigateDir = (directory) => {
+    navigate(directory);
+  };
   return (
     <Container>
       <Wrapper>
         <Title>EXPLORE MORE</Title>
         <Buttons>
-          <Button>MEN</Button>
-          <Button>WOMEN</Button>
-          <Button>MAGAZINE</Button>
-          <Button>FAVORITES</Button>
+          <Button
+            onClick={() => {
+              NavigateDir("/products/men");
+            }}
+          >
+            MEN
+          </Button>
+          <Button
+            onClick={() => {
+              NavigateDir("/products/women");
+            }}
+          >
+            WOMEN
+          </Button>
+          <Button
+            onClick={() => {
+              NavigateDir("/products");
+            }}
+          >
+            MAGAZINE
+          </Button>
+          <Button
+            onClick={() => {
+              NavigateDir("/favorites");
+            }}
+          >
+            FAVORITES
+          </Button>
         </Buttons>
       </Wrapper>
     </Container>
