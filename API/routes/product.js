@@ -1,9 +1,23 @@
 const Product = require("../models/Product");
+
 const { verifyTokenAndAdmin } = require("./verifytoken");
 
 const router = require("express").Router();
 
+//get single product by Id
+router.get("/allproducts/product", async (req, res) => {
+  const qProductId = req.query.id;
+  try {
+    const product = await Product.findById(qProductId);
+    res.status(200).json(product);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 //get all products
+
 router.get("/allproducts", async (req, res) => {
   const qFavorite = req.query.favorite;
   const qCategory = req.query.category;
