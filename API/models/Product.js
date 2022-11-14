@@ -12,6 +12,8 @@ const ProductSchema = new mongoose.Schema(
     isNew: { type: Boolean, default: true },
     images: { type: Array, required: true },
     video: { typye: String, required: false },
+    size: { type: Array, required: false },
+
   },
   { timestamps: true }
 );
