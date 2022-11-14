@@ -1,5 +1,5 @@
 /* 👇 This is Banner Component  	
- cretaed and styled with Styled Component 
+created and styled with Styled Component 
 it will display company's logo will  direct customers to products
 */
 
@@ -85,7 +85,7 @@ const MenuText = styled.div`
   })}
 `;
 
-// compan's logo
+// company's logo
 const Logo = styled.div`
   align-items: center;
   display: flex;
@@ -127,9 +127,8 @@ const Banner = () => {
           </MenuText>
         </LeftItems>
         <Logo
+          /*Direct to Home Page*/
           onClick={() => {
-            /*Direct to Home Page*/
-
             NavigateDir("/");
           }}
         >
@@ -137,18 +136,16 @@ const Banner = () => {
         </Logo>
         <RightItems>
           <MenuText
+            /*Direct to Men's product*/
             onClick={() => {
-              /*Direct to Men's product*/
-
               NavigateDir("/products/men");
             }}
           >
             MEN
           </MenuText>
           <MenuText
+            /*Direct to Women's product*/
             onClick={() => {
-              /*Direct to Women's product*/
-
               NavigateDir("/products/women");
             }}
           >
