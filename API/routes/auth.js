@@ -3,10 +3,13 @@ const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const dotenv = require("dotenv");
 dotenv.config();
+
 const jsonwebtoken = require("jsonwebtoken");
 const JWT_KEY = process.env.JWT_KEY;
 const SECRET_KEY = process.env.SECRET_KEY;
 
+
+//register
 router.post("/register", async (req, res) => {
   const user = new User({
     username: req.body.username,
@@ -34,14 +37,15 @@ router.post("/login", async (req, res) => {
     const accessToken = jsonwebtoken.sign(
       {
         id: user._id,
-        isAdmin: user.isAdmin,
+        username:user.username,
+        //isAdmin: user.isAdmin,
       },
       JWT_KEY,
       {
         expiresIn: "3d",
       }
     );
-
+ 
     const decryptedPassword = CryptoJS.AES.decrypt(
       user.password,
       process.env.SECRET_KEY
