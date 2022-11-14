@@ -1,4 +1,5 @@
 const jwToken = require("jsonwebtoken");
+
 const verifyJwtToken = (req, res, next) => {
   const authHeader = req.headers.token;
   if (authHeader) {
@@ -14,13 +15,14 @@ const verifyJwtToken = (req, res, next) => {
 
 const verifyTokenAndAuthorization = (req, res, next) => {
   verifyJwtToken(req, res, () => {
-    if (req.user.id === req.params.id || req.user.isAdmin) {
+    if (req.user._id === req.params.id /* || req.user.isAdmin*/) {
       next();
     } else {
       res.status(403).json("access is not allowed");
     }
   });
 };
+
 const verifyTokenAndAdmin = (req, res, next) => {
   verifyJwtToken(req, res, () => {
     if (req.user.isAdmin) {
