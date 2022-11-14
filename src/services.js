@@ -10,7 +10,7 @@ export const publicRequest = axios.create({
   baseURL: BASE_URL,
 });
 
-export const servicesRequest = axios.create({
+export const privateRequest = axios.create({
   baseURL: BASE_URL,
   header: { token: `${TOKEN}` },
 });
