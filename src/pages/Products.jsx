@@ -49,10 +49,8 @@ const Products = () => {
     setSort(e.target.value);
   };
 
-  console.log(filters);
   const location = useLocation();
   const category = location.pathname.split("/")[2];
-  console.log(category);
 
   return (
     <Container>

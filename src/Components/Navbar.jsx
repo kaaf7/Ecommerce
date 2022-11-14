@@ -1,48 +1,74 @@
+/* 👇 This is Nav bar Component  	
+ cretaed and styled with Styled Component 
+ including all the necessary menu items 
+*/
+
 import React from "react";
-import { useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
+
+// import useNavigate to redirect to pages
+import { useNavigate } from "react-router-dom";
+
+import { useSelector } from "react-redux";
+
+// import search Icon from material UI
 import SearchIcon from "@mui/icons-material/Search";
+
+// import Cart Icon from material UI
 import CartIcon from "@mui/icons-material/ShoppingCartOutlined";
+
+// import Favorite Icon from material UI
 import Favorite from "@mui/icons-material/FavoriteBorderOutlined";
+
+// import Cart Badge from material UI
 import Badge from "@mui/material/Badge";
+
+// import responsive Settings from responsive.js
 import { mobile } from "../responsive";
 
+// all Components Container
 const Container = styled.div`
-  overflow: hidden;
   width: 100%;
+  overflow: hidden;
   position: fixed;
   z-index: 9999;
   overflow: hidden;
   background-color: white;
-  top:0;
+  top: 0;
 `;
+
+// Announcement section for purchase over 50 euros*/
 const Announcement = styled.div`
   height: 2vh;
   background-color: #810c0cf5;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 0.5px solid grey;
-  color: white;
   font-size: 12px;
   ${mobile({
     height: "2vh",
     fontSize: "10px",
   })}
 `;
+
+// Components Wrapper div
 const Wrapper = styled.div`
-  height: 100%;
+  width: 100%;
+  height: 7vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 7vh;
-  width: 100%;
   ${mobile({
     display: "flex",
     JustifyContent: "center",
     width: "100%",
   })}
 `;
+
+// Shop Logo Text
 const Logo = styled.h2`
   font-size: 40px;
   flex: 2;
@@ -50,6 +76,8 @@ const Logo = styled.h2`
   cursor: pointer;
   ${mobile({ fontSize: "20 px", marginLeft: "1vw" })}
 `;
+
+// Navbar left Items together*/
 const LeftItems = styled.div`
   display: flex;
   justify-content: center;
@@ -61,19 +89,23 @@ const LeftItems = styled.div`
     display: "none",
   })}
 `;
+
+// Navbar Center Items together
 const CenterItems = styled.div`
-  flex: 2;
   display: flex;
   justify-content: center;
-  text-align: center;
   align-items: center;
+  text-align: center;
+  flex: 2;
   ${mobile({ display: "hidden" })}
 `;
+
+// Navbar Right Items together*/
 const RightItems = styled.div`
   display: flex;
   justify-content: center;
-  margin-right: 150px;
   flex: 1;
+  margin-right: 150px;
   height: 100%;
   ${mobile({
     display: "flex",
@@ -83,31 +115,36 @@ const RightItems = styled.div`
   })}
 `;
 
+// Container for each separate item in Navbar
 const MenuItem = styled.div`
-  display: flex;
-  position: relative;
-  font-size: 12px;
   width: 120px;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
+  position: relative;
   color: #272727f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 12px;
   cursor: pointer;
   flex: 1;
   font-weight: bold;
   ${mobile({ fontSize: "10px" })}
 `;
+
+// Container for each separate item in Navbar
 const IconsContainer = styled.div`
-  font-size: 14px;
   width: 50px;
+  color: #a0a0a0;
   display: flex;
   justify-content: center;
-  text-align: center;
   align-items: center;
-  color: #a0a0a0;
+  text-align: center;
+  font-size: 14px;
   cursor: pointer;
   flex: 1;
 `;
+
+// Searchbar Component
 const SearchInput = styled.input`
   width: 100%;
   border: none;
@@ -121,7 +158,13 @@ const SearchInput = styled.input`
 `;
 
 export const Navbar = () => {
+  /*order quantity displayed on the Cart in Navbar */
+  const quantity = useSelector((state) => state.cart.quantity);
+
+  /*useNavigate to switch pages*/
   const navigate = useNavigate();
+
+  /*NavigateDir depends on custome directory*/
   const NavigateDir = (directory) => {
     navigate(directory);
   };
@@ -194,7 +237,7 @@ export const Navbar = () => {
               onClick={() => {
                 NavigateDir("/cart");
               }}
-              badgeContent={10}
+              badgeContent={quantity}
               color="error"
             >
               <CartIcon color="red" />

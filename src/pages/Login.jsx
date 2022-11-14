@@ -1,5 +1,14 @@
+import { useDispatch, useSelector } from "react-redux";
+
 import styled from "styled-components";
-import {mobile} from "../responsive";
+
+import { mobile } from "../responsive";
+
+import { useState, useEffect, useRef } from "react";
+
+import { loginStart } from "../redux/userRedux";
+
+import axios from "axios";
 
 const Container = styled.div`
   width: 100vw;
@@ -15,7 +24,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
 const Wrapper = styled.div`
   width: 25%;
   padding: 20px;
@@ -58,13 +66,48 @@ const Link = styled.a`
 `;
 
 const Login = () => {
+  const [username, setUsername] = useState("theadmin");
+  const [password, setPassword] = useState("newpassworsd123");
+  const [user, setUser] = useState({});
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const res = await axios.post(`http://localhost:3005/api/auth/login`, {
+          username:"theadmin",
+          password:"newpassworsd123",
+        });
+        setUser(res.data);
+      } catch (err) {
+        console.log("something went wrong");
+      }
+    };
+    getUser();
+  }, [username, password]);
+
+  console.log(user)
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   loginStart(dispatch, { userName, passWord });
+  // };
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
+          <Input
+            placeholder="username"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+          <Input
+            placeholder="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
           <Button>LOGIN</Button>
           <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
           <Link>CREATE A NEW ACCOUNT</Link>

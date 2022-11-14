@@ -1,14 +1,22 @@
+/* 👇 This is a Selector Component  	
+cretaed and styled with Styled Component 
+will filter and sort products based on type, color, size
+*/
+
 import React from "react";
+
 import styled from "styled-components";
 
+// all Components Container
 const Container = styled.div`
+  height: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  height: 10vh;
 `;
 
+// Wrapper
 const Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -16,20 +24,10 @@ const Wrapper = styled.div`
   gap: 50px;
   margin-left: 150px;
   position: relative;
-  
 `;
 
-const Colors = styled.select`
-  background-color: #f9f9f9;
-  border: none;
-  font-size: 13px;
-  font-family: bolder;
-  color: grey;
-  font-family: Tahoma;
-  option {
-  }
-`;
-const Sizes = styled.select`
+// Options to select from
+const SelectOptions = styled.select`
   background-color: #f9f9f9;
   border: none;
   border: none;
@@ -37,45 +35,34 @@ const Sizes = styled.select`
   font-family: bolder;
   color: grey;
   font-family: Tahoma;
-
-  option {
-  }
-`;
-const Material = styled.select`
-  background-color: #f9f9f9;
-  border: none;
-  border: none;
-  font-size: 13px;
-  font-family: bolder;
-  color: grey;
-  font-family: Tahoma;
-
-  option {
-  }
 `;
 
 const Selector = () => {
   return (
     <Container>
       <Wrapper>
-        <Colors>
+        <SelectOptions>
           <option>COLOR:</option>
           <option>BLACK</option>
           <option>YELLOW</option>
-        </Colors>
-        <Sizes>
+        </SelectOptions>
+        <SelectOptions>
           <option>SIZE:</option>
           <option>S</option>
           <option>M</option>
           <option>L</option>
           <option>X</option>
-        </Sizes>
-        <Material>
-          <option>MATERIAL:</option>
-          <option>Cotton</option>
-          <option>Leather</option>
-          <option>Polyester</option>
-        </Material>
+        </SelectOptions>
+        <SelectOptions>
+          <option>Category:</option>
+          <option>Men</option>
+          <option>Women</option>
+        </SelectOptions>
+        <SelectOptions>
+          <option>Price:</option>
+          <option>Ascending</option>
+          <option>Descending</option>
+        </SelectOptions>
       </Wrapper>
     </Container>
   );

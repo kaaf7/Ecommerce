@@ -1,29 +1,40 @@
 import React from "react";
+
 import styled from "styled-components";
+
 import { Navbar } from "../Components/Navbar";
-import SaleSlider from "../Components/SaleSlider";
-import Slider from "../Components/Slider";
+
+import Banner from "../Components/Banner";
+
+import Sale from "../Components/Sale";
+
 import Highlights from "../Components/Highlights";
+
 import Footer from "../Components/Footer";
+
 import Explore from "../Components/Explore";
+
 import Board from "../Components/Board";
 
 const Container = styled.div`
   overflow: hidden;
 `;
+const Wrapper = styled.div`
+  overflow: hidden;
+`;
 const Home = () => {
   return (
-    <div>
+    <Container>
       <Navbar></Navbar>
-      <Container>
-        <SaleSlider></SaleSlider>
-        <Slider></Slider>
+      <Wrapper>
+        <Banner></Banner>
         <Highlights></Highlights>
         <Board></Board>
+        <Sale></Sale>
         <Explore></Explore>
         <Footer></Footer>
-      </Container>
-    </div>
+      </Wrapper>
+    </Container>
   );
 };
 

@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Navbar } from "../Components/Navbar";
+import { addproduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div`
   height: 100vh;
@@ -35,6 +37,7 @@ const LookBook = styled.img`
   height: 80vh;
   width: 30vw;
   object-fit: scale-down;
+  border-color: yellow;
 `;
 const LookBookContainer = styled.div`
   display: flex;
@@ -52,7 +55,8 @@ const LookBookImages = styled.img`
   transition: 0.1s ease-out;
 
   &:hover {
-    transform: scale(1.1)  }
+    transform: scale(1.1);
+  }
 `;
 
 const ProductInfo = styled.div`
@@ -128,11 +132,31 @@ const ProductPage = () => {
   const location = useLocation();
   const productId = location.pathname.split("/")[2];
   const [product, setProduct] = useState();
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState();
   const [mainImage, setMainImage] = useState("");
+  const dispatch = useDispatch();
+
   const handleMainImage = (imageSrc) => {
     setMainImage(imageSrc);
   };
-  console.log(mainImage);
+
+  const handleAddProductToCart = () => {
+    dispatch(
+      addproduct({
+        ...product,
+        quantity,
+        color,
+      })
+    );
+  };
+
+  const handleColor = (e) => {
+    setColor(e.target.value);
+  };
+
+  console.log(quantity);
+  console.log(product);
 
   useEffect(() => {
     const getProduct = async () => {
@@ -141,12 +165,10 @@ const ProductPage = () => {
           `http://localhost:3005/api/products/allproducts/product?id=${productId}`
         );
         setProduct(res.data);
-        console.log(res.data);
       } catch (err) {}
     };
     getProduct();
   }, [productId]);
-  console.log(productId);
   return (
     <Container>
       <Navbar></Navbar>
@@ -168,9 +190,16 @@ const ProductPage = () => {
         <ProductInfo>
           <Title>{product?.productTitle}</Title>
           <PriceTag>€ {product?.price}</PriceTag>
-          <Color>
+          <Color
+            onChange={handleColor}
+          >
+            <option disabled selected>
+              SELECT COLOR{" "}
+            </option>
             {product?.colors.map((color) => (
-              <option>{color}</option>
+              <option  key={color}>
+                {color}
+              </option>
             ))}
           </Color>
           <SizeText>SIZES</SizeText>
@@ -179,7 +208,9 @@ const ProductPage = () => {
             <SizeBlocks>2</SizeBlocks>
             <SizeBlocks>3</SizeBlocks>
           </SizesContainer>
-          <AddToCartBtn>Add</AddToCartBtn>
+          <AddToCartBtn onClick={color && handleAddProductToCart}>
+            Add
+          </AddToCartBtn>
           <ProductDescription>{product?.description}</ProductDescription>
         </ProductInfo>
       </Wrapper>{" "}

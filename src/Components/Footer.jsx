@@ -1,7 +1,16 @@
+/* 👇 This is Footer  Component, 
+it is created and styled with Styled Components 
+it will contain company's information
+*/
+
 import React from "react";
+
 import styled from "styled-components";
+
+//import responsive Settings from responsive.js
 import { mobile } from "../responsive";
 
+// all Components Container
 const Container = styled.div`
   height: 30vh;
   display: flex;
@@ -10,13 +19,13 @@ const Container = styled.div`
   overflow: hidden;
   ${mobile({
     display: "flex",
-    justifyContent: "flex-start", 
+    justifyContent: "flex-start",
     height: "15vh",
-    backgroundColor:"yellow",
-  
+    backgroundColor: "yellow",
   })}
 `;
-const Items = styled.div`
+// text items where all the info is displayed
+const Item = styled.div`
   font-size: 12px;
   color: black;
   cursor: pointer;
@@ -25,6 +34,8 @@ const Items = styled.div`
     fontSize: "10px",
   })}
 `;
+
+// left itemns container
 const LeftItems = styled.div`
   margin-left: 100px;
   height: 100%;
@@ -38,6 +49,7 @@ const LeftItems = styled.div`
     display: "none",
   })}
 `;
+// right items container
 const RightItems = styled.div`
   margin-right: 100px;
   height: 100%;
@@ -49,6 +61,7 @@ const RightItems = styled.div`
   gap: 10px;
   flex: 1;
 `;
+// all items container
 const ItemsContainer = styled.div`
   justify-content: space-between;
   align-items: center;
@@ -63,66 +76,66 @@ const Footer = () => {
     <Container>
       <LeftItems>
         <ItemsContainer>
-          <Items>iverra quis, feugiat a, tellus. Phasellus v</Items>
-          <Items>tellus. Phasellus v</Items>
-          <Items>iverra quis, feugiat a, tellus. Phasellus v</Items>
-          <Items>iverra quis, feugiat a, tellus. Phasellus v</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
+          <Item>iverra quis, feugiat a, tellus. Phasellus v</Item>
+          <Item>tellus. Phasellus v</Item>
+          <Item>iverra quis, feugiat a, tellus. Phasellus v</Item>
+          <Item>iverra quis, feugiat a, tellus. Phasellus v</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
         </ItemsContainer>
         <ItemsContainer>
-          <Items>Kontakt</Items>
-          <Items>Lieferung</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
+          <Item>Kontakt</Item>
+          <Item>Lieferung</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
         </ItemsContainer>
         <ItemsContainer>
-          <Items>Kontakt</Items>
-          <Items>Lieferung</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
+          <Item>Kontakt</Item>
+          <Item>Lieferung</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
         </ItemsContainer>
       </LeftItems>
       <RightItems>
         <ItemsContainer>
-          <Items>Kontakt</Items>
-          <Items>Lieferung</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
+          <Item>Kontakt</Item>
+          <Item>Lieferung</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
         </ItemsContainer>
         <ItemsContainer>
-          <Items>Kontakt</Items>
-          <Items>Lieferung</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
-          <Items>Text</Items>
+          <Item>Kontakt</Item>
+          <Item>Lieferung</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
+          <Item>Text</Item>
         </ItemsContainer>
       </RightItems>
     </Container>
