@@ -16,7 +16,8 @@ import { useState, useEffect } from "react";
 // import responsive Settings from responsive.js
 import { mobile } from "../responsive";
 
-import axios from "axios";
+// import axios request services
+import { publicRequest } from "../services";
 
 const Container = styled.div`
   display: grid;
@@ -40,10 +41,10 @@ const ProductList = ({ filters, cat, sort }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(
+        const res = await publicRequest.get(
           cat
-            ? `http://localhost:3005/api/products/allproducts?category=${cat}`
-            : "http://localhost:3005/api/products/allproducts"
+            ? `/products/allproducts?category=${cat}`
+            : `/products/allproducts`
         );
         setProducts(res.data);
       } catch (err) {}

@@ -16,8 +16,8 @@ import { useNavigate } from "react-router-dom";
 //import responsive Settings from responsive.js
 import { mobile } from "../responsive";
 
-//import Axios Library to get data
-import axios from "axios";
+// import request axios request services
+import { publicRequest } from "../services";
 
 // Array of random quotes
 const dummyQuotes = [
@@ -104,9 +104,7 @@ const Board = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:3005/api/products/allproducts"
-        );
+        const res = await publicRequest.get("/products/allproducts");
         setProducts(res.data);
       } catch (err) {}
     };

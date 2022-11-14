@@ -17,8 +17,9 @@ import { mobile } from "../responsive";
 // import useNavigate to redirect to pages
 import { useNavigate } from "react-router-dom";
 
-// import axios library to CRUD data
-import axios from "axios";
+// import axios request services
+
+import { publicRequest } from "../services";
 
 // all items Container
 const Container = styled.div`
@@ -156,9 +157,7 @@ const Sale = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:3005/api/products/allproducts"
-        );
+        const res = await publicRequest.get("/products/allproducts");
         setProducts(res.data.sort(() => Math.random() - 0.5).slice(0, 1));
       } catch (err) {}
     };
