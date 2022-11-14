@@ -2,11 +2,18 @@ const {
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
 } = require("./verifytoken");
+
 const CryptoJS = require("crypto-js");
+
 const dotenv = require("dotenv");
+
 const User = require("../models/User");
+
 dotenv.config();
+
+
 const SECRET_KEY = process.env.SECRET_KEY;
+
 const router = require("express").Router();
 
 //GET one user by id
@@ -55,13 +62,12 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
         },
       },
     ]);
-    res.status(200).json(data)
+    res.status(200).json(data);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.post("/:id", (req, res) => {});
 
 //UPDATE
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
