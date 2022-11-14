@@ -7,7 +7,9 @@ const productRout = require("./routes/product");
 const orderRout = require("./routes/order");
 const cartRout = require("./routes/cart");
 const dotenv = require("dotenv");
+const cors = require('cors')
 dotenv.config();
+app.use(cors())
 const PORT = process.env.PORT;
 const URI = process.env.URI;
 app.use(express.json());
