@@ -1,31 +1,47 @@
+/* 👇 This is Cart Item Component 
+created and styled with Styled Components,it will contain all the
+info of the a single item purchased and added in the cart
+and this component will be displayed in the cart page before checkout
+*/
+
 import React from "react";
+
 import styled from "styled-components";
+
+//import responsive Settings from responsive.js
 import { mobile } from "../responsive";
 
+//purchased item container
 const PurchasedItem = styled.div`
+  width: 30vw;
+  height: 20vh;
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: space-around;
-  flex: 1;
-  width: 90%;
   gap: 20px;
-  height: 20vh;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1vw;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
+//photo of purchased single item added in cart
 const PurchasedItemPhoto = styled.img`
   width: 100px;
   height: 150px;
   object-fit: scale-down;
 `;
+
+// Container of info for purchased single item added in cart
 const PurchasedTextContainer = styled.div`
-  flex: 1;
-  height: 150px;
   width: 100%;
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  flex: 1;
 `;
+
+// Text for purchased item name
 const PurchasedItemName = styled.h4`
   margin-top: 0;
   margin-bottom: 1px;
@@ -33,19 +49,23 @@ const PurchasedItemName = styled.h4`
     fontSize: "10px",
   })}
 `;
+
+// Text for purchased item details
 const DetailsContainer = styled.div`
   width: 100%;
-  display: flex;
   height: 30px;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
   gap: 20px;
 `;
 
-const Text = styled.p`
-  font-weight: 500;
+// Text for indication of product color and price
+const Indication = styled.p`
+  font-weight: 600;
   margin-top: 1px;
+
   ${mobile({
     fontSize: "10px",
     flexDirection: "column",
@@ -61,19 +81,15 @@ const CartItem = ({ purchasedProduct }) => {
         ></PurchasedItemPhoto>
         <PurchasedTextContainer>
           <PurchasedItemName>
-            {purchasedProduct.title.toUpperCase()}
+            {purchasedProduct.productTitle.toUpperCase()}
           </PurchasedItemName>
           <DetailsContainer>
-            <Text>EUR</Text>
-            <Text>{purchasedProduct.price}</Text>
+            <Indication>EUR</Indication>
+            <Indication>{purchasedProduct.price}</Indication>
           </DetailsContainer>
           <DetailsContainer>
-            <Text>SIZE</Text>
-            <Text>{purchasedProduct.size.toUpperCase()}</Text>
-          </DetailsContainer>
-          <DetailsContainer>
-            <Text>COLOR</Text>
-            <Text>{purchasedProduct.colors[0].toUpperCase()}</Text>
+            <Indication>COLOR</Indication>
+            <Indication>{purchasedProduct.color}</Indication>
           </DetailsContainer>
         </PurchasedTextContainer>
       </PurchasedItem>
