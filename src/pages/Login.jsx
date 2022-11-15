@@ -8,17 +8,11 @@ import { useState, useEffect, useRef } from "react";
 
 import { loginStart } from "../redux/userRedux";
 
-import axios from "axios";
+import { publicRequest } from "../services";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
-      center;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -52,7 +46,7 @@ const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
-  background-color: teal;
+  background-color: #881212ab;
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
@@ -74,9 +68,9 @@ const Login = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await axios.post(`http://localhost:3005/api/auth/login`, {
-          username:"theadmin",
-          password:"newpassworsd123",
+        const res = await publicRequest.post(`/login`, {
+          username: username,
+          password: password,
         });
         setUser(res.data);
       } catch (err) {
@@ -86,7 +80,7 @@ const Login = () => {
     getUser();
   }, [username, password]);
 
-  console.log(user)
+  console.log(user);
   // const handleLogin = (e) => {
   //   e.preventDefault();
   //   loginStart(dispatch, { userName, passWord });
