@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Navbar } from "../Components/Navbar";
-import { addproduct } from "../redux/cartRedux";
+import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import { publicRequest } from "../services";
+import { v4 as uuidv4 } from "uuid";
 
 const Container = styled.div`
   height: 100vh;
@@ -53,9 +54,13 @@ const LookBookImages = styled.img`
   height: 100px;
   object-fit: scale-down;
   transition: 0.1s ease-out;
+  cursor: pointer;
 
   &:hover {
     transform: scale(1.1);
+    box-shadow: 2.1px 4.2px 4.2px hsl(0deg 0% 0% / 0.44);
+    outline: 0.1px solid lightgray;
+
   }
 `;
 
@@ -132,7 +137,7 @@ const ProductPage = () => {
   const location = useLocation();
   const productId = location.pathname.split("/")[2];
   const [product, setProduct] = useState();
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
   const [color, setColor] = useState();
   const [mainImage, setMainImage] = useState("");
   const dispatch = useDispatch();
@@ -141,28 +146,23 @@ const ProductPage = () => {
     setMainImage(imageSrc);
   };
 
-  const handleAddProductToCart = () => {
+  const handleAddProductToCart = (e) => {
+    e.preventDefault();
     dispatch(
-      addproduct({
+      addProduct({
         ...product,
         quantity,
         color,
+        uniqueId: uuidv4(),
       })
     );
   };
 
-  const handleColor = (e) => {
-    setColor(e.target.value);
-  };
-
-  console.log(quantity);
-  console.log(product);
-
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:3005/api/products/allproducts/product?id=${productId}`
+        const res = await publicRequest.get(
+          `/products/allproducts/product?id=${productId}`
         );
         setProduct(res.data);
       } catch (err) {}
@@ -175,12 +175,12 @@ const ProductPage = () => {
       <Wrapper>
         <LookBookWrapper>
           <LookBookContainer>
-            {product?.images.map((image) => (
+            {product?.images.map((image, i) => (
               <LookBookImages
                 onClick={() => {
                   handleMainImage(image);
                 }}
-                key={image}
+                key={i}
                 src={image}
               />
             ))}
@@ -190,24 +190,22 @@ const ProductPage = () => {
         <ProductInfo>
           <Title>{product?.productTitle}</Title>
           <PriceTag>€ {product?.price}</PriceTag>
-          <Color
-            onChange={handleColor}
-          >
-            <option disabled selected>
+          <Color onChange={(e) => setColor(e.target.value)}>
+            <option selected disabled>
               SELECT COLOR{" "}
             </option>
             {product?.colors.map((color) => (
-              <option  key={color}>
-                {color}
-              </option>
+              <option key={color}>{color}</option>
             ))}
           </Color>
+
+          {/*  
           <SizeText>SIZES</SizeText>
-          <SizesContainer>
+         <SizesContainer>
             <SizeBlocks>1</SizeBlocks>
             <SizeBlocks>2</SizeBlocks>
             <SizeBlocks>3</SizeBlocks>
-          </SizesContainer>
+          </SizesContainer> */}
           <AddToCartBtn onClick={color && handleAddProductToCart}>
             Add
           </AddToCartBtn>
