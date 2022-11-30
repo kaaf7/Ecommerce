@@ -1,14 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import styled from "styled-components";
 
 import { mobile } from "../responsive";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
-import { loginStart } from "../redux/userRedux";
-
-import { publicRequest } from "../services";
+import { login } from "../redux/apiCalls";
 
 const Container = styled.div`
   width: 100vw;
@@ -27,7 +25,8 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   font-size: 24px;
-  font-weight: 300;
+  font-weight: bolder;
+  color: #555555;
 `;
 
 const Form = styled.form`
@@ -40,13 +39,16 @@ const Input = styled.input`
   min-width: 40%;
   margin: 10px 0;
   padding: 10px;
+  &:focus {
+    outline: 0.1px solid lightgrey;
+  }
 `;
 
 const Button = styled.button`
   width: 40%;
   border: none;
   padding: 15px 20px;
-  background-color: #881212ab;
+  background-color: #640000;
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
@@ -60,31 +62,18 @@ const Link = styled.a`
 `;
 
 const Login = () => {
-  const [username, setUsername] = useState("theadmin");
-  const [password, setPassword] = useState("newpassworsd123");
-  const [user, setUser] = useState({});
+  const [username, setUsername] = useState("");
+
+  const [password, setPassword] = useState("");
+
+  /*useNavigate to switch pages*/
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const res = await publicRequest.post(`/login`, {
-          username: username,
-          password: password,
-        });
-        setUser(res.data);
-      } catch (err) {
-        console.log("something went wrong");
-      }
-    };
-    getUser();
-  }, [username, password]);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+  };
 
-  console.log(user);
-  // const handleLogin = (e) => {
-  //   e.preventDefault();
-  //   loginStart(dispatch, { userName, passWord });
-  // };
   return (
     <Container>
       <Wrapper>
@@ -98,11 +87,12 @@ const Login = () => {
           />
           <Input
             placeholder="password"
+            type="password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
-          <Button>LOGIN</Button>
+          <Button onClick={handleLogin}>LOGIN</Button>
           <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
           <Link>CREATE A NEW ACCOUNT</Link>
         </Form>
