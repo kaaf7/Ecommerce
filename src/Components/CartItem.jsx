@@ -11,6 +11,12 @@ import styled from "styled-components";
 //import responsive Settings from responsive.js
 import { mobile } from "../responsive";
 
+import { removeProduct } from "../redux/cartRedux";
+
+import { useDispatch } from "react-redux";
+
+import { useNavigate } from "react-router-dom";
+
 //purchased item container
 const PurchasedItem = styled.div`
   width: 30vw;
@@ -29,6 +35,7 @@ const PurchasedItemPhoto = styled.img`
   width: 100px;
   height: 150px;
   object-fit: scale-down;
+  cursor: pointer;
 `;
 
 // Container of info for purchased single item added in cart
@@ -48,6 +55,25 @@ const PurchasedItemName = styled.h4`
   ${mobile({
     fontSize: "10px",
   })}
+`;
+
+const RemoveButton = styled.button`
+  width: 60px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #ffffff;
+  text-align: center;
+  padding: auto;
+  border: none;
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
+
+  :hover {
+    background-color: rgba(86, 1, 1, 0.943);
+  }
 `;
 
 // Text for purchased item details
@@ -71,26 +97,44 @@ const Indication = styled.p`
     flexDirection: "column",
   })}
 `;
+
 const CartItem = ({ purchasedProduct }) => {
+  const dispatch = useDispatch();
+  const handleRemoveProduct = (product) => {
+    dispatch(removeProduct(product));
+  };
+
+  /*useNavigate to switch pages*/
+  const navigate = useNavigate();
+
+  /*openProduct function to switch to Product page once pressed on product*/
+  const openProduct = (productId) => {
+    navigate(`/products/${productId}`);
+  };
+
   return (
     <div>
       {" "}
       <PurchasedItem>
         <PurchasedItemPhoto
-          src={purchasedProduct.images[0]}
+          onClick={() => openProduct(purchasedProduct._id)}
+          src={purchasedProduct?.images[0]}
         ></PurchasedItemPhoto>
         <PurchasedTextContainer>
           <PurchasedItemName>
-            {purchasedProduct.productTitle.toUpperCase()}
+            {purchasedProduct?.productTitle.toUpperCase()}
           </PurchasedItemName>
           <DetailsContainer>
             <Indication>EUR</Indication>
-            <Indication>{purchasedProduct.price}</Indication>
+            <Indication>{purchasedProduct?.price}</Indication>
           </DetailsContainer>
           <DetailsContainer>
             <Indication>COLOR</Indication>
             <Indication>{purchasedProduct.color}</Indication>
           </DetailsContainer>
+          <RemoveButton onClick={() => handleRemoveProduct(purchasedProduct)}>
+            REMOVE
+          </RemoveButton>
         </PurchasedTextContainer>
       </PurchasedItem>
     </div>
