@@ -4,7 +4,6 @@ const Favorite = require("../models/Favorite");
 const {
   verifyTokenAndAdmin,
   verifyTokenAndAuthorization,
-  verifyJwtToken,
 } = require("./verifytoken");
 
 //add favorite
@@ -25,7 +24,7 @@ router.post("/add", verifyTokenAndAuthorization, async (req, res) => {
 });
 
 //get favorite
-router.get("/find", verifyTokenAndAuthorization, async (req, res) => {
+router.get("/findfavorite", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const favorite = await Favorite.findOne({ userId: req.query.id });
     res.status(200).json(favorite);
@@ -35,11 +34,10 @@ router.get("/find", verifyTokenAndAuthorization, async (req, res) => {
 });
 
 //update favorite
-
-router.put("/update", verifyTokenAndAuthorization, async (req, res) => {
+router.put("/updatefavorite", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const updateFavorite = await Favorite.findOneAndUpdate(
-      req.query.id,
+      { userId: req.query.id },
       {
         $set: req.body,
       },
