@@ -7,10 +7,10 @@ import React from "react";
 
 import styled from "styled-components";
 
+import { publicRequest, currentUser } from "../services";
+
 // import useNavigate to redirect to pages
 import { useNavigate } from "react-router-dom";
-
-import { useSelector } from "react-redux";
 
 // import search Icon from material UI
 import SearchIcon from "@mui/icons-material/Search";
@@ -27,10 +27,20 @@ import Badge from "@mui/material/Badge";
 // import responsive Settings from responsive.js
 import { mobile } from "../responsive";
 
+import { updateCart } from "../redux/cartRedux";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import { useState, useEffect } from "react";
+
+//import localStorage from "redux-persist/es/storage";
+
 // all Components Container
 const Container = styled.div`
   width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   position: fixed;
   z-index: 9999;
   overflow: hidden;
@@ -144,22 +154,104 @@ const IconsContainer = styled.div`
   flex: 1;
 `;
 
+const SearchContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  flex-direction: flex-start;
+`;
+
 // Searchbar Component
 const SearchInput = styled.input`
-  width: 100%;
   border: none;
   font-size: 14px;
-  color: #b2b2b2;
+  color: #434343;
+  padding-left: 0px;
+  border-radius: 5px;
+  width: 100%;
   ${mobile({ display: "none" })}
   &:focus {
     outline: 0.1px solid lightgrey;
     border-radius: 5px;
   }
 `;
+const SearchResultContainer = styled.li`
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: start;
+  margin-left: 20;
+  position: fixed;
+  margin-top: 20px;
+  border-radius: 10px;
+  // outline: 0.1px solid green;
+  background-color: white;
+`;
+
+const SearchText = styled.p`
+  transition: 0.1s ease-in;
+  margin: 0px;
+  max-width: 100%;
+  font-size: 14px;
+  font-size: 14px;
+  height: 15px;
+  cursor: pointer;
+  color: #6b6b6b;
+  padding: 5px;
+  flex: 1;
+  :hover {
+    border-radius: 10px;
+    background-color: #f3f3f3;
+  }
+`;
 
 export const Navbar = () => {
+  const dispatch = useDispatch();
+
   /*order quantity displayed on the Cart in Navbar */
-  const quantity = useSelector((state) => state.cart.quantity);
+  const cart = useSelector((state) => state.cart);
+
+  const cartQuantity = useSelector((state) => state.cart.quantity);
+
+  const productAdded = useSelector((state) => state.cart.productAdded);
+
+  const productRemoved = useSelector((state) => state.cart.productremoved);
+
+  const favorites = useSelector((state) => state.favorite.favorites.length);
+
+  const favoritesQuantity = useSelector((state) => state.favorite.quantity);
+
+  const [searchedProduct, setSearchedProducts] = useState("");
+
+  /* useState hook to set products*/
+  const [products, setProducts] = useState([]);
+
+  const userId = currentUser?._id;
+
+  const user = useSelector((state) => state.user.currentUser);
+
+  const loggedIn = useSelector((state) => state.user.loggedIn);
+
+  const componentDidMount = () => {
+    const reloadCount = sessionStorage.getItem("reloadCount");
+    if (reloadCount < 2) {
+      sessionStorage.setItem("reloadCount", String(reloadCount + 1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem("reloadCount");
+    }
+  };
+
+  /* useEffect hook to get products according to catrgory*/
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const res = await publicRequest.get("/products/allproducts");
+        setProducts(res.data);
+      } catch (err) {}
+    };
+    getProducts();
+  }, []);
 
   /*useNavigate to switch pages*/
   const navigate = useNavigate();
@@ -168,6 +260,27 @@ export const Navbar = () => {
   const NavigateDir = (directory) => {
     navigate(directory);
   };
+
+  /*openProduct function to switch to Product page once pressed on product*/
+  const openProduct = (productId) => {
+    navigate(`/products/${productId}`);
+  };
+
+  useEffect(() => {
+    if (user && productAdded) {
+      dispatch(updateCart(cart));
+    } else if (user && productRemoved) {
+      dispatch(updateCart(cart));
+    } else {
+      console.log("nothing has changed");
+    }
+  }, []);
+
+  const searchFilter = products
+    .filter((product) => {
+      return product.productTitle.toLowerCase().includes(searchedProduct);
+    })
+    .slice(0, 7);
 
   return (
     <Container>
@@ -181,7 +294,7 @@ export const Navbar = () => {
             AKT
           </Logo>
           <MenuItem
-            style={{ color: "red" }}
+            style={{ color: "#810c0cf5" }}
             onClick={() => {
               NavigateDir("/products/new");
             }}
@@ -207,45 +320,91 @@ export const Navbar = () => {
           {" "}
           <IconsContainer>
             <SearchIcon />
-            <SearchInput type="text" placeholder="Search.."></SearchInput>
+            <SearchContainer>
+              <SearchInput
+                onChange={(e) => {
+                  setSearchedProducts(e.target.value);
+                }}
+                type="text"
+                input={searchedProduct}
+                placeholder="Search.."
+              ></SearchInput>
+              <SearchResultContainer>
+                {searchedProduct &&
+                  searchFilter.map((product, i) => (
+                    <SearchText
+                      key={i}
+                      onClick={() => openProduct(product._id)}
+                    >
+                      {product.productTitle}
+                    </SearchText>
+                  ))}
+              </SearchResultContainer>
+            </SearchContainer>
           </IconsContainer>
         </CenterItems>
         <RightItems>
-          <MenuItem
-            onClick={() => {
-              NavigateDir("/login");
-            }}
-          >
-            SIGN IN
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              NavigateDir("/register");
-            }}
-          >
-            REGISTER
-          </MenuItem>
-          <IconsContainer>
-            <Favorite
+          {!loggedIn && (
+            <MenuItem
               onClick={() => {
-                NavigateDir("/products/favorites");
+                NavigateDir("/login");
               }}
-            />
-          </IconsContainer>
+            >
+              SIGN IN
+            </MenuItem>
+          )}
+          {!loggedIn && (
+            <MenuItem
+              onClick={() => {
+                NavigateDir("/register");
+              }}
+            >
+              REGISTER
+            </MenuItem>
+          )}
+          {loggedIn && (
+            <MenuItem
+              style={{ color: "#810c0cf5" }}
+              onClick={(e) => {
+                e.preventDefault();
+                localStorage.removeItem("persist:root");
+                //localStorage.removeItem("quantity");
+                // dispatch(logOut());
+                //dispatch(clearCart());
+                NavigateDir("/");
+                componentDidMount();
+              }}
+            >
+              LOGOUT
+            </MenuItem>
+          )}
           <IconsContainer>
             <Badge
               onClick={() => {
-                NavigateDir("/cart");
+                NavigateDir(`/favorites/:${userId}`);
               }}
-              badgeContent={quantity}
+              badgeContent={favorites}
               color="error"
             >
-              <CartIcon color="red" />
+              <Favorite color="grey" />
             </Badge>
           </IconsContainer>
+          {
+            <IconsContainer>
+              <Badge
+                onClick={() => {
+                  NavigateDir(`/cart/:${userId}`);
+                }}
+                badgeContent={loggedIn ? cartQuantity : cartQuantity}
+                color="error"
+              >
+                <CartIcon color="red" />
+              </Badge>
+            </IconsContainer>
+          }
         </RightItems>
       </Wrapper>
-      <Announcement>FREE SHIPPING OVER 50$ ORDERS</Announcement>
+      <Announcement>FREE SHIPPING OVER € 50 ORDERS</Announcement>
     </Container>
   );
 };
