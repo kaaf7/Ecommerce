@@ -28,7 +28,6 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 // GET ALL USERS
-
 router.get("/users", verifyTokenAndAdmin, async (req, res) => {
   const query = req.query.new;
   try {
@@ -42,7 +41,6 @@ router.get("/users", verifyTokenAndAdmin, async (req, res) => {
 });
 
 // Get user stats
-
 router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
   const date = new Date();
   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));

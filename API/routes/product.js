@@ -16,8 +16,7 @@ router.get("/allproducts/product", async (req, res) => {
 });
 
 
-//get all products
-
+//get all productsb
 router.get("/allproducts", async (req, res) => {
   const qFavorite = req.query.favorite;
   const qCategory = req.query.category;
