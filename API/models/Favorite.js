@@ -3,20 +3,19 @@ const mongoose = require("mongoose");
 const FavoriteSchema = new mongoose.Schema(
   {
     userId: { type: String, required: true },
-    products: [
-      {
-        productId: { type: String },
-        quantity: {
-          type: Number,
-          required: true,
-        },
-        price: { type: Number, required: true },
-        color: { type: String, required: true },
-        size: { type: String, required: true },
-      },
-    ],
+    products: [],
+    quantity: { type: Number, required: false },
   },
   { timestamps: true }
 );
+
+FavoriteSchema.set("toJSON", {
+  transform: function (document, returnedObject) {
+    returnedObject.id = returnedObject._id;
+    delete returnedObject._id;
+    delete returnedObject.__v;
+    delete returnedObject.id;
+  },
+});
 
 module.exports = mongoose.model("Favorite", FavoriteSchema);
