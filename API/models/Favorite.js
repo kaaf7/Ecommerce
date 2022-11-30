@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-/* create mongoDB schema for Cart with every essential detail*/
+/* create mongoDB schema for favorite with every essential detail*/
 const FavoriteSchema = new mongoose.Schema(
   {
     userId: { type: String, required: true },
