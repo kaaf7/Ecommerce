@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User");
+const Cart = require("../models/Cart");
+const Favorite = require("../models/Favorite");
 const CryptoJS = require("crypto-js");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -8,7 +10,6 @@ const jsonwebtoken = require("jsonwebtoken");
 const JWT_KEY = process.env.JWT_KEY;
 const SECRET_KEY = process.env.SECRET_KEY;
 
-
 //register
 router.post("/register", async (req, res) => {
   const user = new User({
@@ -16,10 +17,18 @@ router.post("/register", async (req, res) => {
     email: req.body.email,
     password: CryptoJS.AES.encrypt(req.body.password, SECRET_KEY).toString(),
   });
-  console.log("register");
-
   try {
     const savedUser = await user.save();
+    const userId = savedUser._id;
+    const cart = new Cart({
+      userId: userId,
+      //products: req.body.products,
+    });
+    const favorite = new Favorite({
+      userId: userId,
+      // products: req.body.products,
+    });
+    await Promise.all([cart.save(), favorite.save()]);
     res.status(201).json(savedUser);
   } catch (err) {
     res.status(500).json(err);
@@ -37,27 +46,36 @@ router.post("/login", async (req, res) => {
     const accessToken = jsonwebtoken.sign(
       {
         id: user._id,
-        username:user.username,
+        username: user.username,
         //isAdmin: user.isAdmin,
       },
       JWT_KEY,
       {
-        expiresIn: "3d",
+        expiresIn: "1d",
       }
     );
- 
+
     const decryptedPassword = CryptoJS.AES.decrypt(
       user.password,
       process.env.SECRET_KEY
     );
 
-    const Originalpassword = decryptedPassword.toString(CryptoJS.enc.Utf8);
-    Originalpassword !== req.body.password &&
+    const originalPassword = decryptedPassword.toString(CryptoJS.enc.Utf8);
+    
+    if (originalPassword !== req.body.password) {
       res.status(401).json("password is wrong");
+    } else if (user.username !== req.body.username) {
+      res.status(401).json("username is wrong");
+    } else if (
+      originalPassword !== req.body.password &&
+      user.username !== req.body.username
+    ) {
+      res.status(401).json("wrong username and password");
+    }
     const { password, ...others } = user._doc;
     res.status(200).json({ ...others, accessToken });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(401).json("something went wrong");
   }
 });
 
