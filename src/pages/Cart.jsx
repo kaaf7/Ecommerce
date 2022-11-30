@@ -5,7 +5,6 @@ import CartItem from "../Components/CartItem";
 import { Navbar } from "../Components/Navbar";
 import { useSelector } from "react-redux";
 
-
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -57,7 +56,7 @@ const PurchaseButton = styled.button`
 `;
 const PurchaseForm = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
-  padding:1vw;
+  padding: 1vw;
   position: fixed;
   right: 150px;
   top: 140px;
@@ -89,41 +88,46 @@ const DeliveryPriceContainer = styled.div``;
 const TotalSumContainer = styled.div``;
 const shippingCost = 5;
 
-
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const cartProducts = cart.products;
-  const totalPrice = Math.round(cart.price)
+  const totalPrice = Math.round(cart.price);
+
+  console.log(totalPrice);
   return (
     <Container>
-      <Navbar/>
-      <Wrapper>
-        <PurchasedItems>
-          {cartProducts.map((product) => (
-            <CartItem key={product._id} purchasedProduct={product} />
-          ))}
-        </PurchasedItems>
-        <PurchaseForm>
-          <OrderTitle>ORDER SUMMERY</OrderTitle>
-          <OrderDetails>
-            <Text>ORDER SUM</Text>
-            <Text>€ {totalPrice}</Text>
-          </OrderDetails>
-          <OrderDetails>
-            <Text>SHIPPING SUM</Text>
-            <Text>€ {totalPrice > 50 ? 0 : shippingCost}</Text>
-          </OrderDetails>
-          <OrderDetails>
-            <Text>TOTAL ORDER</Text>
-            <Text>
-              € {totalPrice > 50 ? totalPrice : totalPrice + shippingCost}
-            </Text>
-          </OrderDetails>
-          <DeliveryPriceContainer></DeliveryPriceContainer>
-          <TotalSumContainer></TotalSumContainer>
-          <PurchaseButton>GO TO CHECKOUT</PurchaseButton>
-        </PurchaseForm>
-      </Wrapper>
+      <Navbar />
+      {
+        <Wrapper>
+          <PurchasedItems>
+            {cartProducts.map((product) => (
+              <CartItem key={product.uniqueId} purchasedProduct={product} />
+            ))}
+          </PurchasedItems>
+          {cartProducts.length > 0 && (
+            <PurchaseForm>
+              <OrderTitle>ORDER SUMMERY</OrderTitle>
+              <OrderDetails>
+                <Text>ORDER SUM</Text>
+                <Text>€ {totalPrice}</Text>
+              </OrderDetails>
+              <OrderDetails>
+                <Text>SHIPPING SUM</Text>
+                <Text>€ {totalPrice > 50 ? 0 : shippingCost}</Text>
+              </OrderDetails>
+              <OrderDetails>
+                <Text>TOTAL ORDER</Text>
+                <Text>
+                  € {totalPrice > 50 ? totalPrice : totalPrice + shippingCost}
+                </Text>
+              </OrderDetails>
+              <DeliveryPriceContainer></DeliveryPriceContainer>
+              <TotalSumContainer></TotalSumContainer>
+              <PurchaseButton>GO TO CHECKOUT</PurchaseButton>
+            </PurchaseForm>
+          )}
+        </Wrapper>
+      }
     </Container>
   );
 };
