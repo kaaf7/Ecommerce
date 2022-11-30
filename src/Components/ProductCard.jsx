@@ -6,10 +6,22 @@ it will be desplayed in Hightlights and also in ProductsPage
 
 import React from "react";
 
+import { useState } from "react";
+
 import styled from "styled-components";
 
 // import useNavigate to redirect to pages
 import { useNavigate } from "react-router-dom";
+
+// import Favorite Icon from material UI
+import FavoriteIcon from "@mui/icons-material/Favorite";
+
+import { addFavorite, removeFavorite } from "../redux/favoriteRedux";
+
+// import Cart Badge from material UI
+import Badge from "@mui/material/Badge";
+
+import { useDispatch, useSelector } from "react-redux";
 
 // all Components Container
 const Container = styled.div``;
@@ -73,18 +85,75 @@ const ColorSelections = styled.div`
   background-color: ${({ color }) => color};
 `;
 
+const ProductHeart = styled.circle`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20%;
+  margin-top: 30%;
+  width: 40px;
+  height: 40px;
+  background-color: #b9b9b963;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+`;
+
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const favorites = useSelector((state) => state.favorite.favorites.length);
+
+  const [favoriteProduct, setFavorite] = useState(false);
   /*useNavigate to switch pages*/
   const navigate = useNavigate();
-
   /*openProduct function to switch to Product page once pressed on product*/
   const openProduct = (productId) => {
     navigate(`/products/${productId}`);
   };
 
+  const newFAvoriteProduct = { ...product };
+  newFAvoriteProduct.favorite = favoriteProduct;
+
+  const handleAddFavorite = (e) => {
+    !favoriteProduct && setFavorite(true);
+    dispatch(
+      addFavorite({
+        newFAvoriteProduct,
+      })
+    );
+    console.log(newFAvoriteProduct);
+  };
+
+  const handleRemoveFavorite = (e) => {
+    favoriteProduct && setFavorite(false);
+    dispatch(
+      removeFavorite({
+        newFAvoriteProduct,
+      })
+    );
+    console.log(newFAvoriteProduct);
+  };
+  const handleFavorite = (e) => {
+    console.log(favorites)
+    e.preventDefault();
+    favoriteProduct ? handleRemoveFavorite() : handleAddFavorite();
+  };
+
   return (
     <Container>
       <ProductCardTemplate>
+        <ProductHeart onClick={handleFavorite}>
+          {" "}
+          <Badge badgeContent={0} color="error">
+            <FavoriteIcon
+              sx={
+                favoriteProduct ? { color: "#810c0cf5" } : { color: "darkgrey" }
+              }
+            />
+          </Badge>
+        </ProductHeart>
+
         <ProductImage
           src={product.images[0]}
           // on mouse hover the product main image will change to another image
