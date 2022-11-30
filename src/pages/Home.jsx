@@ -23,6 +23,16 @@ const Wrapper = styled.div`
   overflow: hidden;
 `;
 const Home = () => {
+  const componentDidMount = () => {
+    const reloadCount = sessionStorage.getItem("reloadCount");
+    if (reloadCount < 2) {
+      sessionStorage.setItem("reloadCount", String(reloadCount + 1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem("reloadCount");
+    }
+  };
+
   return (
     <Container>
       <Navbar></Navbar>
