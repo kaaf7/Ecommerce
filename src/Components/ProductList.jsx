@@ -30,7 +30,7 @@ const Container = styled.div`
   gap: 25px;
   position: relative;
 `;
-const ProductList = ({ filters, cat, sort }) => {
+const ProductList = ({ filters, cat, sort, favorite }) => {
   /* useState hook to set products*/
   const [products, setProducts] = useState([]);
 
@@ -51,6 +51,10 @@ const ProductList = ({ filters, cat, sort }) => {
     };
     getProducts();
   }, [cat]);
+
+
+
+  
 
   /* useEffect to filter  products according to products, catrgory, filters*/
   useEffect(() => {
