@@ -71,9 +71,11 @@ const MenuText = styled.div`
   align-items: center;
   color: #272727f5;
   font-weight: 500;
+  font-family: "Lexend";
+
   cursor: pointer;
   &:hover {
-    background-color: lightgray;
+    background-color: #d3d3d35e;
     opacity: 0.8;
     font-weight: 600;
   }
@@ -93,7 +95,7 @@ const Logo = styled.div`
   flex: 1;
   font-size: 100px;
   color: #272727f5;
-  font-weight: bolder;
+  font-family: "Lexend";
   cursor: pointer;
   ${mobile({
     marginLeft: "50px",
