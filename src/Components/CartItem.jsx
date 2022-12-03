@@ -23,6 +23,8 @@ const PurchasedItem = styled.div`
   height: 20vh;
   display: flex;
   flex: 1;
+  font-family :"Lexend", sans-serif;
+  font-weight: 300;
   align-items: center;
   justify-content: space-around;
   gap: 20px;
@@ -50,6 +52,8 @@ const PurchasedTextContainer = styled.div`
 
 // Text for purchased item name
 const PurchasedItemName = styled.h4`
+  font-family :"Lexend", sans-serif;
+  font-weight: 300;
   margin-top: 0;
   margin-bottom: 1px;
   ${mobile({
@@ -61,6 +65,8 @@ const RemoveButton = styled.button`
   width: 60px;
   height: 20px;
   display: flex;
+  font-family :"Lexend", sans-serif;
+  font-weight: 400;
   align-items: center;
   justify-content: center;
   font-size: 12px;
@@ -89,8 +95,9 @@ const DetailsContainer = styled.div`
 
 // Text for indication of product color and price
 const Indication = styled.p`
-  font-weight: 600;
+  font-weight: 400;
   margin-top: 1px;
+  font-family :"Lexend", sans-serif;
 
   ${mobile({
     fontSize: "10px",
