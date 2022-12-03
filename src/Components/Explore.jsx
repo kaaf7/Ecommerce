@@ -40,10 +40,11 @@ const Wrapper = styled.div`
 // Explore Component Title
 const Title = styled.h1`
   margin-bottom: 100px;
+  font-family: "Lexend", sans-serif;
   margin-top: 10px;
   margin-bottom: 0px;
   font-size: 35px;
-  font-weight: bolder;
+  font-weight: 300;
   color: #272727f5;
 `;
 
@@ -64,6 +65,8 @@ const ButtonsContainer = styled.div`
 const Button = styled.button`
   width: 20vw;
   height: 4vh;
+  font-family: "Lexend", sans-serif;
+  font-weight: 200;
   margin-top: 20px;
   border: 0.1px solid lightgrey;
   font-size: 14px;
@@ -79,7 +82,7 @@ const Button = styled.button`
 const Explore = () => {
   /*useNavigate to switch pages*/
   const navigate = useNavigate();
-  
+
   /*NavigateDir depends on custome directory*/
   const NavigateDir = (directory) => {
     navigate(directory);
@@ -91,13 +94,6 @@ const Explore = () => {
         <ButtonsContainer>
           <Button
             onClick={() => {
-              NavigateDir("/products/men");
-            }}
-          >
-            MEN
-          </Button>
-          <Button
-            onClick={() => {
               NavigateDir("/products/women");
             }}
           >
@@ -105,17 +101,18 @@ const Explore = () => {
           </Button>
           <Button
             onClick={() => {
+              NavigateDir("/products/men");
+            }}
+          >
+            MEN
+          </Button>
+
+          <Button
+            onClick={() => {
               NavigateDir("/products");
             }}
           >
-            MAGAZINE
-          </Button>
-          <Button
-            onClick={() => {
-              NavigateDir("/favorites");
-            }}
-          >
-            FAVORITES
+            NEW
           </Button>
         </ButtonsContainer>
       </Wrapper>
