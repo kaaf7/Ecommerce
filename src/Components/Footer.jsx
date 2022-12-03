@@ -27,7 +27,9 @@ const Container = styled.div`
 // text items where all the info is displayed
 const Item = styled.div`
   font-size: 12px;
-  color: black;
+  color: grey;
+  font-family: "Lexend", sans-serif;
+  font-weight: 400;
   cursor: pointer;
   flex: 1;
   ${mobile({
@@ -49,18 +51,7 @@ const LeftItems = styled.div`
     display: "none",
   })}
 `;
-// right items container
-const RightItems = styled.div`
-  margin-right: 100px;
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  align-items: center;
-  max-width: 30%;
-  gap: 10px;
-  flex: 1;
-`;
+
 // all items container
 const ItemsContainer = styled.div`
   justify-content: space-between;
@@ -76,68 +67,32 @@ const Footer = () => {
     <Container>
       <LeftItems>
         <ItemsContainer>
-          <Item>iverra quis, feugiat a, tellus. Phasellus v</Item>
-          <Item>tellus. Phasellus v</Item>
-          <Item>iverra quis, feugiat a, tellus. Phasellus v</Item>
-          <Item>iverra quis, feugiat a, tellus. Phasellus v</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
+          <Item>Contact Us</Item>
+          <Item>FAQs</Item>
+          <Item>Delivery Option</Item>
+          <Item>Returns & Refunds</Item>
+          <Item>Store Locator</Item>
+          <Item>Customer Service</Item>
+          <Item>Payment</Item>
+          <Item>Size Guide</Item>
+          <Item>Privac Policy</Item>
+          <Item>Cookie Settings</Item>
         </ItemsContainer>
         <ItemsContainer>
-          <Item>Kontakt</Item>
-          <Item>Lieferung</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
+          <Item>Student Discount</Item>
+          <Item>Sustainability</Item>
+          <Item>Product Care</Item>
+          <Item>Career</Item>
+          <Item>Press</Item>
+          <Item>About Bankai.</Item>
         </ItemsContainer>
         <ItemsContainer>
-          <Item>Kontakt</Item>
-          <Item>Lieferung</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
+          <Item>Facebook</Item>
+          <Item>Pinterest</Item>
+          <Item>Instagram</Item>
+          <Item>Spotify</Item>
         </ItemsContainer>
       </LeftItems>
-      <RightItems>
-        <ItemsContainer>
-          <Item>Kontakt</Item>
-          <Item>Lieferung</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-        </ItemsContainer>
-        <ItemsContainer>
-          <Item>Kontakt</Item>
-          <Item>Lieferung</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-          <Item>Text</Item>
-        </ItemsContainer>
-      </RightItems>
     </Container>
   );
 };
