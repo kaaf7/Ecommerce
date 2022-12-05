@@ -1,20 +1,25 @@
-/* 👇 This is Cart Item Component 
+/* * 👇 This is Cart Item Component 
 created and styled with Styled Components,it will contain all the
 info of the a single item purchased and added in the cart
 and this component will be displayed in the cart page before checkout
 */
 
+// import react
 import React from "react";
 
+// import Styled Components
 import styled from "styled-components";
 
 //import responsive Settings from responsive.js
 import { mobile } from "../responsive";
 
+// import removeProduct reducer rom CartSlice to remove product from cart
 import { removeProduct } from "../redux/cartRedux";
 
+// import useDispatch to activate redux reducers
 import { useDispatch } from "react-redux";
 
+// import Navigate to redirect to pages
 import { useNavigate } from "react-router-dom";
 
 //purchased item container
@@ -23,7 +28,7 @@ const PurchasedItem = styled.div`
   height: 20vh;
   display: flex;
   flex: 1;
-  font-family :"Lexend", sans-serif;
+  font-family: "Lexend", sans-serif;
   font-weight: 300;
   align-items: center;
   justify-content: space-around;
@@ -52,7 +57,7 @@ const PurchasedTextContainer = styled.div`
 
 // Text for purchased item name
 const PurchasedItemName = styled.h4`
-  font-family :"Lexend", sans-serif;
+  font-family: "Lexend", sans-serif;
   font-weight: 300;
   margin-top: 0;
   margin-bottom: 1px;
@@ -65,10 +70,10 @@ const RemoveButton = styled.button`
   width: 60px;
   height: 20px;
   display: flex;
-  font-family :"Lexend", sans-serif;
+  justify-content: center;
+  font-family: "Lexend", sans-serif;
   font-weight: 400;
   align-items: center;
-  justify-content: center;
   font-size: 12px;
   color: #ffffff;
   text-align: center;
@@ -97,7 +102,7 @@ const DetailsContainer = styled.div`
 const Indication = styled.p`
   font-weight: 400;
   margin-top: 1px;
-  font-family :"Lexend", sans-serif;
+  font-family: "Lexend", sans-serif;
 
   ${mobile({
     fontSize: "10px",
@@ -105,16 +110,22 @@ const Indication = styled.p`
   })}
 `;
 
+// passing purchsedProduct to change its props in Cart Page
 const CartItem = ({ purchasedProduct }) => {
+  // activate useDispatch
   const dispatch = useDispatch();
+
+  /* * handleRemoveProduct function is used to activate the 
+  removeProduct reducer in cartSlice to remove product from Cart */
   const handleRemoveProduct = (product) => {
     dispatch(removeProduct(product));
   };
 
-  /*useNavigate to switch pages*/
+  // useNavigate to navigate pages
   const navigate = useNavigate();
 
-  /*openProduct function to switch to Product page once pressed on product*/
+  /* *  OpenProduct function that navigates to product when
+   clicked page based on product id as an arguement */
   const openProduct = (productId) => {
     navigate(`/products/${productId}`);
   };
@@ -123,22 +134,27 @@ const CartItem = ({ purchasedProduct }) => {
     <div>
       {" "}
       <PurchasedItem>
+        {/*open Product page with openProduct fucntion*/}
         <PurchasedItemPhoto
           onClick={() => openProduct(purchasedProduct._id)}
           src={purchasedProduct?.images[0]}
         ></PurchasedItemPhoto>
         <PurchasedTextContainer>
+          {/*Product Title props*/}
           <PurchasedItemName>
             {purchasedProduct?.productTitle.toUpperCase()}
           </PurchasedItemName>
+          {/*Product Price props*/}
           <DetailsContainer>
             <Indication>EUR</Indication>
             <Indication>{purchasedProduct?.price}</Indication>
           </DetailsContainer>
+          {/*Product Color props*/}
           <DetailsContainer>
             <Indication>COLOR</Indication>
             <Indication>{purchasedProduct.color}</Indication>
           </DetailsContainer>
+          {/*remove product from  cart with onClick*/}
           <RemoveButton onClick={() => handleRemoveProduct(purchasedProduct)}>
             REMOVE
           </RemoveButton>
