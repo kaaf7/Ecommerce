@@ -1,10 +1,12 @@
-/* 👇 This is Banner Component  	
+/* * 👇 This is Banner Component  	
 created and styled with Styled Component 
 it will display company's logo will  direct customers to products
 */
 
+// import react
 import React from "react";
 
+// import Styled Components
 import styled from "styled-components";
 
 // import responsive Settings from responsive.js
@@ -13,7 +15,7 @@ import { mobile } from "../responsive";
 // import useNavigate to redirect to pages
 import { useNavigate } from "react-router-dom";
 
-// all Components Container
+// All Components Container
 const Container = styled.div`
   width: 100%;
   height: 30vh;
@@ -28,7 +30,7 @@ const Container = styled.div`
   })}
 `;
 
-// wrapper to wrap Left and Right items
+// Wrapper to wrap Left and Right items
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -71,8 +73,7 @@ const MenuText = styled.div`
   align-items: center;
   color: #272727f5;
   font-weight: 500;
-  font-family: "Lexend";
-
+  font-family: "Lexend", sans-serif;
   cursor: pointer;
   &:hover {
     background-color: #d3d3d35e;
@@ -87,15 +88,15 @@ const MenuText = styled.div`
   })}
 `;
 
-// company's logo
+// Company's logo text
 const Logo = styled.div`
-  align-items: center;
   display: flex;
   justify-content: center;
-  flex: 1;
+  align-items: center;
   font-size: 100px;
   color: #272727f5;
-  font-family: "Lexend";
+  font-family: "Lexend", sans-serif;
+  flex: 1;
   cursor: pointer;
   ${mobile({
     marginLeft: "50px",
@@ -108,9 +109,10 @@ const Logo = styled.div`
 `;
 
 const Banner = () => {
-  /*useNavigate to switch pages*/
+  // useNavigate to navigate pages
   const navigate = useNavigate();
-  /*NavigateDir depends on custome directory*/
+
+  // NavigateDir function that depends on custome directory as argument
   const NavigateDir = (directory) => {
     navigate(directory);
   };
