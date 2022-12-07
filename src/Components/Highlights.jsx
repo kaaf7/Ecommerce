@@ -1,12 +1,16 @@
-/* 👇 This is Highlight section, 
-it is created and styled with Styled 
-Components will showcase products in HomePage 
-*/
+// /* *👇
+//  *This is Highlight section,
+//  *it is created and styled with Styled
+//  *Components will showcase products in HomePage
+//  */
 
+// import React
 import React from "react";
 
+// import useState and useEffct
 import { useState, useEffect } from "react";
 
+// import Styled Components
 import styled from "styled-components";
 
 // import product Card that will contain all products info and image
@@ -15,7 +19,7 @@ import ProductCard from "./ProductCard";
 // import responsive Settings from responsive.js
 import { mobile } from "../responsive";
 
-// import request axios request services
+// import public request from axios services
 import { publicRequest } from "../services";
 
 // all Components Container
@@ -52,15 +56,15 @@ const Wrapper = styled.div`
 `;
 
 const Highlights = () => {
-  // UseState to set products and display them  in the highlight section
+  // useState to set products and display them  in the highlight section
   const [products, setProducts] = useState([]);
-  // useEffect to get products from backend using axios through getProducts function
+
+  /* useEffect Hook to fetch Products from API using axios's public request 
+  without any dependencies */
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await publicRequest.get(
-          "/products/allproducts"
-        );
+        const res = await publicRequest.get("/products/allproducts");
         setProducts(res.data);
       } catch (err) {}
     };
@@ -69,9 +73,10 @@ const Highlights = () => {
 
   return (
     <Container>
+      {/*show first 4 products */}
       <Wrapper>
         {products.slice(0, 4).map((product) => (
-          <ProductCard key={product._id} product={product} />
+          <ProductCard key={product._id} product={product} category="" />
         ))}
       </Wrapper>
     </Container>
