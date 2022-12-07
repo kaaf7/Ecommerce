@@ -1,10 +1,11 @@
-/* * 👇 This is Cart Item Component 
-created and styled with Styled Components,it will contain all the
-info of the a single item purchased and added in the cart
-and this component will be displayed in the cart page before checkout
-*/
+// /* * 👇
+//  *This is Cart Item Component
+//  *Created and styled with Styled Components,
+//  *It will contain all the info of the a single item purchased and added in the cart
+//  *This component will be displayed in the cart page before checkout
+//  */
 
-// import react
+// import React
 import React from "react";
 
 // import Styled Components
@@ -66,6 +67,7 @@ const PurchasedItemName = styled.h4`
   })}
 `;
 
+// remove product Button
 const RemoveButton = styled.button`
   width: 60px;
   height: 20px;
@@ -110,10 +112,12 @@ const Indication = styled.p`
   })}
 `;
 
-// passing purchsedProduct to change its props in Cart Page
+// passing purchsedProduct in CartItem component to change its props in Cart Page
 const CartItem = ({ purchasedProduct }) => {
   // activate useDispatch
   const dispatch = useDispatch();
+  // useNavigate to navigate pages
+  const navigate = useNavigate();
 
   /* * handleRemoveProduct function is used to activate the 
   removeProduct reducer in cartSlice to remove product from Cart */
@@ -121,11 +125,8 @@ const CartItem = ({ purchasedProduct }) => {
     dispatch(removeProduct(product));
   };
 
-  // useNavigate to navigate pages
-  const navigate = useNavigate();
-
   /* *  OpenProduct function that navigates to product when
-   clicked page based on product id as an arguement */
+   clicked page based on product id as an argument */
   const openProduct = (productId) => {
     navigate(`/products/${productId}`);
   };
@@ -154,7 +155,7 @@ const CartItem = ({ purchasedProduct }) => {
             <Indication>COLOR</Indication>
             <Indication>{purchasedProduct.color}</Indication>
           </DetailsContainer>
-          {/*remove product from  cart with onClick*/}
+          {/*remove product from Cart with onClick*/}
           <RemoveButton onClick={() => handleRemoveProduct(purchasedProduct)}>
             REMOVE
           </RemoveButton>
