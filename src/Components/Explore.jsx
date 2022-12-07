@@ -1,10 +1,13 @@
-/* 👇 This is Explore display Component
-created and styled with Styled Components,
-it will redirect customer to other pages with products 
-*/
+// /* * 👇
+//  *This is Explore display Component
+//  *Created and styled with Styled Components,
+//  *It will redirect customer to other pages with products
+//  */
 
+// import React
 import React from "react";
 
+// import Styled Components
 import styled from "styled-components";
 
 //import responsive Settings from responsive.js
@@ -80,17 +83,20 @@ const Button = styled.button`
 `;
 
 const Explore = () => {
-  /*useNavigate to switch pages*/
+  //useNavigate to switch pages
   const navigate = useNavigate();
 
-  /*NavigateDir depends on custome directory*/
+  /* * NavigateDir function that changed 
+  page based on custome directory as an argument*/
   const NavigateDir = (directory) => {
     navigate(directory);
   };
+
   return (
     <Container>
       <Wrapper>
         <Title>EXPLORE MORE</Title>
+        {/*Women's products*/}
         <ButtonsContainer>
           <Button
             onClick={() => {
@@ -99,6 +105,7 @@ const Explore = () => {
           >
             WOMEN
           </Button>
+          {/*Men's products*/}
           <Button
             onClick={() => {
               NavigateDir("/products/men");
@@ -106,7 +113,7 @@ const Explore = () => {
           >
             MEN
           </Button>
-
+          {/*All products*/}
           <Button
             onClick={() => {
               NavigateDir("/products");
