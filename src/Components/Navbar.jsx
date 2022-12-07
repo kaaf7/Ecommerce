@@ -1,22 +1,29 @@
-/* 👇 This is Nav bar Component  	
- cretaed and styled with Styled Component 
- including all the necessary menu items 
-*/
+/* * 👇
+ *This is Navbar Component
+ *Created and styled with Styled Component
+ *Includes Shop Categories, Search Bar, Cart, Favorites, Login, Register, and profile
+ */
 
+// import React
 import React from "react";
 
-import styled from "styled-components";
+// import register Icon from material UI
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 
-import { publicRequest, currentUser } from "../services";
+// import login Icon from material UI
+import LockOpenIcon from "@mui/icons-material/LockOpen";
 
-// import useNavigate to redirect to pages
-import { useNavigate } from "react-router-dom";
+// import logout Icon from material UI
+import LogoutIcon from "@mui/icons-material/Logout";
+
+// import profile Icon from material UI
+import Person3OutlinedIcon from "@mui/icons-material/Person3Outlined";
+
+// import cart Icon from material UI
+import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 
 // import search Icon from material UI
 import SearchIcon from "@mui/icons-material/Search";
-
-// import Cart Icon from material UI
-import CartIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 // import Favorite Icon from material UI
 import Favorite from "@mui/icons-material/FavoriteBorderOutlined";
@@ -24,16 +31,29 @@ import Favorite from "@mui/icons-material/FavoriteBorderOutlined";
 // import Cart Badge from material UI
 import Badge from "@mui/material/Badge";
 
+// import useState and useEffect from favorite slice
+import { useState, useEffect } from "react";
+
+// import Styled Components
+import styled from "styled-components";
+
+// import useNavigate to redirect to pages
+import { useNavigate } from "react-router-dom";
+
+// import currentUser and public axios request from services
+import { publicRequest, currentUser } from "../services";
+
 // import responsive Settings from responsive.js
 import { mobile } from "../responsive";
 
-import { updateCart } from "../redux/cartRedux";
-
+// import useDispatch activate redux reducers and useSelector to get state
 import { useDispatch, useSelector } from "react-redux";
 
-import { useState, useEffect } from "react";
+// import updateCart reduce from cart slice
+import { updateCart } from "../redux/cartRedux";
 
-//import localStorage from "redux-persist/es/storage";
+// import updateFavorite reduce from favorite slice
+import { updateFavorite } from "../redux/favoriteRedux";
 
 // all Components Container
 const Container = styled.div`
@@ -51,12 +71,13 @@ const Container = styled.div`
 // Announcement section for purchase over 50 euros*/
 const Announcement = styled.div`
   height: 2vh;
-  background-color: #810c0cf5;
-  color: white;
+  font-family: "Lexend", sans-serif;
+  background-color: #fffffff5;
+  color: #c40a0af5;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 0.5px solid grey;
+  // border-bottom: 0.5px solid lightgrey;
   font-size: 12px;
   ${mobile({
     height: "2vh",
@@ -79,10 +100,11 @@ const Wrapper = styled.div`
 `;
 
 // Shop Logo Text
-const Logo = styled.h2`
-  font-size: 40px;
-  flex: 2;
-  color: #272727f5;
+const Logo = styled.h3`
+  font-size: 30px;
+  flex: 2.5;
+  font-family: "Lexend", sans-serif;
+  color: #c40a0af5;
   cursor: pointer;
   ${mobile({ fontSize: "20 px", marginLeft: "1vw" })}
 `;
@@ -93,7 +115,7 @@ const LeftItems = styled.div`
   justify-content: center;
   align-items: center;
   margin-left: 150px;
-  flex: 1;
+  flex: 0.75;
   height: 100%;
   ${mobile({
     display: "none",
@@ -113,10 +135,12 @@ const CenterItems = styled.div`
 // Navbar Right Items together*/
 const RightItems = styled.div`
   display: flex;
-  justify-content: center;
-  flex: 1;
+  flex: 0.75;
+  flex-direction: row;
   margin-right: 150px;
   height: 100%;
+  justify-content: flex-end;
+
   ${mobile({
     display: "flex",
     width: "100%",
@@ -127,24 +151,50 @@ const RightItems = styled.div`
 
 // Container for each separate item in Navbar
 const MenuItem = styled.div`
-  width: 120px;
+  margin-right: 10px;
   position: relative;
-  color: #272727f5;
+  color: grey;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
+  font-family: "Lexend", sans-serif;
   text-align: center;
-  font-size: 12px;
+  font-weight: 350;
+  font-size: 13px;
   cursor: pointer;
   flex: 1;
-  font-weight: bold;
   ${mobile({ fontSize: "10px" })}
+
+  :hover {
+    color: #000000;
+  }
+`;
+// Container for each separate item in Navbar
+const IconItem = styled.div`
+  margin-right: 0px;
+  position: relative;
+  color: grey;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Lexend", sans-serif;
+  text-align: center;
+  font-weight: 350;
+  font-size: 13px;
+  cursor: pointer;
+  flex: 1;
+  ${mobile({ fontSize: "10px" })}
+
+  :hover {
+    color: #000000;
+  }
 `;
 
 // Container for each separate item in Navbar
 const IconsContainer = styled.div`
-  width: 50px;
-  color: #a0a0a0;
+  color: grey;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,6 +204,7 @@ const IconsContainer = styled.div`
   flex: 1;
 `;
 
+// Search bar Container
 const SearchContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -162,39 +213,57 @@ const SearchContainer = styled.div`
 
 // Searchbar Component
 const SearchInput = styled.input`
-  border: none;
+  border-bottom: 0.1px solid lightgrey;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  font-weight: 300;
   font-size: 14px;
   color: #434343;
   padding-left: 0px;
   border-radius: 5px;
   width: 100%;
+  font-family: "Lexend", sans-serif;
   ${mobile({ display: "none" })}
   &:focus {
     outline: 0.1px solid lightgrey;
     border-radius: 5px;
   }
 `;
+
+// Search results container
 const SearchResultContainer = styled.li`
-  width: 40%;
+  width: 47%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: start;
   margin-left: 20;
   position: fixed;
+  font-family: "Lexend", sans-serif;
+  font-weight: 300;
   margin-top: 20px;
   border-radius: 10px;
-  // outline: 0.1px solid green;
+  outline: 0.1px solid lightgrey;
   background-color: white;
 `;
 
+// Search results images
+const SearchResultImage = styled.img`
+  height: 40px;
+  width: 30px;
+  margin-right: 10px;
+`;
+
+// Search bar input text
 const SearchText = styled.p`
+  max-width: 100%;
+  height: 15px;
   transition: 0.1s ease-in;
   margin: 0px;
-  max-width: 100%;
   font-size: 14px;
   font-size: 14px;
-  height: 15px;
+  font-family: "Lexend", sans-serif;
   cursor: pointer;
   color: #6b6b6b;
   padding: 5px;
@@ -206,43 +275,46 @@ const SearchText = styled.p`
 `;
 
 export const Navbar = () => {
+  //useNavigate to switch pages
+  const navigate = useNavigate();
+  // activate dispatch
   const dispatch = useDispatch();
-
-  /*order quantity displayed on the Cart in Navbar */
-  const cart = useSelector((state) => state.cart);
-
-  const cartQuantity = useSelector((state) => state.cart.quantity);
-
-  const productAdded = useSelector((state) => state.cart.productAdded);
-
-  const productRemoved = useSelector((state) => state.cart.productremoved);
-
-  const favorites = useSelector((state) => state.favorite.favorites.length);
-
-  const favoritesQuantity = useSelector((state) => state.favorite.quantity);
-
+  // useState hook to set products
+  const [products, setProducts] = useState([]);
+  // set the state of searchedProduct input from
   const [searchedProduct, setSearchedProducts] = useState("");
 
-  /* useState hook to set products*/
-  const [products, setProducts] = useState([]);
+  // cart state from cart slice
+  const cart = useSelector((state) => state.cart);
+  // productAdded state to check if product is added to cart
+  const productAdded = useSelector((state) => state.cart?.productAdded);
+  // productAdded state to check if product is added to cart
+  const productRemoved = useSelector((state) => state.cart?.productRemoved);
+  // cart quantity state from reducer by measureing cart array length
+  const cartQuantity = useSelector((state) => state.cart.products?.length);
 
-  const userId = currentUser?._id;
+  // favorites state from favorite slice
+  const favorites = useSelector((state) => state.favorite);
+  // favoriteAdded state to check if favorite is added to favorite
+  const favoriteAdded = useSelector((state) => state.favorite.favoriteAdded);
+  // favoriteRemoved state to check if favorite is removed from favorite
+  const favoriteRemoved = useSelector(
+    (state) => state.favorite.favoriteRemoved
+  );
+  // favorites quanitity from reducer by measureing favorites array length
+  const favoritesQuantity = useSelector(
+    (state) => state.favorite.favorites?.length
+  );
 
+  // current User from user reducer
   const user = useSelector((state) => state.user.currentUser);
-
+  // get current User id
+  const userId = currentUser?._id;
+  // logged in state from user reducer
   const loggedIn = useSelector((state) => state.user.loggedIn);
 
-  const componentDidMount = () => {
-    const reloadCount = sessionStorage.getItem("reloadCount");
-    if (reloadCount < 2) {
-      sessionStorage.setItem("reloadCount", String(reloadCount + 1));
-      window.location.reload();
-    } else {
-      sessionStorage.removeItem("reloadCount");
-    }
-  };
-
-  /* useEffect hook to get products according to catrgory*/
+  /* useEffect Hook to fetch Products from API using axios's public request 
+  without any dependencies */
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -253,34 +325,38 @@ export const Navbar = () => {
     getProducts();
   }, []);
 
-  /*useNavigate to switch pages*/
-  const navigate = useNavigate();
+  /* useEffect Hook to fetch update cart and favorites with dependencies */
+  useEffect(() => {
+    if ((user && productAdded) || (user && productRemoved)) {
+      dispatch(updateCart(cart));
+    } else if ((user && favoriteAdded) || (user && favoriteRemoved)) {
+      dispatch(updateFavorite(favorites));
+    }
+  }, [
+    user,
+    productAdded,
+    productRemoved,
+    favoriteAdded,
+    favoriteRemoved,
+    dispatch,
+  ]);
 
-  /*NavigateDir depends on custome directory*/
+  // NavigateDir depends on custome directory*/
   const NavigateDir = (directory) => {
     navigate(directory);
   };
 
-  /*openProduct function to switch to Product page once pressed on product*/
+  // openProduct function to navigate to Product page once pressed on product
   const openProduct = (productId) => {
     navigate(`/products/${productId}`);
   };
 
-  useEffect(() => {
-    if (user && productAdded) {
-      dispatch(updateCart(cart));
-    } else if (user && productRemoved) {
-      dispatch(updateCart(cart));
-    } else {
-      console.log("nothing has changed");
-    }
-  }, []);
-
+  // search filter based on prodict title name if it includes any of the input letters
   const searchFilter = products
     .filter((product) => {
       return product.productTitle.toLowerCase().includes(searchedProduct);
     })
-    .slice(0, 7);
+    .slice(0, 5);
 
   return (
     <Container>
@@ -291,22 +367,15 @@ export const Navbar = () => {
               NavigateDir("/");
             }}
           >
-            AKT
+            BANKAI.
           </Logo>
           <MenuItem
-            style={{ color: "#810c0cf5" }}
+            style={{ color: "darkred" }}
             onClick={() => {
-              NavigateDir("/products/new");
+              NavigateDir("/products");
             }}
           >
-            NEW IN SHOP
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              NavigateDir("/products/men");
-            }}
-          >
-            MEN
+            EXPLORE{" "}
           </MenuItem>
           <MenuItem
             onClick={() => {
@@ -314,6 +383,13 @@ export const Navbar = () => {
             }}
           >
             WOMEN
+          </MenuItem>{" "}
+          <MenuItem
+            onClick={() => {
+              NavigateDir("/products/men");
+            }}
+          >
+            MEN
           </MenuItem>
         </LeftItems>
         <CenterItems>
@@ -329,79 +405,108 @@ export const Navbar = () => {
                 input={searchedProduct}
                 placeholder="Search.."
               ></SearchInput>
-              <SearchResultContainer>
-                {searchedProduct &&
-                  searchFilter.map((product, i) => (
+
+              {/* if product search was initiated than show the resuls using array map mathod*/}
+              {searchedProduct && (
+                <SearchResultContainer>
+                  {searchFilter.map((product, i) => (
                     <SearchText
                       key={i}
                       onClick={() => openProduct(product._id)}
                     >
+                      {" "}
+                      {/* show first image next to product title*/}
+                      <SearchResultImage src={product.images[0]} />
+                      {/* product title prop*/}
                       {product.productTitle}
                     </SearchText>
                   ))}
-              </SearchResultContainer>
+                </SearchResultContainer>
+              )}
             </SearchContainer>
           </IconsContainer>
         </CenterItems>
+        {/* if user is not logged in show login sign, else don't show it*/}
         <RightItems>
           {!loggedIn && (
-            <MenuItem
+            <IconItem
               onClick={() => {
                 NavigateDir("/login");
               }}
             >
+              {" "}
+              <LockOpenIcon />
               SIGN IN
-            </MenuItem>
+            </IconItem>
           )}
+          {/* if user is not logged in show register sign, else don't show it*/}
           {!loggedIn && (
-            <MenuItem
+            <IconItem
               onClick={() => {
                 NavigateDir("/register");
               }}
             >
+              {" "}
+              <PersonAddAltIcon />
               REGISTER
-            </MenuItem>
+            </IconItem>
           )}
-          {loggedIn && (
-            <MenuItem
-              style={{ color: "#810c0cf5" }}
-              onClick={(e) => {
-                e.preventDefault();
-                localStorage.removeItem("persist:root");
-                //localStorage.removeItem("quantity");
-                // dispatch(logOut());
-                //dispatch(clearCart());
-                NavigateDir("/");
-                componentDidMount();
-              }}
-            >
-              LOGOUT
-            </MenuItem>
-          )}
-          <IconsContainer>
+          <IconItem>
+            {" "}
+            {/* *cart icon that navigates to Cart using user id which is Cart also same as cart id in DB
+             *badgeContent show the number of products in cart based On CartQuantity state from cart slice
+             */}
             <Badge
+              sx={{ transform: "scale(.9)" }}
               onClick={() => {
-                NavigateDir(`/favorites/:${userId}`);
+                NavigateDir(`/cart/:${userId}`);
               }}
-              badgeContent={favorites}
+              badgeContent={cartQuantity}
               color="error"
             >
-              <Favorite color="grey" />
+              <LocalMallOutlinedIcon />
             </Badge>
-          </IconsContainer>
-          {
-            <IconsContainer>
-              <Badge
-                onClick={() => {
-                  NavigateDir(`/cart/:${userId}`);
-                }}
-                badgeContent={loggedIn ? cartQuantity : cartQuantity}
-                color="error"
-              >
-                <CartIcon color="red" />
-              </Badge>
-            </IconsContainer>
-          }
+            CART
+          </IconItem>
+          {/* *cart item sign that navigate to carte ending we user id
+           *badgeContent show the number of products in cart based On CartQuantity state from cart slice
+           */}
+          <IconItem>
+            <Badge
+              sx={{ transform: "scale(.9)" }}
+              onClick={() => {
+                NavigateDir(`/products/favorite`);
+              }}
+              badgeContent={favoritesQuantity}
+              color="error"
+            >
+              <Favorite color="black" />
+            </Badge>{" "}
+            FAVORITES{" "}
+          </IconItem>
+          {/* if user is not logged in show profile sign, else don't show it*/}
+          {loggedIn && (
+            <IconItem style={{ color: "grey" }}>
+              {" "}
+              <Person3OutlinedIcon />
+              PROFILE
+            </IconItem>
+          )}
+          {/* if user is not logged in show logout sign, else don't show it
+           * after pressed clear local storage and then refresh page */}
+          {loggedIn && (
+            <IconItem
+              style={{ color: "grey" }}
+              onClick={(e) => {
+                e.preventDefault();
+                localStorage.clear();
+                window.location.reload();
+              }}
+            >
+              <LogoutIcon />
+              LOGOUT
+            </IconItem>
+          )}
         </RightItems>
       </Wrapper>
       <Announcement>FREE SHIPPING OVER € 50 ORDERS</Announcement>
