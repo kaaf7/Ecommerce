@@ -1,10 +1,13 @@
-/* 👇 This is Footer  Component, 
-it is created and styled with Styled Components 
-it will contain company's information
-*/
+// /* * 👇
+//  *This is Footer Component,
+//  *It is created and styled with Styled Components
+//  *It will contain company's information a
+//  */
 
+// import React
 import React from "react";
 
+// import Styled Components
 import styled from "styled-components";
 
 //import responsive Settings from responsive.js
