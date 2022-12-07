@@ -1,7 +1,8 @@
-/* * 👇 This is Banner Component  	
-created and styled with Styled Component 
-it will display company's logo will  direct customers to products
-*/
+/* * 👇
+ *This is Banner Component
+ *Created and styled with Styled Component
+ *It will display company's logo will direct customers to products
+ */
 
 // import react
 import React from "react";
@@ -121,8 +122,8 @@ const Banner = () => {
     <Container>
       <Wrapper>
         <LeftItems>
+          {/*Direct to Products Page*/}
           <MenuText
-            /*Direct to Products Page*/
             onClick={() => {
               NavigateDir("/products");
             }}
@@ -130,8 +131,8 @@ const Banner = () => {
             ATELIER
           </MenuText>
         </LeftItems>
+        {/*Direct to Home Page*/}
         <Logo
-          /*Direct to Home Page*/
           onClick={() => {
             NavigateDir("/");
           }}
@@ -139,16 +140,16 @@ const Banner = () => {
           AKT
         </Logo>
         <RightItems>
+          {/*Direct to Men's product*/}
           <MenuText
-            /*Direct to Men's product*/
             onClick={() => {
               NavigateDir("/products/men");
             }}
           >
             MEN
           </MenuText>
+          {/*Direct to Women's product*/}
           <MenuText
-            /*Direct to Women's product*/
             onClick={() => {
               NavigateDir("/products/women");
             }}
