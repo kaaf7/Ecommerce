@@ -1,13 +1,13 @@
-/* 👇 This is a Product 
-Component it will contain all the product 
-image and info like price, size, and color 
-it will be desplayed in Hightlights and also in ProductsPage
-*/
+/* * 👇
+ *This is a Product Component
+ *It will contain all the product image and info like price, size, and color
+ *It will be desplayed in Hightlights Component and also in ProductsPage
+ */
 
+// import React
 import React from "react";
 
-import { useState } from "react";
-
+// import Styled Components
 import styled from "styled-components";
 
 // import useNavigate to redirect to pages
@@ -16,7 +16,8 @@ import { useNavigate } from "react-router-dom";
 // import Favorite Icon from material UI
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-import { addFavorite, removeFavorite } from "../redux/favoriteRedux";
+// addAndRemoveFavorite reudcer from favorite slice
+import { addAndRemoveFavorite } from "../redux/favoriteRedux";
 
 // import Cart Badge from material UI
 import Badge from "@mui/material/Badge";
@@ -45,19 +46,22 @@ const ProductInfoContainer = styled.div`
   max-width: 20vw;
   height: 100px;
   display: flex;
+  font-family: "Lexend", sans-serif;
+  font-weight: 400;
   justify-content: center;
   align-items: start;
   text-align: start;
   flex-direction: column;
-  font-size: 14px;
+  color: black;
+  font-size: 12px;
 `;
 
 // Text for product information
 const ProductInfo = styled.p`
   flex: 1;
-  font-weight: bold;
   font-size: 12px;
   color: #272727f5;
+  font-family: "Lexend", sans-serif;
   letter-spacing: 2px;
 `;
 
@@ -67,6 +71,7 @@ const ProductPrice = styled.p`
   font-weight: bold;
   font-size: 12px;
   color: #272727f5;
+  font-family: "Lexend", sans-serif;
   letter-spacing: 2px;
 `;
 
@@ -82,90 +87,92 @@ const ColorSelections = styled.div`
   width: 10px;
   height: 10px;
   border: 0.1px solid lightgrey;
+  // color is color prop based on the product
   background-color: ${({ color }) => color};
 `;
 
-const ProductHeart = styled.circle`
+// Heart icon to add product to favorites
+const ProductHeart = styled.div`
+  width: 35px;
+  height: 35px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   margin-left: 20%;
   margin-top: 30%;
-  width: 40px;
-  height: 40px;
-  background-color: #b9b9b963;
   border-radius: 50%;
+  opacity: 1;
   position: absolute;
+  transition: 1s;
   cursor: pointer;
+  :hover {
+    transition: 1s;
+    transform: scale(1.3);
+  }
 `;
-
-const ProductCard = ({ product }) => {
+// passing product and category in productCard component to change its props in other pages
+const ProductCard = ({ product, category }) => {
+  //useNavigate to switch pages
+  const navigate = useNavigate();
+  // activate dispatch
   const dispatch = useDispatch();
 
-  const favorites = useSelector((state) => state.favorite.favorites.length);
+  /* *
+   *handleFavorite function responsible for adding or removing products into favorites
+   *It activates the function using dispatch and the product intended to be added */
+  const handleFavorite = (e) => {
+    e.preventDefault();
+    dispatch(addAndRemoveFavorite(newFAvoriteProduct));
+  };
+  // favorite state from favorite slice
+  const favorites = useSelector((state) => state.favorite.favorites);
+  // spread operator to get product into newFavoriteProduct
+  let newFAvoriteProduct = { ...product };
 
-  const [favoriteProduct, setFavorite] = useState(false);
-  /*useNavigate to switch pages*/
-  const navigate = useNavigate();
-  /*openProduct function to switch to Product page once pressed on product*/
+  //openProduct function to switch to Product page once pressed on product
   const openProduct = (productId) => {
     navigate(`/products/${productId}`);
   };
 
-  const newFAvoriteProduct = { ...product };
-  newFAvoriteProduct.favorite = favoriteProduct;
-
-  const handleAddFavorite = (e) => {
-    !favoriteProduct && setFavorite(true);
-    dispatch(
-      addFavorite({
-        newFAvoriteProduct,
-      })
-    );
-    console.log(newFAvoriteProduct);
-  };
-
-  const handleRemoveFavorite = (e) => {
-    favoriteProduct && setFavorite(false);
-    dispatch(
-      removeFavorite({
-        newFAvoriteProduct,
-      })
-    );
-    console.log(newFAvoriteProduct);
-  };
-  const handleFavorite = (e) => {
-    console.log(favorites)
-    e.preventDefault();
-    favoriteProduct ? handleRemoveFavorite() : handleAddFavorite();
-  };
+  // check if product exists in favorites
+  const doesFavoritExist =
+    favorites?.findIndex((favorite) => favorite?._id === product?._id) !== -1;
 
   return (
     <Container>
       <ProductCardTemplate>
+        {/* handleFavorite function to add product into favorite list*/}
         <ProductHeart onClick={handleFavorite}>
           {" "}
           <Badge badgeContent={0} color="error">
+            {/*if the product does not exist in favorites turn the heart into red 
+            , else turn it grey*/}
             <FavoriteIcon
               sx={
-                favoriteProduct ? { color: "#810c0cf5" } : { color: "darkgrey" }
+                doesFavoritExist
+                  ? { color: "#ce1d1df5" }
+                  : { color: "darkgrey" }
               }
             />
           </Badge>
         </ProductHeart>
 
+        {/*product image props*/}
         <ProductImage
-          src={product.images[0]}
+          src={product?.images[0]}
           // on mouse hover the product main image will change to another image
-          onMouseEnter={(e) => (e.target.src = product.images[1])}
-          onMouseLeave={(e) => (e.target.src = product.images[0])}
-          onClick={() => openProduct(product._id)}
+          onMouseEnter={(e) => (e.target.src = product?.images[1])}
+          onMouseLeave={(e) => (e.target.src = product?.images[0])}
+          onClick={() => openProduct(product?._id)}
         ></ProductImage>
         <ProductInfoContainer>
-          <ProductInfo>{product.productTitle}</ProductInfo>
-          <ProductPrice>€ {product.price}</ProductPrice>
+          {/*product title props*/}
+          <ProductInfo>{product?.productTitle.toUpperCase()}</ProductInfo>
+          {/*product price props*/}
+          <ProductPrice>€ {product?.price}</ProductPrice>
+          {/*product color props*/}
           <ColorContainer>
-            {product.colors.map((availableColor) => (
+            {product?.colors.map((availableColor) => (
               <ColorSelections key={availableColor} color={availableColor} />
             ))}
           </ColorContainer>
