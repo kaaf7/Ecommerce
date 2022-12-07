@@ -10,7 +10,7 @@ import React from "react";
 // import Styled Components
 import styled from "styled-components";
 
-// import useState Hook from React
+// import useState and useEffect Hook from React
 import { useState, useEffect } from "react";
 
 // import Navigate to redirect to pages
@@ -100,9 +100,11 @@ const Board = () => {
     navigate(`/products/${productId}`);
   };
 
-  /* * UseEffect Hook to to fetch Products from API using axios's public request 
-  without any dependencies */
+  // useState hook to setProducts
   const [products, setProducts] = useState([]);
+
+  /* useEffect Hook to fetch Products from API using axios's public request 
+  without any dependencies */
   useEffect(() => {
     const getProducts = async () => {
       try {
