@@ -1,14 +1,17 @@
-/* 👇 This is Sale Component  	
-cretaed and styled with Styled Component 
-will show Sale items with Image and Information 
-and can direct to displayed Products's page
-*/
+/* *👇
+ *This is Sale Component
+ *cretaed and styled with Styled Component
+ *It will show Sale items with Image and Information
+ *it also directs user to displayed Products's page when clicked
+ */
 
+// import React
 import React from "react";
 
+// import Styled Components
 import styled from "styled-components";
 
-// import React أooks
+// import React Hooks
 import { useState, useEffect } from "react";
 
 // import responsive Settings from responsive.js
@@ -28,19 +31,22 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-bottom: 1px solid lightgray;
-  border-top: 1px solid lightgray;
+  border-bottom: 0.1px solid lightgray;
+  border-top: 0.1px solid lightgray;
 `;
 
-// Wrapper
+// Wrapper of components
 const Wrapper = styled.div`
   overflow: hidden;
   display: flex;
-  height: 100%;
+  height: 80%;
   margin-right: 150px;
+  margin-left: 150px;
   justify-content: center;
   text-align: start;
   transition: all 1.5s ease;
+  // border: 0.1px solid #d5d5d5;
+  //background-color: #f4f4f4;
 `;
 
 // Product Container
@@ -61,7 +67,7 @@ const Product = styled.div`
 
 // Product Image Container
 const ImageContainer = styled.div`
-  height: 90%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,9 +85,10 @@ const ImageContainer = styled.div`
 //Product Image
 const Image = styled.img`
   width: 100%;
-  height: 90%;
+  height: 100%;
   object-fit: scale-down;
   object-position: 0% 120%;
+  margin-right: 330px;
   cursor: pointer;
   ${mobile({
     height: "100%",
@@ -106,7 +113,10 @@ const InfoContainer = styled.div`
 // Sale Title
 const Title = styled.h1`
   flex: 1;
-  font-size: 50px;
+  font-weight: 200;
+  color: #252525;
+  font-family: "Lexend";
+  font-size: 60px;
   margin: 0;
   ${mobile({
     position: "absolute",
@@ -119,10 +129,13 @@ const Title = styled.h1`
 const Description = styled.p`
   flex: 1;
   margin: 0;
+  margin-right: 200px;
+  font-weight: 200;
   font-size: 16px;
   letter-spacing: 3px;
   width: 600px;
-  color: #272727f5;
+  font-family: "Lexend";
+  color: grey;
 `;
 
 // Check Sale Button
@@ -132,9 +145,11 @@ const Button = styled.button`
   font-size: 20px;
   padding: 20px 20px;
   background-color: transparent;
-  border: 1px solid lightgray;
+  margin-bottom: 200px;
+  font-family: "Lexend";
+  border: 0.1px solid lightgray;
   cursor: pointer;
-  color: #272727f5;
+  color: grey;
   transition: 0.2s;
   &:hover {
     transform: scale(1.05);
@@ -143,17 +158,15 @@ const Button = styled.button`
 `;
 
 const Sale = () => {
-  /*useNavigate to switch pages*/
+  //useNavigate to switch pages
   const navigate = useNavigate();
-
-  /*handeOpenProduct function directs to Product page when clicked*/
-  const handleOpenProduct = (productId, e) => {
+  //useState hook to set products
+  const [products, setProducts] = useState([]);
+  //openProduct function directs to Product page when clicked
+  const openProduct = (productId, e) => {
     navigate(`/products/${productId}`);
   };
-  /*useState hook to set products*/
-  const [products, setProducts] = useState([]);
-
-  /*useEffect hook to get all products with getProduct function*/
+  // useEffect hook to get products callinf getProduct function*/
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -175,7 +188,7 @@ const Sale = () => {
                 <Image
                   key={product._id}
                   src={product?.images[2]}
-                  onClick={() => handleOpenProduct(product._id)}
+                  onClick={() => openProduct(product._id)}
                 />
               ))
             }
@@ -191,7 +204,7 @@ const Sale = () => {
               /*add Button and make it clickable to direct to product page*/
               <Button
                 key={product._id}
-                onClick={() => handleOpenProduct(product._id)}
+                onClick={() => openProduct(product._id)}
               >
                 SHOP NOW
               </Button>
