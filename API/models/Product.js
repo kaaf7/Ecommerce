@@ -1,6 +1,11 @@
-const mongoose = require("mongoose");
+/* * 👇 
+ *This is product Schema
+ * it will contain all the  information about the product lik etitle, desriptions, images, etc
 
-/* create mongoDB schema for Products with every essential detail*/
+*/
+
+const mongoose = require("mongoose");
+// create new shcema
 const ProductSchema = new mongoose.Schema(
   {
     productTitle: { type: String, required: true, unique: false },
@@ -13,7 +18,6 @@ const ProductSchema = new mongoose.Schema(
     images: { type: Array, required: true },
     video: { typye: String, required: false },
     size: { type: Array, required: false },
-
   },
   { timestamps: true }
 );
