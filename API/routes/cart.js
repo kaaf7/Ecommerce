@@ -1,6 +1,14 @@
+/* * 👇
+ *This cart route will be used in index.js
+ *It is responsible for getting cart data on login
+ *It is responsible for updating cart when product added is removed
+ */
+
+// require express router
 const router = require("express").Router();
+
 const Cart = require("../models/Cart");
-const { verifyTokenAndAuthorization,verifyJwtToken } = require("./verifytoken");
+const { verifyTokenAndAuthorization } = require("./verifytoken");
 
 //add cart
 router.post("/add", verifyTokenAndAuthorization, async (req, res) => {
@@ -19,7 +27,7 @@ router.post("/add", verifyTokenAndAuthorization, async (req, res) => {
 });
 
 //get cart
-router.get("/find",  verifyTokenAndAuthorization , async (req, res) => {
+router.get("/find", verifyTokenAndAuthorization, async (req, res) => {
   const userId = req.query.id;
   try {
     const cart = await Cart.findOne({ userId: userId });
