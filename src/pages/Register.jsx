@@ -1,13 +1,27 @@
+/* * 👇
+ *This is Register  page
+ *Created and styled with Styled Component
+ *It is for registeration of new users
+ */
+
+// import styled Components
 import styled from "styled-components";
+
+// useDispatch to call register reducers
 import { useDispatch } from "react-redux";
+
+// imprt responsive design
 import { mobile } from "../responsive";
+
+// import react useState
 import { useState } from "react";
+
+// import register function from apiCalls
 import { register } from "../redux/apiCalls";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-
   background-size: cover;
   display: flex;
   align-items: center;
@@ -15,7 +29,9 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 40%;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
   padding: 20px;
   background-color: white;
   ${mobile({ width: "75%" })}
@@ -23,12 +39,14 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   font-size: 24px;
+  font-family: "Lexend";
   font-weight: 300;
   color: #555555;
   font-weight: bolder;
 `;
 const Form = styled.form`
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
 `;
 
@@ -37,18 +55,21 @@ const Input = styled.input`
   min-width: 40%;
   margin: 20px 10px 0px 0px;
   padding: 10px;
+  font-family: "Lexend", sans-serif;
 `;
 
 const Agreement = styled.span`
   font-size: 12px;
   margin: 20px 0px;
+  font-family: "Lexend", sans-serif;
 `;
 
 const Button = styled.button`
   width: 40%;
   border: none;
+  font-family: "Lexend", sans-serif;
   padding: 15px 20px;
-  background-color: #640000;
+  background-color: #202020;
   color: white;
   cursor: pointer;
 `;
@@ -58,6 +79,8 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  // handleRegister function that call function by and dispatch email,username, and password
   const handleRegister = (e) => {
     e.preventDefault();
     register(dispatch, { email, username, password });
@@ -87,7 +110,6 @@ const Register = () => {
               setPassword(e.target.value);
             }}
           />
-          <Input type="password" placeholder="confirm password" />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
