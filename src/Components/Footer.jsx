@@ -1,8 +1,8 @@
-// /* * 👇
-//  *This is Footer Component,
-//  *It is created and styled with Styled Components
-//  *It will contain company's information a
-//  */
+/* * 👇
+ *This is Footer Component,
+ *It is created and styled with Styled Components
+ *It will contain company's information a
+ */
 
 // import React
 import React from "react";
