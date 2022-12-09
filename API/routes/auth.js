@@ -1,5 +1,5 @@
 /* * 👇
- *This authentication route will be used in index.js
+ *This authentication rout will be used in index.js
  *It is responsible for authentication of users in case of registeration or login
  *It also creates cart and favorite list when new user is registered
  */
