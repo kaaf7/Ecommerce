@@ -1,17 +1,24 @@
-/* 👇 This is a Product List  Component 
-      it will show a grid of all products that are displyed 
-      inside of Product Cards 
-      and it will be displayed in products page
-*/
+/* *👇
+ *This is a Product List  Component
+ *Styled with Styled Components
+ *It will show a grid of all products that are displyed Inside of Product Cards
+ *It will be displayed in products page based on categories like women's cloths or men's
+ */
 
+// import React
 import React from "react";
 
+// import Styled Components
 import styled from "styled-components";
+
+// import useState and useEffect Hook from React
+import { useState, useEffect } from "react";
+
+// import useSelector to get state from redux slices
+import { useSelector } from "react-redux";
 
 // import product Card for product image and infos
 import ProductCard from "./ProductCard";
-
-import { useState, useEffect } from "react";
 
 // import responsive Settings from responsive.js
 import { mobile } from "../responsive";
@@ -19,6 +26,7 @@ import { mobile } from "../responsive";
 // import axios request services
 import { publicRequest } from "../services";
 
+// container of all components
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -30,14 +38,19 @@ const Container = styled.div`
   gap: 25px;
   position: relative;
 `;
-const ProductList = ({ filters, cat, sort, favorite }) => {
+const ProductList = ({ filters, cat, sort }) => {
   /* useState hook to set products*/
   const [products, setProducts] = useState([]);
 
-  /* useState hook to filter products*/
+  // favorites state from favorite slice
+  const favorites = useSelector((state) => state.favorite.favorites);
+
+  // filtered products
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  /* useEffect hook to get products according to catrgory*/
+  /* useEffect hook calling getProducts function to 
+  get product through a public request from DB if there is no category then show all products */
+
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -49,14 +62,11 @@ const ProductList = ({ filters, cat, sort, favorite }) => {
         setProducts(res.data);
       } catch (err) {}
     };
+
     getProducts();
-  }, [cat]);
+  }, [cat, favorites]);
 
-
-
-  
-
-  /* useEffect to filter  products according to products, catrgory, filters*/
+  // useEffect to filter products according to products, catrgory, filters
   useEffect(() => {
     if (filters) {
       setFilteredProducts(
@@ -67,9 +77,9 @@ const ProductList = ({ filters, cat, sort, favorite }) => {
         )
       );
     }
-  }, [products, cat, filters]);
+  }, [products, filters]);
 
-  /* useEffect to sort Products according Ascending and Descending price*/
+  // useEffect to sort Products according Ascending and Descending price
   useEffect(() => {
     if (sort === "ascending") {
       setFilteredProducts((products) =>
@@ -84,14 +94,11 @@ const ProductList = ({ filters, cat, sort, favorite }) => {
 
   return (
     <Container>
-      {
-        /* if products are filtered show only filtered Products else show all Products*/
-        filters
-          ? filteredProducts.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))
-          : setFilteredProducts(products)
-      }
+      {/* if products are filtered show only filtered Products else show all Products*/}
+      {filters &&
+        filteredProducts.map((product) => (
+          <ProductCard key={product._id} product={product} category="products" />
+        ))}
     </Container>
   );
 };
