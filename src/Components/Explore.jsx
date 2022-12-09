@@ -1,8 +1,8 @@
-// /* * 👇
-//  *This is Explore display Component
-//  *Created and styled with Styled Components,
-//  *It will redirect customer to other pages with products
-//  */
+/* * 👇
+ *This is Explore display Component
+ *Created and styled with Styled Components,
+ *It will redirect customer to other pages with products
+ */
 
 // import React
 import React from "react";
