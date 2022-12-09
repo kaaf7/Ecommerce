@@ -1,9 +1,9 @@
-// /* * 👇
-//  *This is Cart Item Component
-//  *Created and styled with Styled Components,
-//  *It will contain all the info of the a single item purchased and added in the cart
-//  *This component will be displayed in the cart page before checkout
-//  */
+/* * 👇
+ *This is Cart Item Component
+ *Created and styled with Styled Components,
+ *It will contain all the info of the a single item purchased and added in the cart
+ *This component will be displayed in the cart page before checkout
+ */
 
 // import React
 import React from "react";
@@ -120,7 +120,9 @@ const CartItem = ({ purchasedProduct }) => {
   const navigate = useNavigate();
 
   /* * handleRemoveProduct function is used to activate the 
-  removeProduct reducer in cartSlice to remove product from Cart */
+  removeProduct reducer in cartSlice to remove product from Cart 
+  as the product will be sent as an action payload
+  */
   const handleRemoveProduct = (product) => {
     dispatch(removeProduct(product));
   };
