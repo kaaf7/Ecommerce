@@ -1,8 +1,8 @@
-// /* *👇
-//  *This is Highlight section,
-//  *it is created and styled with Styled
-//  *Components will showcase products in HomePage
-//  */
+/* *👇
+ *This is Highlight section,
+ *it is created and styled with Styled
+ *Components will showcase products in HomePage
+ */
 
 // import React
 import React from "react";
