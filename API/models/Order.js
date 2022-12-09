@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+// create new shcema
 const OrderSchema = new mongoose.Schema(
   {
     userId: { type: String, required: true },
