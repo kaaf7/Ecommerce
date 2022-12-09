@@ -5,19 +5,15 @@ import Products from "./pages/Products";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 import Register from "./pages/Register";
+import Favorites from "./pages/Favorites";
 import { useSelector } from "react-redux";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getCart } from "./redux/cartRedux";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
+  const registeration = useSelector((state) => state.user.registerationSuccess);
   user ? console.log(user.username) : console.log("user is not logged in");
-  const dispatch = useDispatch();
-  useEffect(() => {
-    user && dispatch(getCart());
-  }, []);
 
   return (
     <Router>
@@ -27,11 +23,14 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/products/men" element={<Products />} />
         <Route path="/products/women" element={<Products />} />
-        <Route path="/favorites/:id" element={<Products />} />
+        <Route path="/products/favorite" element={<Favorites />} />
         <Route path="/products/new" element={<Products />} />
-        <Route path={"/cart/:id"} element={<Cart />} />
+        <Route path="/cart/:id" element={<Cart />} />
         <Route path="/login" element={user ? <Home /> : <Login />} />
-        <Route path="/register" element={user ? <Home /> : <Register />} />
+        <Route
+          path="/register"
+          element={registeration ? <Products /> : <Register />}
+        />
       </Routes>
     </Router>
   );
