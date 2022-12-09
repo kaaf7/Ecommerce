@@ -1,17 +1,23 @@
+/* * 👇
+ *This favorite rout will be used in index.js
+ *It creates favorite list for the new user on registeration
+ *It is responsible for getting favorite products on login
+ *It is responsible for updating favorites when product is being added or removed
+ */
+
+// require express router
 const router = require("express").Router();
+// import Favorite schema
 const Favorite = require("../models/Favorite");
+// import Verify token and Authorization
+const { verifyTokenAndAuthorization } = require("./verifytoken");
 
-const {
-  verifyTokenAndAdmin,
-  verifyTokenAndAuthorization,
-} = require("./verifytoken");
-
-//add favorite
+//add favorite using POST request after verefication and authroization
 router.post("/add", verifyTokenAndAuthorization, async (req, res) => {
   const qUserId = req.query.id;
   const favorite = new Favorite({
     userId: qUserId,
-    products: req.body.products,
+    favorites: req.body.favorites,
     _id: qUserId,
   });
 
@@ -23,7 +29,7 @@ router.post("/add", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
-//get favorite
+//get favorite using GET request
 router.get("/findfavorite", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const favorite = await Favorite.findOne({ userId: req.query.id });
@@ -33,7 +39,7 @@ router.get("/findfavorite", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
-//update favorite
+//update favorite using PUT request
 router.put("/updatefavorite", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const updateFavorite = await Favorite.findOneAndUpdate(
@@ -49,21 +55,11 @@ router.put("/updatefavorite", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
-//delete favorite
+//delete favorite using DELETE request
 router.delete("/get/delete", verifyTokenAndAuthorization, async (req, res) => {
   try {
     await Favorite.findOneAndDelete({ userId: req.query.id });
     res.status(200).json("deleted");
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-//get all
-router.get("/", verifyTokenAndAdmin, async (req, res) => {
-  try {
-    const favorite = await Favorite.find();
-    res.status(200).json(favorite);
   } catch (err) {
     res.status(500).json(err);
   }
