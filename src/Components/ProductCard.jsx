@@ -141,22 +141,23 @@ const ProductCard = ({ product, category }) => {
   return (
     <Container>
       <ProductCardTemplate>
+        {/* show the heart sign only if the display in a category */}
         {/* handleFavorite function to add product into favorite list*/}
-        <ProductHeart onClick={handleFavorite}>
-          {" "}
-          <Badge badgeContent={0} color="error">
-            {/*if the product does not exist in favorites turn the heart into red 
+        {category && (
+          <ProductHeart onClick={handleFavorite}>
+            <Badge badgeContent={0} color="error">
+              {/*if the product does not exist in favorites turn the heart into red 
             , else turn it grey*/}
-            <FavoriteIcon
-              sx={
-                doesFavoritExist
-                  ? { color: "#ce1d1df5" }
-                  : { color: "darkgrey" }
-              }
-            />
-          </Badge>
-        </ProductHeart>
-
+              <FavoriteIcon
+                sx={
+                  doesFavoritExist
+                    ? { color: "#ce1d1df5" }
+                    : { color: "darkgrey" }
+                }
+              />
+            </Badge>
+          </ProductHeart>
+        )}
         {/*product image props*/}
         <ProductImage
           src={product?.images[0]}
