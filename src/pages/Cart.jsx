@@ -1,10 +1,26 @@
+/* * 👇
+ *This is Cart Page
+ *Created and styled with Styled Component
+ *It will display the purchased items inform of Cartitem compoCFnent
+ */
+
+// import react
 import React from "react";
+// import Styled Components
 import styled from "styled-components";
+
+// import responsive Settings from responsive.js
 import { mobile } from "../responsive";
+// import cartItem component that will display purchased products
+
 import CartItem from "../Components/CartItem";
+// import navvbar component for navigation
 import { Navbar } from "../Components/Navbar";
+
+// import useSelector to get states from redux slices
 import { useSelector } from "react-redux";
 
+// Container that contains all of the components
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -12,6 +28,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+// components wrapper
 const Wrapper = styled.div`
   height: 70%;
   width: 100%;
@@ -21,6 +39,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+// container for all purchased items
 const PurchasedItems = styled.div`
   flex: 2;
   height: 100%;
@@ -35,17 +54,22 @@ const PurchasedItems = styled.div`
     flexDirection: "column",
   })}
 `;
+// text for purchase information
 const Text = styled.p`
   font-weight: 500;
+  font-family: "Lendex", sans-serif;
   margin-top: 1px;
   ${mobile({
     fontSize: "10px",
     flexDirection: "column",
   })}
 `;
+
+// buy button
 const PurchaseButton = styled.button`
   width: 100%;
   height: 50px;
+  font-family: "Lendex", sans-serif;
   margin-top: 50px;
   background-color: black;
   cursor: pointer;
@@ -54,6 +78,8 @@ const PurchaseButton = styled.button`
     background-color: grey;
   }
 `;
+
+// order summery form
 const PurchaseForm = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1vw;
@@ -73,32 +99,38 @@ const PurchaseForm = styled.div`
     justifyContent: "space-between",
   })}
 `;
+
+// order details
 const OrderDetails = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+// order title
 const OrderTitle = styled.h2`
   margin-top: 0;
+  font-family: "Lendex", sans-serif;
   ${mobile({
     fontSize: "15px",
   })}
 `;
 
-const DeliveryPriceContainer = styled.div``;
-const TotalSumContainer = styled.div``;
-const shippingCost = 5;
-
 const Cart = () => {
+  // get cart state from redux Cart Slice
   const cart = useSelector((state) => state.cart);
+  // get cart prodts array
   const cartProducts = cart.products;
+  // round total from cart state price
   const totalPrice = Math.round(cart.price);
+  // shipping cost
+  const shippingCost = 5;
 
-  console.log(totalPrice);
   return (
     <Container>
       <Navbar />
       {
         <Wrapper>
+          {/* mapp all purchased products into CartItem component*/}
           <PurchasedItems>
             {cartProducts.map((product) => (
               <CartItem key={product.uniqueId} purchasedProduct={product} />
@@ -113,16 +145,16 @@ const Cart = () => {
               </OrderDetails>
               <OrderDetails>
                 <Text>SHIPPING SUM</Text>
+                {/* if order is over 50 euros then shipping price is 0 else it is 5 euros*/}
                 <Text>€ {totalPrice > 50 ? 0 : shippingCost}</Text>
               </OrderDetails>
               <OrderDetails>
                 <Text>TOTAL ORDER</Text>
+                {/* if order is over 50 then do not add shipping cost*/}
                 <Text>
                   € {totalPrice > 50 ? totalPrice : totalPrice + shippingCost}
                 </Text>
               </OrderDetails>
-              <DeliveryPriceContainer></DeliveryPriceContainer>
-              <TotalSumContainer></TotalSumContainer>
               <PurchaseButton>GO TO CHECKOUT</PurchaseButton>
             </PurchaseForm>
           )}
