@@ -1,17 +1,37 @@
+/* * 👇
+ *This is Products  page
+ *Created and styled with Styled Component
+ *It will display all the products based on category,filters, and sort
+ */
+
+//import react and useState
 import React, { useState } from "react";
+// uselocation to get page lcoation
 import { useLocation } from "react-router-dom";
-import { Navbar } from "../Components/Navbar";
+
+// import styled Components
 import styled from "styled-components";
+
+// import Navbar
+import { Navbar } from "../Components/Navbar";
+
+// import footer
 import Footer from "../Components/Footer";
+
+// import Explore display
 import Explore from "../Components/Explore";
+
+// import Board display
 import Board from "../Components/Board";
+
+// import productList that will contain all products
 import ProductList from "../Components/ProductList";
 
-
+// all components container
 const Container = styled.div`
   background-color: #ffffff;
 `;
-
+// filter wrapper
 const FilterWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -23,22 +43,31 @@ const FilterWrapper = styled.div`
   height: 50px;
 `;
 
+// select filter
 const Filter = styled.select`
-  background-color: #ffffff;
-  border: none;
   border: none;
   font-size: 15px;
   font-family: bolder;
   color: grey;
-  font-family: Tahoma;
+  font-weight: 200;
+  font-family: "Lexend";
   &:focus {
     outline: none;
   }
 `;
 
 const Products = () => {
+  // set filter object
   const [filters, setFilters] = useState({});
+  // set sort as ascending
   const [sort, setSort] = useState("ascending");
+  // get location to determine category
+  const location = useLocation();
+  // get cateogory using location
+  const category = location.pathname.split("/")[2];
+
+  /* handleFilters funtion that will use filters name as value to 
+  setFilters and then add old filters to new ones using spread ope */
   const handleFilters = (e) => {
     const value = e.target.value;
     setFilters({
@@ -46,19 +75,17 @@ const Products = () => {
       [e.target.name]: value,
     });
   };
+  // handleSort function will set sort according to input value
   const handleSort = (e) => {
     setSort(e.target.value);
   };
-
-  const location = useLocation();
-  const category = location.pathname.split("/")[2];
 
   return (
     <Container>
       <Navbar></Navbar>
       <FilterWrapper>
         <Filter name="colors" id="colors" onChange={handleFilters}>
-          <option selected disabled>
+          <option defaultValue disabled>
             COLOR
           </option>
           <option>GREEN</option>
@@ -68,7 +95,7 @@ const Products = () => {
           <option>WHITE</option>
         </Filter>
         <Filter name="category" id="style" onChange={handleFilters}>
-          <option selected disabled>
+          <option defaultValue disabled>
             STYLE
           </option>
           <option>JACKETS</option>
@@ -77,24 +104,15 @@ const Products = () => {
           <option>TROUSERS</option>
         </Filter>
         <Filter name="category" onChange={handleFilters}>
-          <option selected disabled>
-            SIZE
-          </option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-        </Filter>
-
-        <Filter name="category" onChange={handleFilters}>
-          <option selected disabled>
+          <option defaultValue disabled>
             CATEGORY
           </option>
-          <option>WOMEN</option>
+
+          {<option>WOMEN</option>}
           <option>MEN</option>
         </Filter>
         <Filter onChange={handleSort}>
-          <option selected disabled>
+          <option defaultValue disabled>
             PRICE
           </option>
           <option value="ascending">ASCENDING</option>
