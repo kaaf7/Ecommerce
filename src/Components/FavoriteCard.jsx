@@ -1,32 +1,25 @@
-// /* * 👇
-//  *This is Favorite Card Componentnpm i @pmmmwh/react-refresh-webpack-plugin
-//  *Created and styled with Styled Components,
-//  *It will contain wish list products in Favorites Page
-//  */
+/* * 👇
+ *This is Favorite Card
+ *Created and styled with Styled Components,
+ *It will contain wish list products in Favorites Page
+ */
 
 // import React
 import React from "react";
-
 // import Styled Components
 import styled from "styled-components";
-
-// import responsive Settings from responsive.js
-import { mobile } from "../responsive";
-
 // import Navigate to redirect to pages
 import { useNavigate } from "react-router-dom";
-
 // import useDispatch activate redux reducers and useSelector to get state
 import { useDispatch, useSelector } from "react-redux";
-
 // import addAndRemoveFavorite reducer rom Favorite Slice to add & remove from favorites
 import { addAndRemoveFavorite } from "../redux/favoriteRedux";
-
 // favorite icon imported from mui
 import FavoriteIcon from "@mui/icons-material/Favorite";
-
 // favorite badeg imported from mui
 import Badge from "@mui/material/Badge";
+// import responsive Settings from responsive.js
+import { mobile } from "../responsive";
 
 // all Items Container
 const Container = styled.div``;
@@ -110,7 +103,7 @@ const FavoriteCard = ({ product }) => {
         onMouseEnter={(e) => (e.target.src = product?.images[1])}
         /* on normal state set 1st image as main*/
         onMouseLeave={(e) => (e.target.src = product?.images[0])}
-        src={product?.images[2]}
+        src={product?.images[0]}
       ></Card>
     </Container>
   );
