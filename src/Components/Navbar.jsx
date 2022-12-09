@@ -338,6 +338,7 @@ export const Navbar = () => {
     productRemoved,
     favoriteAdded,
     favoriteRemoved,
+    favorites,
     dispatch,
   ]);
 
