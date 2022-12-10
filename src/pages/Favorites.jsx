@@ -12,6 +12,8 @@ import { Navbar } from "../Components/Navbar";
 import { useSelector } from "react-redux";
 // import favorite card component that will display favorite items
 import FavoriteCard from "../Components/FavoriteCard";
+//import responsive Settings from responsive.js
+import { mobile } from "../responsive";
 
 const Container = styled.div``;
 
@@ -20,13 +22,17 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   height: 100%;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 7.882vw;
+  margin-right: 7.882vw;
   margin-top: 15vh;
   justify-content: center;
   align-items: center;
-  gap: 25px;
+  gap: 1.314vw;
   position: relative;
+  ${mobile({
+    fontSize: "10px",
+    gridTemplateColumns:" repeat(4, 1fr);"
+  })}
 `;
 
 const Favorites = () => {
