@@ -28,9 +28,14 @@ const Container = styled.div``;
 const Card = styled.img`
   width: 10vw;
   height: 30vh;
-  border-radius: 30px;
+  border-radius: 1.576vw;
   border: none;
   cursor: pointer;
+  ${mobile({
+    width: "20vw",
+    height: "30vw",
+    borderRadius: "1.5vw",
+  })}
 `;
 
 // Heart Sign Container
@@ -40,8 +45,8 @@ const ProductHeart = styled.div`
   justify-content: center;
   margin-left: 10%;
   margin-top: 15%;
-  width: 5px;
-  height: 5px;
+  width: 0.263vw;
+  height: 0.263vw;
   opacity: 1;
   border-radius: 50%;
   position: absolute;
@@ -51,6 +56,13 @@ const ProductHeart = styled.div`
     transition: 1s;
     transform: scale(1.3);
   }
+
+  ${mobile({
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  
+  })}
 `;
 
 // passing product in FavoriteCard component to change its props in Favorite Page
