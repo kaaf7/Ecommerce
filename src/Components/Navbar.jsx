@@ -44,7 +44,7 @@ import { useNavigate } from "react-router-dom";
 import { publicRequest, currentUser } from "../services";
 
 // import responsive Settings from responsive.js
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 // import useDispatch activate redux reducers and useSelector to get state
 import { useDispatch, useSelector } from "react-redux";
@@ -54,6 +54,8 @@ import { updateCart } from "../redux/cartRedux";
 
 // import updateFavorite reduce from favorite slice
 import { updateFavorite } from "../redux/favoriteRedux";
+
+
 
 // all Components Container
 const Container = styled.div`
@@ -74,11 +76,12 @@ const Announcement = styled.div`
   font-family: "Lexend", sans-serif;
   background-color: #fffffff5;
   color: #c40a0af5;
+
   display: flex;
   justify-content: center;
   align-items: center;
   // border-bottom: 0.5px solid lightgrey;
-  font-size: 12px;
+  font-size: 0.631vw;
   ${mobile({
     height: "2vh",
     fontSize: "10px",
@@ -94,14 +97,18 @@ const Wrapper = styled.div`
   justify-content: space-between;
   ${mobile({
     display: "flex",
-    JustifyContent: "center",
-    width: "100%",
+    width: "wrap-content",
+    justifyContent: "center",
+    height:"10vh"
+  })}
+  ${tablet({
+    marginTop: "1%",
   })}
 `;
 
 // Shop Logo Text
 const Logo = styled.h3`
-  font-size: 30px;
+  font-size: 1.576vw;
   flex: 2.5;
   font-family: "Lexend", sans-serif;
   color: #c40a0af5;
@@ -114,11 +121,14 @@ const LeftItems = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 150px;
+  margin-left: 7.882vw;
   flex: 0.75;
   height: 100%;
   ${mobile({
     display: "none",
+  })}
+  ${tablet({
+    marginLeft: "5%",
   })}
 `;
 
@@ -129,7 +139,7 @@ const CenterItems = styled.div`
   align-items: center;
   text-align: center;
   flex: 2;
-  ${mobile({ display: "hidden" })}
+  ${mobile({ display: "none" })}
 `;
 
 // Navbar Right Items together*/
@@ -137,21 +147,30 @@ const RightItems = styled.div`
   display: flex;
   flex: 0.75;
   flex-direction: row;
-  margin-right: 150px;
+  margin-right: 7.8125vw;
   height: 100%;
   justify-content: flex-end;
 
   ${mobile({
+    marginTop: "10%",
+    marginBottom: "5%",
     display: "flex",
     width: "100%",
-    justifyContent: "center",
+    justifyContent: "space-around",
+    gap: "40px",
+    alignItems: "center",
     textAlign: "center",
+    marginLeft: "10%",
+    flex: "2",
+  })}
+  ${tablet({
+    marginRight: "5%",
   })}
 `;
 
 // Container for each separate item in Navbar
 const MenuItem = styled.div`
-  margin-right: 10px;
+  margin-right: 0.525vw;
   position: relative;
   color: grey;
   display: flex;
@@ -161,7 +180,7 @@ const MenuItem = styled.div`
   font-family: "Lexend", sans-serif;
   text-align: center;
   font-weight: 350;
-  font-size: 13px;
+  font-size: 0.683vw;
   cursor: pointer;
   flex: 1;
   ${mobile({ fontSize: "10px" })}
@@ -182,7 +201,7 @@ const IconItem = styled.div`
   font-family: "Lexend", sans-serif;
   text-align: center;
   font-weight: 350;
-  font-size: 13px;
+  font-size: 0.683vw;
   cursor: pointer;
   flex: 1;
   ${mobile({ fontSize: "10px" })}
@@ -199,7 +218,7 @@ const IconsContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 14px;
+  font-size: 0.683vw;
   cursor: pointer;
   flex: 1;
 `;
@@ -458,7 +477,7 @@ export const Navbar = () => {
              *badgeContent show the number of products in cart based On CartQuantity state from cart slice
              */}
             <Badge
-              sx={{ transform: "scale(.9)" }}
+              sx={{ transform: "scale(.9)", size: "0.631vw" }}
               onClick={() => {
                 NavigateDir(`/cart/:${userId}`);
               }}
