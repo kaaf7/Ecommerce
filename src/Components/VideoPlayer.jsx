@@ -17,6 +17,9 @@ import styled from "styled-components";
 // import useNavigate to redirect to pages
 import { useNavigate } from "react-router-dom";
 
+//import responsive Settings from responsive.js
+import { mobile } from "../responsive";
+
 import Video1 from "../videos/Video_1.mp4";
 import Video2 from "../videos/Video_2.mp4";
 import Video3 from "../videos/Video_3.mp4";
@@ -37,6 +40,7 @@ const Container = styled.div`
   width: 100%;
   height: 110vh;
   border-bottom: 1px solid lightgray;
+  ${mobile({})}
 `;
 
 const Wrapper = styled.div`
@@ -45,7 +49,10 @@ const Wrapper = styled.div`
 `;
 const Video = styled.video`
   height: 90%;
-  // cursor: pointer;
+  cursor: pointer;
+  ${mobile({
+    height: "100%",
+  })}
 `;
 
 // video array
@@ -55,8 +62,8 @@ const randomVideo = Math.floor(Math.random() * 4);
 
 // audio controller container
 const AudioController = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 1.051vw;
+  height: 1.051vw;
   position: absolute;
   left: 8%;
   background-color: none;
@@ -68,6 +75,10 @@ const AudioController = styled.div`
   top: 12%;
   z-index: 1;
   cursor: pointer;
+  ${mobile({
+    left: "8%",
+    top: "15%",
+  })}
 `;
 
 const VideoPlayer = () => {
