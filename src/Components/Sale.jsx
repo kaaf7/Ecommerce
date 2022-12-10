@@ -33,6 +33,9 @@ const Container = styled.div`
   overflow: hidden;
   border-bottom: 0.1px solid lightgray;
   border-top: 0.1px solid lightgray;
+  ${mobile({
+    display: "none",
+  })}
 `;
 
 // Wrapper of components
@@ -40,8 +43,8 @@ const Wrapper = styled.div`
   overflow: hidden;
   display: flex;
   height: 80%;
-  margin-right: 150px;
-  margin-left: 150px;
+  margin-right: 7.8125vw;
+  margin-left: 7.8125vw;
   justify-content: center;
   text-align: start;
   transition: all 1.5s ease;
@@ -55,14 +58,6 @@ const Product = styled.div`
   height: 100vh;
   display: flex;
   align-items: center;
-  ${mobile({
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-end",
-    backgroundColor: "green",
-    width: "100%",
-    justifyContent: "center",
-  })}
 `;
 
 // Product Image Container
@@ -71,15 +66,9 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 7.8125vw;
+  margin-right: 7.8125vw;
   flex: 1;
-  ${mobile({
-    width: "100%",
-    height: "100%",
-    backgroundColor: "blue",
-    justifyContent: "center",
-  })}
 `;
 
 //Product Image
@@ -88,12 +77,8 @@ const Image = styled.img`
   height: 100%;
   object-fit: scale-down;
   object-position: 0% 120%;
-  margin-right: 330px;
+  margin-right: 17.1875vw;
   cursor: pointer;
-  ${mobile({
-    height: "100%",
-    width: "90%",
-  })}
 `;
 // Product Info Container
 const InfoContainer = styled.div`
@@ -103,11 +88,8 @@ const InfoContainer = styled.div`
   align-items: start;
   justify-content: flex-start;
   flex: 1;
-  gap: 10px;
+  gap: 0.525vw;
   color: #272727f5;
-  ${mobile({
-    display: "none",
-  })}
 `;
 
 // Sale Title
@@ -116,36 +98,31 @@ const Title = styled.h1`
   font-weight: 200;
   color: #252525;
   font-family: "Lexend";
-  font-size: 60px;
+  font-size: 3.125vw;
   margin: 0;
-  ${mobile({
-    position: "absolute",
-    fontSize: "40px",
-    marginBottom: "90%",
-  })}
 `;
 
 // Sale Description
 const Description = styled.p`
   flex: 1;
   margin: 0;
-  margin-right: 200px;
+  margin-right: 10.4166vw;
   font-weight: 200;
-  font-size: 16px;
+  font-size: 0.841vw;
   letter-spacing: 3px;
-  width: 600px;
+  width: 31.25vw;
   font-family: "Lexend";
   color: grey;
 `;
 
 // Check Sale Button
 const Button = styled.button`
-  width: 200px;
+  width: 10.51vw;
   flex: 1;
   font-size: 20px;
-  padding: 20px 20px;
+  padding: 1.051 vw 1.051 vw;
   background-color: transparent;
-  margin-bottom: 200px;
+  margin-bottom: 10.51vw;
   font-family: "Lexend";
   border: 0.1px solid lightgray;
   cursor: pointer;
