@@ -22,9 +22,9 @@ const Container = styled.div`
   overflow: hidden;
   ${mobile({
     display: "flex",
-    justifyContent: "flex-start",
-    height: "15vh",
-    backgroundColor: "yellow",
+    justifyContent: "space-between",
+    height: "40vh",
+    marginTop:"5vh"
   })}
 `;
 // text items where all the info is displayed
@@ -42,7 +42,7 @@ const Item = styled.div`
 
 // left itemns container
 const LeftItems = styled.div`
-  margin-left: 100px;
+  margin-left: 5.255vw;
   height: 100%;
   display: flex;
   justify-content: flex-start;
@@ -51,7 +51,7 @@ const LeftItems = styled.div`
   gap: 10px;
   flex: 1;
   ${mobile({
-    display: "none",
+    height: "100%",
   })}
 `;
 
@@ -59,11 +59,18 @@ const LeftItems = styled.div`
 const ItemsContainer = styled.div`
   justify-content: space-between;
   align-items: center;
-  gap: 5px;
+  gap: 0.525vw;
   height: 60%;
-  margin-left: 50px;
+  margin-left: 2.627vw;
   max-width: 30%;
   flex: 1;
+  ${mobile({
+    marginLeft: "7.882vw",
+    marginRight: "7.882vw",
+    maxWidth: "50%",
+    height: "90%",
+    marginBottom: "5vh",
+  })}
 `;
 const Footer = () => {
   return (
