@@ -42,7 +42,7 @@ const Wrapper = styled.div`
 
 // Explore Component Title
 const Title = styled.h1`
-  margin-bottom: 100px;
+  margin-bottom: 5.255vw;
   font-family: "Lexend", sans-serif;
   margin-top: 10px;
   margin-bottom: 0px;
@@ -60,7 +60,10 @@ const ButtonsContainer = styled.div`
   flex: 1;
   gap: 10px;
   ${mobile({
+    width: '100%',
     gap: "20px",
+    marginRight:"7.8125vw",
+    marginLeft:"7.8125vw"
   })}
 `;
 
@@ -70,7 +73,7 @@ const Button = styled.button`
   height: 4vh;
   font-family: "Lexend", sans-serif;
   font-weight: 200;
-  margin-top: 20px;
+  margin-top: 1.051vw;
   border: 0.1px solid lightgrey;
   font-size: 14px;
   color: #272727f5;
@@ -78,7 +81,6 @@ const Button = styled.button`
   cursor: pointer;
   ${mobile({
     fontSize: "10px",
-    width: "30vw",
   })}
 `;
 
