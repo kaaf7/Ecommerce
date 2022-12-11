@@ -31,8 +31,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   ${mobile({
-    height: "50vh",
-    marginBottom: "10vh",
+    display: "none",
   })}
 `;
 
