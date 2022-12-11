@@ -24,36 +24,48 @@ import Explore from "../Components/Explore";
 // import Board display
 import Board from "../Components/Board";
 
+// import responsive Settings from responsive.js
+import { mobile } from "../responsive";
+
 // import productList that will contain all products
 import ProductList from "../Components/ProductList";
 
 // all components container
 const Container = styled.div`
   background-color: #ffffff;
+  overflow: hidden;
+
 `;
 // filter wrapper
 const FilterWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 50px;
-  margin-left: 150px;
+  gap: 5vw;
+  margin-left: 7.882vw;
+  margin-right: 7.882vw;
   margin-top: 9vh;
   position: relative;
-  height: 50px;
+  height: 10vh;
 `;
 
 // select filter
 const Filter = styled.select`
   border: none;
-  font-size: 15px;
+  font-size: 1.5vh;
   font-family: bolder;
   color: grey;
   font-weight: 200;
-  font-family: "Lexend";
+  font-family: "Lexend",sans-serif;
   &:focus {
     outline: none;
+    margin-top: 0;
   }
+  ${mobile({
+    width:"100%",
+    fontSize: "1vh",
+  
+  })}
 `;
 
 const Products = () => {
