@@ -120,7 +120,7 @@ const Button = styled.button`
   width: 10.51vw;
   flex: 1;
   font-size: 20px;
-  padding: 1.051 vw 1.051 vw;
+  padding: 1vw 1vw;
   background-color: transparent;
   margin-bottom: 10.51vw;
   font-family: "Lexend";
