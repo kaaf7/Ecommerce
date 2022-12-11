@@ -22,6 +22,9 @@ import { addAndRemoveFavorite } from "../redux/favoriteRedux";
 // import Cart Badge from material UI
 import Badge from "@mui/material/Badge";
 
+// import responsive Settings from responsive.js
+import { mobile } from "../responsive";
+
 import { useDispatch, useSelector } from "react-redux";
 
 // all Components Container
@@ -37,42 +40,55 @@ const ProductCardTemplate = styled.div`
 // Product main image
 const ProductImage = styled.img`
   width: 100%;
-  height: 60vh;
+  max-height: 60vh;
   cursor: pointer;
+ 
 `;
 
 // Container for all product information
 const ProductInfoContainer = styled.div`
-  max-width: 20vw;
-  height: 100px;
+  max-width: 50vw;
+  height: 10.67vh;
   display: flex;
+  margin-bottom: 1vh;
   font-family: "Lexend", sans-serif;
-  font-weight: 400;
   justify-content: center;
   align-items: start;
   text-align: start;
   flex-direction: column;
   color: black;
-  font-size: 12px;
+  font-size: 0.631vw;
+  ${mobile({
+    width:"30vw"
+  })}
 `;
 
 // Text for product information
 const ProductInfo = styled.p`
   flex: 1;
-  font-size: 12px;
+  font-size: .7vw;
   color: #272727f5;
   font-family: "Lexend", sans-serif;
   letter-spacing: 2px;
+  ${mobile({
+    fontSize: "2vw",
+    marginTop:"2vh",
+    width:"100%"
+  })}
 `;
 
 // product price
 const ProductPrice = styled.p`
   flex: 1;
-  font-weight: bold;
-  font-size: 12px;
+  font-weight: 400;
+  font-size: 1vw;
   color: #272727f5;
   font-family: "Lexend", sans-serif;
   letter-spacing: 2px;
+  margin-top: 0;
+  ${mobile({
+    fontSize: "2vw"
+  })}
 `;
 
 // Product Colors Container
@@ -80,6 +96,7 @@ const ColorContainer = styled.div`
   display: flex;
   gap: 2px;
   flex: 1;
+  
 `;
 
 // Color selection with color props based on the product
@@ -89,17 +106,22 @@ const ColorSelections = styled.div`
   border: 0.1px solid lightgrey;
   // color is color prop based on the product
   background-color: ${({ color }) => color};
+
+  ${mobile({
+    width: "2vw",
+    height:"2vw"
+  })}
 `;
 
 // Heart icon to add product to favorites
 const ProductHeart = styled.div`
-  width: 35px;
-  height: 35px;
+  width:2vw;
+  height: 2vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 20%;
-  margin-top: 30%;
+  margin-left: 17vw;
+  margin-top: 53vh;
   border-radius: 50%;
   opacity: 1;
   position: absolute;
@@ -109,6 +131,12 @@ const ProductHeart = styled.div`
     transition: 1s;
     transform: scale(1.3);
   }
+  ${mobile({
+    width: "2vw",
+    height:"2vw",
+    marginTop:"55%",
+    marginLeft:"40%",
+  })}
 `;
 // passing product and category in productCard component to change its props in other pages
 const ProductCard = ({ product, category }) => {
