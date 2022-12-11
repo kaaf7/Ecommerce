@@ -39,8 +39,7 @@ const ProductCardTemplate = styled.div`
 
 // Product main image
 const ProductImage = styled.img`
-  width: 100%;
-  max-height: 60vh;
+  height: 60vh;
   cursor: pointer;
  
 `;
@@ -70,6 +69,7 @@ const ProductInfo = styled.p`
   color: #272727f5;
   font-family: "Lexend", sans-serif;
   letter-spacing: 2px;
+  font-weight: 300;
   ${mobile({
     fontSize: "2vw",
     marginTop:"2vh",
@@ -81,7 +81,7 @@ const ProductInfo = styled.p`
 const ProductPrice = styled.p`
   flex: 1;
   font-weight: 400;
-  font-size: 1vw;
+  font-size: .8vw;
   color: #272727f5;
   font-family: "Lexend", sans-serif;
   letter-spacing: 2px;
