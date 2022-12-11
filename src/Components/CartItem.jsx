@@ -36,20 +36,28 @@ const PurchasedItem = styled.div`
   gap: 20px;
   padding: 1vw;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  ${mobile({
+    width: "45vw",
+    padding: "1vw",
+  })}
 `;
 
 //photo of purchased single item added in cart
 const PurchasedItemPhoto = styled.img`
-  width: 100px;
-  height: 150px;
+  width: 5.5vw;
+  height: 15vh;
   object-fit: scale-down;
   cursor: pointer;
+  ${mobile({
+    width: "20vw",
+    objectFit: "scale-down"
+  })}
 `;
 
 // Container of info for purchased single item added in cart
 const PurchasedTextContainer = styled.div`
   width: 100%;
-  height: 150px;
+  height: 15vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -63,30 +71,34 @@ const PurchasedItemName = styled.h4`
   margin-top: 0;
   margin-bottom: 1px;
   ${mobile({
-    fontSize: "10px",
+    fontSize: "1vh",
   })}
 `;
 
 // remove product Button
 const RemoveButton = styled.button`
-  width: 60px;
-  height: 20px;
+  width: 4vw;
+  height: 2vh;
   display: flex;
   justify-content: center;
   font-family: "Lexend", sans-serif;
   font-weight: 400;
   align-items: center;
-  font-size: 12px;
+  font-size: 1vh;
   color: #ffffff;
   text-align: center;
   padding: auto;
   border: none;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(189, 0, 0);
   cursor: pointer;
 
   :hover {
     background-color: rgba(86, 1, 1, 0.943);
   }
+  ${mobile({
+    width: "15vw",
+    height: "2vh",
+  })}
 `;
 
 // Text for purchased item details
