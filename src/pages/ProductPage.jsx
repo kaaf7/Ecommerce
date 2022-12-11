@@ -7,6 +7,9 @@
 //import react, useState and useEffect hooks
 import { React, useState, useEffect } from "react";
 
+//import responsive Settings from responsive.js
+import { mobile } from "../responsive";
+
 // import styled Components
 import styled from "styled-components";
 
@@ -31,29 +34,47 @@ import { v4 as uuidv4 } from "uuid";
 // all components container
 const Container = styled.div`
   height: 100vh;
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow-y: hidden
+    ${mobile({
+      display: "flex",
+      flexDirection: "column",
+      width: "100%",
+      marginTop: "0",
+    })};
 `;
 
 // items wrapper
 const Wrapper = styled.div`
   height: 90%;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 7.882vw;
+  margin-right: 7.882vw;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   position: relative;
   gap: 10px;
+  ${mobile({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100%",
+  })}
 `;
 
 // product lookbook images wrapper
 const LookBookWrapper = styled.div`
   display: flex;
-  gap: 75px;
+  gap: 8vh;
   flex: 1;
+  ${mobile({
+    marginTop: "0",
+    marginBotton: "0",
+    height: "70%",
+  })}
 `;
 
 // lookbook main image
@@ -61,6 +82,12 @@ const LookBook = styled.img`
   height: 80vh;
   width: 30vw;
   object-fit: scale-down;
+  ${mobile({
+    height: "80vh",
+    width: "30vh",
+    marginTop: "0%",
+    marginBotton: "0",
+  })}
 `;
 
 // look book images container
@@ -70,8 +97,11 @@ const LookBookContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   height: 100%;
-  width: 75px;
+  width: 3.941vw;
   gap: 2px;
+  ${mobile({
+    marginTop: "25%",
+  })}
 `;
 
 // lookbook small images
@@ -85,10 +115,16 @@ const LookBookImages = styled.img`
   &:hover {
     transform: scale(1.1);
   }
+
+  ${mobile({
+    marginTop: "20%",
+
+    
+  })}
 `;
 // product details
 const ProductInfo = styled.div`
-  margin-left: 75px;
+  margin-left: 3.941vw;
   height: 80vh;
   width: 30vw;
   display: flex;
@@ -96,29 +132,42 @@ const ProductInfo = styled.div`
   justify-content: flex-start;
   align-items: start;
   font-family: "Lexend", sans-serif;
+  ${mobile({
+    marginLeft: "15vw",
+    marginTop: "0",
+    width: "60vw",
+  })}
 `;
 
 // product name
 const Title = styled.h2`
   font-weight: 400;
   margin: 0%;
+  font-family: "Lexend", sans-serif;
+  font-size: 2vh;
+  ${mobile({
+    fontWeight: "200",
+    fontSize: "2vh",
+    width: "100%",
+    marginLeft: "0",
+  })}
 `;
 // product price
 const PriceTag = styled.p`
   //font-weight: 500;
-  font-size: 20px;
-  margin-top: 10px;
+  font-size: 2.14vh;
+  margin-top: 1vh;
   font-family: "Lexend", sans-serif;
   margin-bottom: 20px;
 `;
 // colors
 const Color = styled.select`
-  height: 40px;
+  height: 4.25vh;
   width: 100%;
   border: 0.1px solid rgba(89, 89, 89, 0.1);
   font-family: "Lexend", sans-serif;
   font-weight: 300;
-  font-size: 15px;
+  font-size: 2vh;
   &:focus {
     border-bottom: 2px solid black;
     box-shadow: none;
@@ -231,7 +280,7 @@ const ProductPage = () => {
               disabled
             >
               SELECT COLOR
-             </option>
+            </option>
             {product?.colors.map((color) => (
               <option key={color}>{color.toUpperCase()}</option>
             ))}
