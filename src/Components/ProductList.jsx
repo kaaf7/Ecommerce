@@ -31,12 +31,15 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-bottom: 10vh;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 7.882vw;
+  margin-right: 7.882vw;
   justify-content: center;
   align-items: center;
   gap: 25px;
   position: relative;
+  ${mobile({
+    gridTemplateColumns: "repeat(2, 1fr);",
+  })}
 `;
 const ProductList = ({ filters, cat, sort }) => {
   /* useState hook to set products*/
