@@ -83,7 +83,7 @@ const LookBook = styled.img`
   width: 30vw;
   object-fit: scale-down;
   ${mobile({
-    height: "80vh",
+    height: "60vh",
     width: "30vh",
     marginTop: "0%",
     marginBotton: "0",
@@ -100,7 +100,7 @@ const LookBookContainer = styled.div`
   width: 3.941vw;
   gap: 2px;
   ${mobile({
-    marginTop: "25%",
+    marginTop: "6vh",
   })}
 `;
 
