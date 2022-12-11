@@ -55,8 +55,6 @@ import { updateCart } from "../redux/cartRedux";
 // import updateFavorite reduce from favorite slice
 import { updateFavorite } from "../redux/favoriteRedux";
 
-
-
 // all Components Container
 const Container = styled.div`
   width: 100%;
@@ -99,7 +97,7 @@ const Wrapper = styled.div`
     display: "flex",
     width: "wrap-content",
     justifyContent: "center",
-    height:"10vh"
+    height: "10vh",
   })}
   ${tablet({
     marginTop: "1%",
@@ -149,14 +147,15 @@ const RightItems = styled.div`
   flex-direction: row;
   margin-right: 7.8125vw;
   height: 100%;
+  width: 100%;
   justify-content: flex-end;
 
   ${mobile({
     marginTop: "10%",
     marginBottom: "5%",
     display: "flex",
-    width: "100%",
-    justifyContent: "space-around",
+    width: "10vw",
+    justifyContent: "center",
     gap: "40px",
     alignItems: "center",
     textAlign: "center",
@@ -204,11 +203,26 @@ const IconItem = styled.div`
   font-size: 0.683vw;
   cursor: pointer;
   flex: 1;
-  ${mobile({ fontSize: "10px" })}
+  ${mobile({ fontSize: "2vw", width: "2vw",  })}
 
   :hover {
     color: #000000;
   }
+`;
+
+// Container for each separate item in Navbar
+const IconItemMobile = styled.div`
+  margin-right: 0px;
+  position: relative;
+  font-family: "Lexend", sans-serif;
+  display: none;
+
+  ${mobile({
+    display: "block",
+    color: "#c40a0af5",
+    fontWeight: "500",
+    fontSize: "3vw",
+  })}
 `;
 
 // Container for each separate item in Navbar
@@ -328,9 +342,9 @@ export const Navbar = () => {
   // current User from user reducer
   const user = useSelector((state) => state.user.currentUser);
   // get current User id
-  const userId = currentUser?._id;
+  const userId = user?._id;
   // logged in state from user reducer
-  const loggedIn = useSelector((state) => state.user.loggedIn);
+  const loggedIn = useSelector((state) => state.user?.loggedIn);
 
   /* useEffect Hook to fetch Products from API using axios's public request 
   without any dependencies */
@@ -351,15 +365,7 @@ export const Navbar = () => {
     } else if ((user && favoriteAdded) || (user && favoriteRemoved)) {
       dispatch(updateFavorite(favorites));
     }
-  }, [
-    user,
-    productAdded,
-    productRemoved,
-    favoriteAdded,
-    favoriteRemoved,
-    favorites,
-    dispatch,
-  ]);
+  }, []);
 
   // NavigateDir depends on custome directory*/
   const NavigateDir = (directory) => {
@@ -448,6 +454,15 @@ export const Navbar = () => {
         </CenterItems>
         {/* if user is not logged in show login sign, else don't show it*/}
         <RightItems>
+          <IconItemMobile
+            onClick={() => {
+              NavigateDir("/");
+            }}
+          >
+            BANKAI.
+          </IconItemMobile>
+          
+
           {!loggedIn && (
             <IconItem
               onClick={() => {
