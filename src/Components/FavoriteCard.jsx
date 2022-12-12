@@ -19,7 +19,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 // favorite badeg imported from mui
 import Badge from "@mui/material/Badge";
 // import responsive Settings from responsive.js
-import { mobile } from "../responsive";
+import { mobile,tablet } from "../responsive";
 
 // all Items Container
 const Container = styled.div``;
@@ -32,6 +32,11 @@ const Card = styled.img`
   border: none;
   cursor: pointer;
   ${mobile({
+    width: "20vw",
+    height: "30vw",
+    borderRadius: "1.5vw",
+  })}
+   ${tablet({
     width: "20vw",
     height: "30vw",
     borderRadius: "1.5vw",
@@ -61,7 +66,13 @@ const ProductHeart = styled.div`
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-  
+    marginLeft: "11%"
+  })}
+    ${tablet({
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: "11%"
   })}
 `;
 
