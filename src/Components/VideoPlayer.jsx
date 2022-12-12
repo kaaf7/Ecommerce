@@ -18,12 +18,13 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 //import responsive Settings from responsive.js
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 import Video1 from "../videos/Video_1.mp4";
 import Video2 from "../videos/Video_2.mp4";
 import Video3 from "../videos/Video_3.mp4";
 import Video4 from "../videos/Video_4.mp4";
+import Video5 from "../videos/Video_5.mp4";
 
 // import audio on icon
 import VolumeUpRoundedIcon from "@mui/icons-material/VolumeUpRounded";
@@ -40,44 +41,60 @@ const Container = styled.div`
   width: 100%;
   height: 110vh;
   border-bottom: 1px solid lightgray;
-  ${mobile({})}
+  ${mobile({
+    width: "100%",
+    height: "28vh",
+    marginTop: "13vh",
+  })}
 `;
 
 const Wrapper = styled.div`
   height: 100%;
+
   cursor: pointer;
 `;
 const Video = styled.video`
   height: 90%;
   cursor: pointer;
   ${mobile({
+    width: "100%",
+  })}
+  ${tablet({
     height: "100%",
   })}
 `;
 
 // video array
-const VideosArray = [Video1, Video2, Video3, Video4];
+const VideosArray = [Video1, Video2, Video3, Video4, Video5];
 // get random number between 0 and 3 to shoow video
-const randomVideo = Math.floor(Math.random() * 4);
+const randomVideo = Math.floor(Math.random() * 5);
 
 // audio controller container
 const AudioController = styled.div`
   width: 1.051vw;
   height: 1.051vw;
   position: absolute;
-  left: 8%;
+  left: 7vw;
+  top: 12vh;
   background-color: none;
   opacity: 1;
   display: flex;
   border-radius: 50%;
   align-items: center;
   justify-content: center;
-  top: 12%;
   z-index: 1;
   cursor: pointer;
   ${mobile({
-    left: "8%",
+    left: "10%",
     top: "15%",
+    width: ".5vw",
+    height: ".5vw",
+  })}
+  ${tablet({
+    left: "5%",
+    top: "13%",
+    width: "1.051vw",
+    height: "1.051vw",
   })}
 `;
 
