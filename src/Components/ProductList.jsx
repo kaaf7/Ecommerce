@@ -21,7 +21,7 @@ import { useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 
 // import responsive Settings from responsive.js
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 // import axios request services
 import { publicRequest } from "../services";
@@ -38,9 +38,20 @@ const Container = styled.div`
   gap: 25px;
   position: relative;
   ${mobile({
+    display: "grid",
     gridTemplateColumns: "repeat(2, 1fr);",
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: "15vw",
+  })}
+  ${tablet({
+    display: "grid",
+    gridTemplateColumns: "repeat(2, 1fr);",
+    justifyContent: "center",
+    alignItems: "center",
   })}
 `;
+
 const ProductList = ({ filters, cat, sort }) => {
   /* useState hook to set products*/
   const [products, setProducts] = useState([]);
@@ -100,7 +111,11 @@ const ProductList = ({ filters, cat, sort }) => {
       {/* if products are filtered show only filtered Products else show all Products*/}
       {filters &&
         filteredProducts.map((product) => (
-          <ProductCard key={product._id} product={product} category="products" />
+          <ProductCard
+            key={product._id}
+            product={product}
+            category="products"
+          />
         ))}
     </Container>
   );
