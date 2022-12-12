@@ -74,7 +74,6 @@ const Announcement = styled.div`
   font-family: "Lexend", sans-serif;
   background-color: #fffffff5;
   color: #c40a0af5;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,12 +83,16 @@ const Announcement = styled.div`
     height: "2vh",
     fontSize: "10px",
   })}
+  ${tablet({
+    height: "1vh",
+    fontSize: "10px",
+  })}
 `;
 
 // Components Wrapper div
 const Wrapper = styled.div`
   width: 100%;
-  height: 7vh;
+  height: 9vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -182,7 +185,8 @@ const MenuItem = styled.div`
   font-size: 0.683vw;
   cursor: pointer;
   flex: 1;
-  ${mobile({ fontSize: "10px" })}
+  ${mobile({ fontSize: "1vh" })}
+  ${tablet({ fontSize: "1vh" })}
 
   :hover {
     color: #000000;
@@ -203,11 +207,12 @@ const IconItem = styled.div`
   font-size: 0.683vw;
   cursor: pointer;
   flex: 1;
-  ${mobile({ fontSize: "2vw", width: "2vw",  })}
 
   :hover {
     color: #000000;
   }
+
+  ${mobile({ fontSize: "2vw", width: "2vw" })}
 `;
 
 // Container for each separate item in Navbar
@@ -235,6 +240,11 @@ const IconsContainer = styled.div`
   font-size: 0.683vw;
   cursor: pointer;
   flex: 1;
+  ${tablet({
+    fontSize: "1vw",
+    height: "1vh",
+    width: "1vw",
+  })}
 `;
 
 // Search bar Container
@@ -375,6 +385,7 @@ export const Navbar = () => {
   // openProduct function to navigate to Product page once pressed on product
   const openProduct = (productId) => {
     navigate(`/products/${productId}`);
+    setSearchedProducts("");
   };
 
   // search filter based on prodict title name if it includes any of the input letters
@@ -432,7 +443,7 @@ export const Navbar = () => {
                 placeholder="Search.."
               ></SearchInput>
 
-              {/* if product search was initiated than show the resuls using array map mathod*/}
+              {/* if product search was initiated than show the result using array map mathod*/}
               {searchedProduct && (
                 <SearchResultContainer>
                   {searchFilter.map((product, i) => (
@@ -461,7 +472,6 @@ export const Navbar = () => {
           >
             BANKAI.
           </IconItemMobile>
-          
 
           {!loggedIn && (
             <IconItem
