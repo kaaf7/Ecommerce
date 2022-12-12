@@ -35,6 +35,8 @@ const Container = styled.div`
   background-color: #ffffff;
   overflow: hidden;
 
+  
+
 `;
 // filter wrapper
 const FilterWrapper = styled.div`
@@ -47,6 +49,7 @@ const FilterWrapper = styled.div`
   margin-top: 9vh;
   position: relative;
   height: 10vh;
+
 `;
 
 // select filter
