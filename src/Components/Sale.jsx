@@ -15,7 +15,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 
 // import responsive Settings from responsive.js
-import { mobile } from "../responsive";
+import { mobile,tablet } from "../responsive";
 
 // import useNavigate to redirect to pages
 import { useNavigate } from "react-router-dom";
@@ -34,6 +34,9 @@ const Container = styled.div`
   border-bottom: 0.1px solid lightgray;
   border-top: 0.1px solid lightgray;
   ${mobile({
+    display: "none",
+  })}
+  ${tablet({
     display: "none",
   })}
 `;
