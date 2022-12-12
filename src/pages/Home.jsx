@@ -62,8 +62,8 @@ const Home = () => {
       <Navbar></Navbar>
       <Wrapper>
         <VideoPlayer />
-        <Sale></Sale>
         <Board></Board>
+        <Sale></Sale>
         <Highlights></Highlights>
         <Explore></Explore>
         <Footer></Footer>
