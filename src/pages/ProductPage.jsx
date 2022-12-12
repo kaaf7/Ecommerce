@@ -8,7 +8,7 @@
 import { React, useState, useEffect } from "react";
 
 //import responsive Settings from responsive.js
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 // import styled Components
 import styled from "styled-components";
@@ -34,34 +34,54 @@ import { v4 as uuidv4 } from "uuid";
 // all components container
 const Container = styled.div`
   height: 100vh;
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-y: hidden
-    ${mobile({
-      display: "flex",
-      flexDirection: "column",
-      width: "100%",
-      marginTop: "0",
-    })};
+
+  ${mobile({
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    marginTop: "0",
+
+  })}
+
+  ${tablet({
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+  })}
 `;
 
 // items wrapper
 const Wrapper = styled.div`
   height: 90%;
   margin-left: 7.882vw;
-  margin-right: 7.882vw;
+  margin-right: 18.882vw;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  gap: 10px;
+  gap: 1vw;
   ${mobile({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "100%",
+    marginLeft: "7.882vw",
+    marginRight: "7.882vw",
+    height:"100vh",
+    overflowX: "hidden"
+
+  })}
+  ${tablet({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginLeft: "7.882vw",
+    marginRight: "7.882vw",
+    height:"100vh",
+    overflowX: "hidden"
   })}
 `;
 
@@ -70,10 +90,18 @@ const LookBookWrapper = styled.div`
   display: flex;
   gap: 8vh;
   flex: 1;
+
   ${mobile({
-    marginTop: "0",
+    marginTop: "20%",
     marginBotton: "0",
     height: "70%",
+    gap: "5vh",
+  })}
+  ${tablet({
+    marginTop: "10%",
+    marginBotton: "0",
+    height: "70%",
+    gap: "5vh",
   })}
 `;
 
@@ -81,12 +109,17 @@ const LookBookWrapper = styled.div`
 const LookBook = styled.img`
   height: 80vh;
   width: 30vw;
+  margin-left: 0;
   object-fit: scale-down;
   ${mobile({
-    height: "60vh",
+    height: "50vh",
     width: "30vh",
-    marginTop: "0%",
-    marginBotton: "0",
+    marginLeft: "5vw",
+    marginTop: "10%",
+  })}
+  ${tablet({
+    height: "50vh",
+    width: "30vh",
   })}
 `;
 
@@ -102,12 +135,15 @@ const LookBookContainer = styled.div`
   ${mobile({
     marginTop: "6vh",
   })}
+  ${tablet({
+    marginTop: "2vh",
+  })}
 `;
 
 // lookbook small images
 const LookBookImages = styled.img`
-  width: 75px;
-  height: 100px;
+  width: 3.9vw;
+  height: 10.6vh;
   object-fit: scale-down;
   transition: 0.1s ease-out;
   cursor: pointer;
@@ -118,15 +154,19 @@ const LookBookImages = styled.img`
 
   ${mobile({
     marginTop: "20%",
-
-    
+    width: "20vw",
+    marginLeft: "10vw",
+  })}
+  ${tablet({
+    marginTop: "20%",
+    width: "20vw",
   })}
 `;
 // product details
 const ProductInfo = styled.div`
   margin-left: 3.941vw;
   height: 80vh;
-  width: 30vw;
+  width: 25vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -134,8 +174,13 @@ const ProductInfo = styled.div`
   font-family: "Lexend", sans-serif;
   ${mobile({
     marginLeft: "15vw",
-    marginTop: "0",
-    width: "60vw",
+    width: "90vw",
+    bottom: "10vh",
+  })}
+  ${tablet({
+    marginLeft: "15vw",
+    width: "90vw",
+    bottom: "10vh",
   })}
 `;
 
@@ -150,6 +195,14 @@ const Title = styled.h2`
     fontSize: "2vh",
     width: "100%",
     marginLeft: "0",
+    marginTop: "0",
+  })}
+  ${tablet({
+    fontWeight: "200",
+    fontSize: "2vh",
+    width: "100%",
+    marginLeft: "0",
+    marginRight: "90%",
   })}
 `;
 // product price
@@ -158,16 +211,16 @@ const PriceTag = styled.p`
   font-size: 2.14vh;
   margin-top: 1vh;
   font-family: "Lexend", sans-serif;
-  margin-bottom: 20px;
+  margin-bottom: 2vh;
 `;
 // colors
 const Color = styled.select`
-  height: 4.25vh;
+  height: 3.25vh;
   width: 100%;
   border: 0.1px solid rgba(89, 89, 89, 0.1);
   font-family: "Lexend", sans-serif;
-  font-weight: 300;
-  font-size: 2vh;
+  font-weight: 200;
+  font-size: 1.5vh;
   &:focus {
     border-bottom: 2px solid black;
     box-shadow: none;
@@ -176,9 +229,9 @@ const Color = styled.select`
 `;
 // add to cart button
 const AddToCartBtn = styled.button`
-  margin-top: 40px;
+  margin-top: 4vh;
   width: 100%;
-  padding: 15px;
+  padding: 1.5vh;
   font-family: "Lexend", sans-serif;
   border: 0.1px solid black;
   background-color: #040404;
@@ -192,6 +245,15 @@ const AddToCartBtn = styled.button`
 const ProductDescription = styled.p`
   font-family: "Lexend", sans-serif;
   font-weight: 200;
+
+  ${mobile({
+    fontWeight: "200",
+    fontSize: "1.5vh",
+  })}
+  ${tablet({
+    fontWeight: "200",
+    fontSize: "1.5vh",
+  })}
 `;
 
 const ProductPage = () => {
@@ -261,7 +323,7 @@ const ProductPage = () => {
             ))}
           </LookBookContainer>
           {/*if not main image then show first image*/}
-          <LookBook src={!mainImage ? product?.images[0] : mainImage} />
+          <LookBook src={!mainImage ? product?.images[1] : mainImage} />
         </LookBookWrapper>
 
         <ProductInfo>
