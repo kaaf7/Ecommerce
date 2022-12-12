@@ -43,7 +43,7 @@ const favoritesSlice = createSlice({
   reducers: {
     getFavorite: (state, action) => {
       // get favorites with spread operator
-      const favoritesArray = [...action.payload.favorites];
+      let favoritesArray = [...action.payload.favorites];
       // set state favorites as favoritesArray
       state.favorites = favoritesArray;
       // set state quantity as favoritesArray's quantity
