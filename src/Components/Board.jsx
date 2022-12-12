@@ -17,7 +17,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 //import responsive Settings from responsive.js
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 // import public axios request from services
 import { publicRequest } from "../services";
@@ -39,12 +39,17 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
   //border-bottom: 1px solid lightgray;
   //border-top: 1px solid lightgray;
   ${mobile({
     height: "250vh",
     width: "100%",
-   
+  })}
+  ${tablet({
+    height: "350vh",
+    width: "100%",
+    marginTop:"0"
   })}
 `;
 
@@ -68,6 +73,16 @@ const Wrapper = styled.div`
     marginRight: "0%",
     marginLeft: "0%",
   })}
+  ${tablet({
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: "0%",
+    marginLeft: "0%",
+    height: "100%",
+    width: "100%",
+  })}
 `;
 
 // Image Component to display product images
@@ -86,6 +101,9 @@ const Image = styled.img`
   ${mobile({
     width: "100%",
   })}
+  ${tablet({
+    width: "100%",
+  })}
 `;
 
 // Quote Component to display random quotes
@@ -98,7 +116,13 @@ const Quote = styled.p`
   color: #8e2008;
   z-index: 1;
   ${mobile({
-   display:"none"
+    fontSize: "3",
+    marginLeft:"2vw",
+    marginRight:"2vw"
+
+  })}
+   ${tablet({
+    fontSize: "2.5vw",
   })}
 `;
 
