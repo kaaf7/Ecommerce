@@ -17,7 +17,7 @@ import styled from "styled-components";
 import ProductCard from "./ProductCard";
 
 // import responsive Settings from responsive.js
-import { mobile } from "../responsive";
+import { mobile,tablet } from "../responsive";
 
 // import public request from axios services
 import { publicRequest } from "../services";
@@ -33,6 +33,9 @@ const Container = styled.div`
   ${mobile({
     display: "none",
   })}
+  ${tablet({
+    display: "none",
+  })}
 `;
 
 // Components Wrapper
@@ -42,16 +45,9 @@ const Wrapper = styled.div`
   justify-content: space-evenly;
   gap: 25px;
   align-items: center;
-  margin-left: 150px;
-  margin-right: 150px;
-  ${mobile({
-    marginLeft: "1vw",
-    marginRight: "1vw",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    width: "100%",
-  })}
+  margin-left: 7.82vw;
+  margin-right: 7.82vw;
+
 `;
 
 const Highlights = () => {
