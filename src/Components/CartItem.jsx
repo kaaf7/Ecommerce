@@ -12,7 +12,7 @@ import React from "react";
 import styled from "styled-components";
 
 //import responsive Settings from responsive.js
-import { mobile } from "../responsive";
+import { mobile,tablet } from "../responsive";
 
 // import removeProduct reducer rom CartSlice to remove product from cart
 import { removeProduct } from "../redux/cartRedux";
@@ -33,10 +33,14 @@ const PurchasedItem = styled.div`
   font-weight: 300;
   align-items: center;
   justify-content: space-around;
-  gap: 20px;
+  gap: 2vh;
   padding: 1vw;
   border: 1px solid rgba(0, 0, 0, 0.1);
   ${mobile({
+    width: "45vw",
+    padding: "1vw",
+  })}
+   ${tablet({
     width: "45vw",
     padding: "1vw",
   })}
@@ -49,6 +53,10 @@ const PurchasedItemPhoto = styled.img`
   object-fit: scale-down;
   cursor: pointer;
   ${mobile({
+    width: "20vw",
+    objectFit: "scale-down"
+  })}
+  ${tablet({
     width: "20vw",
     objectFit: "scale-down"
   })}
@@ -70,7 +78,11 @@ const PurchasedItemName = styled.h4`
   font-weight: 300;
   margin-top: 0;
   margin-bottom: 1px;
+  font-size: 2vh;
   ${mobile({
+    fontSize: "1vh",
+  })}
+  ${tablet({
     fontSize: "1vh",
   })}
 `;
@@ -99,27 +111,36 @@ const RemoveButton = styled.button`
     width: "15vw",
     height: "2vh",
   })}
+   ${tablet({
+    width: "15vw",
+    height: "2vh",
+  })}
 `;
 
 // Text for purchased item details
 const DetailsContainer = styled.div`
   width: 100%;
-  height: 30px;
+  height: 3vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  gap: 20px;
+  gap: 2vh;
 `;
 
 // Text for indication of product color and price
 const Indication = styled.p`
   font-weight: 400;
-  margin-top: 1px;
+  margin-top: 1vh;
   font-family: "Lexend", sans-serif;
+  font-size: 1.5vh;
 
   ${mobile({
-    fontSize: "10px",
+    fontSize: "1vh",
+    flexDirection: "column",
+  })}
+  ${tablet({
+    fontSize: "1vh",
     flexDirection: "column",
   })}
 `;
