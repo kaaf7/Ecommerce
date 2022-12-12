@@ -10,7 +10,7 @@ import React from "react";
 import styled from "styled-components";
 
 // import responsive Settings from responsive.js
-import { mobile } from "../responsive";
+import { mobile,tablet } from "../responsive";
 // import cartItem component that will display purchased products
 
 import CartItem from "../Components/CartItem";
@@ -33,8 +33,8 @@ const Container = styled.div`
 const Wrapper = styled.div`
   height: 70%;
   width: 100%;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-right: 7.8125vw;
+  margin-left: 7.8125vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,8 +48,12 @@ const PurchasedItems = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: start;
-  gap: 10px;
+  gap: 1vh;
   ${mobile({
+    display: "flex",
+    flexDirection: "column",
+  })}
+   ${tablet({
     display: "flex",
     flexDirection: "column",
   })}
@@ -58,9 +62,15 @@ const PurchasedItems = styled.div`
 const Text = styled.p`
   font-weight: 500;
   font-family: "Lendex", sans-serif;
-  margin-top: 1px;
+  margin-top: .1vh;
+  
   ${mobile({
-    fontSize: "10px",
+    fontSize: "1.5vw",
+    flexDirection: "column",
+  })}
+  
+  ${tablet({
+    fontSize: "1.5vw",
     flexDirection: "column",
   })}
 `;
@@ -68,15 +78,21 @@ const Text = styled.p`
 // buy button
 const PurchaseButton = styled.button`
   width: 100%;
-  height: 50px;
+  height: 5vh;
   font-family: "Lendex", sans-serif;
-  margin-top: 50px;
   background-color: black;
+  font-weight: 100;
   cursor: pointer;
   color: white;
   &:hover {
     background-color: grey;
   }
+  ${mobile({
+    fontSize: "2vw",
+  })}
+   ${tablet({
+    fontSize: "2vw",
+  })}
 `;
 
 // order summery form
@@ -84,16 +100,21 @@ const PurchaseForm = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1vw;
   position: fixed;
-  right: 150px;
-  top: 140px;
+  right: 7.8125vw;
+  top: 15vh;
   width: 30%;
-  height: fit-content;
+  height: 20vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   justify-items: center;
 
   ${mobile({
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  })}
+  ${tablet({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -110,8 +131,12 @@ const OrderDetails = styled.div`
 const OrderTitle = styled.h2`
   margin-top: 0;
   font-family: "Lendex", sans-serif;
+  font-size: 2vh;
   ${mobile({
-    fontSize: "15px",
+    fontSize: "1vh",
+  })}
+  ${tablet({
+    fontSize: "1vh",
   })}
 `;
 
