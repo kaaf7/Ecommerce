@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 // import favorite card component that will display favorite items
 import FavoriteCard from "../Components/FavoriteCard";
 //import responsive Settings from responsive.js
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 const Container = styled.div``;
 
@@ -31,7 +31,14 @@ const Wrapper = styled.div`
   position: relative;
   ${mobile({
     fontSize: "10px",
-    gridTemplateColumns:" repeat(4, 1fr);"
+    gridTemplateColumns: " repeat(4, 1fr);",
+  })}
+  ${tablet({
+    display: "grid",
+    gridTemplateColumns: " repeat(4, 1fr)",
+    fontSize: "1vh",
+    marginLeft: "7.882vw",
+    marginRight: "7.882vw",
   })}
 `;
 
