@@ -188,6 +188,7 @@ const ProductInfo = styled.div`
 const Title = styled.h2`
   font-weight: 400;
   margin: 0%;
+  margin-top:2%;
   font-family: "Lexend", sans-serif;
   font-size: 2vh;
   ${mobile({
