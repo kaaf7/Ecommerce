@@ -12,7 +12,7 @@ const Product = require("../models/Product");
 // verify token and admin
 const { verifyTokenAndAdmin } = require("./verifytoken");
 
-//get single product by Id using GET request 
+//get single product by Id using GET request
 router.get("/allproducts/product", async (req, res) => {
   const qProductId = req.query.id;
   try {
@@ -41,7 +41,7 @@ router.get("/allproducts", async (req, res) => {
   }
 });
 
-// add products using POST request after verification of token and if user is an admin 
+// add products using POST request after verification of token and if user is an admin
 router.post("/allproducts", verifyTokenAndAdmin, async (req, res) => {
   try {
     const newProduct = new Product(req.body);
