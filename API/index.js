@@ -49,20 +49,10 @@ mongoose
     console.log(err);
   });
 
-  app.use(express.static(path.join(__dirname, "./ecommerce")));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './ecommerce/build', 'index.html'));
-  });
-
-
 // get api
 app.get("/api", (req, res) => {
   res.send("API");
 });
-
-
-
 
 // use all routs
 app.use("/api", userRout);
