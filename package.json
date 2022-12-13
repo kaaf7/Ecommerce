@@ -36,10 +36,10 @@
     "dev": "react-scripts start",
     "start": "serve -s build",
     "build": "react-scripts build",
-    "install-api": "cd /Api && npm start",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build && install-api"
+    "server":"node index.js",
+    "heroku-postbuild": "cd ApI && npm run server && npm run build"
   },
   "eslintConfig": {
     "extends": [
