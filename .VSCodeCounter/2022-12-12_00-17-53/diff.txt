@@ -1,0 +1,84 @@
+Date : 2022-12-12 00:17:53
+Directory : c:\Users\A\Desktop\ecomm\ecommerce\API
+Total : 49 files,  86 codes, -418 comments, -301 blanks, all -633 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| JSON             |          2 |      2,352 |          0 |          2 |      2,354 |
+| JavaScript       |         25 |        117 |         86 |         32 |        235 |
+| XML              |          1 |         -1 |          0 |          0 |         -1 |
+| CSS              |          2 |        -45 |          0 |         -8 |        -53 |
+| JavaScript React |         19 |     -2,337 |       -504 |       -327 |     -3,168 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                               | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                  |         49 |         86 |       -418 |       -301 |       -633 |
+| ..                                                                 |         34 |     -2,778 |       -585 |       -378 |     -3,741 |
+| ..\src                                                             |         34 |     -2,778 |       -585 |       -378 |     -3,741 |
+| ..\src\Components                                                  |         12 |     -1,591 |       -343 |       -221 |     -2,155 |
+| ..\src\pages                                                       |          7 |       -746 |       -161 |       -106 |     -1,013 |
+| ..\src\redux                                                       |          5 |       -294 |        -72 |        -23 |       -389 |
+| models                                                             |          5 |         81 |         27 |         17 |        125 |
+| routes                                                             |          7 |        395 |        116 |         56 |        567 |
++--------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                           | language         | code       | comment    | blank      | total      |
++--------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| c:\Users\A\Desktop\ecomm\ecommerce\API\index.js                    | JavaScript       |         36 |         24 |          2 |         62 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\models\Cart.js              | JavaScript       |         18 |          8 |          3 |         29 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\models\Favorite.js          | JavaScript       |         18 |          7 |          4 |         29 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\models\Order.js             | JavaScript       |         17 |          1 |          3 |         21 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\models\Product.js           | JavaScript       |         17 |          6 |          3 |         26 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\models\User.js              | JavaScript       |         11 |          5 |          4 |         20 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\package-lock.json           | JSON             |      2,331 |          0 |          1 |      2,332 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\package.json                | JSON             |         21 |          0 |          1 |         22 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\routes\auth.js              | JavaScript       |         71 |         40 |          6 |        117 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\routes\cart.js              | JavaScript       |         48 |         13 |          7 |         68 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\routes\favorite.js          | JavaScript       |         48 |         13 |          8 |         69 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\routes\order.js             | JavaScript       |         84 |          6 |         14 |        104 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\routes\product.js           | JavaScript       |         60 |         14 |          9 |         83 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\routes\user.js              | JavaScript       |         48 |         16 |          8 |         72 |
+| c:\Users\A\Desktop\ecomm\ecommerce\API\routes\verifytoken.js       | JavaScript       |         36 |         14 |          4 |         54 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\App.css                     | CSS              |        -33 |          0 |         -6 |        -39 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\App.js                      | JavaScript       |        -35 |          0 |         -5 |        -40 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\App.test.js                 | JavaScript       |         -7 |          0 |         -2 |         -9 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Banner.jsx       | JavaScript React |       -130 |        -21 |        -15 |       -166 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Board.jsx        | JavaScript React |       -114 |        -25 |        -18 |       -157 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\CartItem.jsx     | JavaScript React |       -131 |        -33 |        -19 |       -183 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Explore.jsx      | JavaScript React |        -99 |        -20 |        -14 |       -133 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\FavoriteCard.jsx | JavaScript React |        -80 |        -32 |        -13 |       -125 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Footer.jsx       | JavaScript React |        -91 |        -12 |         -8 |       -111 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Highlights.jsx   | JavaScript React |        -56 |        -17 |        -13 |        -86 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Navbar.jsx       | JavaScript React |       -432 |        -73 |        -46 |       -551 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\ProductCard.jsx  | JavaScript React |       -153 |        -40 |        -23 |       -216 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\ProductList.jsx  | JavaScript React |        -70 |        -22 |        -18 |       -110 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\Sale.jsx         | JavaScript React |       -151 |        -27 |        -19 |       -197 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\Components\VideoPlayer.jsx  | JavaScript React |        -84 |        -21 |        -15 |       -120 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\index.css                   | CSS              |        -12 |          0 |         -2 |        -14 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\index.js                    | JavaScript       |        -18 |         -3 |         -3 |        -24 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\logo.svg                    | XML              |         -1 |          0 |          0 |         -1 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Cart.jsx              | JavaScript React |       -132 |        -26 |        -14 |       -172 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Favorites.jsx         | JavaScript React |        -36 |        -13 |         -7 |        -56 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Home.jsx              | JavaScript React |        -40 |        -21 |        -15 |        -76 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Login.jsx             | JavaScript React |       -106 |        -22 |        -12 |       -140 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\pages\ProductPage.jsx       | JavaScript React |       -231 |        -44 |        -26 |       -301 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Products.jsx          | JavaScript React |       -103 |        -24 |        -16 |       -143 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\pages\Register.jsx          | JavaScript React |        -98 |        -11 |        -16 |       -125 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\redux\apiCalls.js           | JavaScript       |        -52 |        -21 |         -4 |        -77 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\redux\cartRedux.js          | JavaScript       |        -71 |        -32 |         -4 |       -107 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\redux\favoriteRedux.js      | JavaScript       |        -74 |        -19 |         -6 |        -99 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\redux\store.js              | JavaScript       |        -36 |          0 |         -4 |        -40 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\redux\userRedux.js          | JavaScript       |        -61 |          0 |         -5 |        -66 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\reportWebVitals.js          | JavaScript       |        -12 |          0 |         -2 |        -14 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\responsive.js               | JavaScript       |        -15 |          0 |         -3 |        -18 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\services.js                 | JavaScript       |        -13 |         -2 |         -4 |        -19 |
+| c:\Users\A\Desktop\ecomm\ecommerce\src\setupTests.js               | JavaScript       |         -1 |         -4 |         -1 |         -6 |
+| Total                                                              |                  |         86 |       -418 |       -301 |       -633 |
++--------------------------------------------------------------------+------------------+------------+------------+------------+------------+
