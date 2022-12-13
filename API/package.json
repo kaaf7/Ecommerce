@@ -9,10 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
-    "build": "node index.js",
-    "client": "npm run start --prefix mappinapp",
-    "heroku-postbuild": "npm run build"
+    "dev": "nodemon ./index.js",
+    "start": "node index.js"
   },
   "author": "Karim Amer",
   "license": "ISC",
