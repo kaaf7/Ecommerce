@@ -49,10 +49,10 @@ mongoose
     console.log(err);
   });
 
-  app.use(express.static(path.join(__dirname, "/ecommerce")));
+  app.use(express.static(path.join(__dirname, "./ecommerce")));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/ecommerce/build', 'index.html'));
+    res.sendFile(path.join(__dirname, './ecommerce/build', 'index.html'));
   });
 
 
